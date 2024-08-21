@@ -1,0 +1,44 @@
+// @import url("../styling/variables.scss");
+@use "../styling/variables.scss" as *;
+
+.nav-container {
+     width: 100%;
+     padding: clamp(1em, 2vw, 2em);
+     display: flex;
+     position: absolute;
+     top: 0;
+     z-index: 1;
+}
+
+.navlinks-wrapper,
+.logo-wrapper {
+     display: flex;
+}
+
+.logo-wrapper {
+     flex-shrink: 0;
+     align-items: center;
+     opacity: 0.85;
+}
+
+.logo-wrapper > h1 {
+     font-family: $logo-font;
+     font-weight: 300;
+     letter-spacing: -3px;
+}
+
+.navlinks-wrapper {
+     flex-grow: 1;
+     align-items: center;
+     margin-right: clamp(1.5em, 5vw, 5em);
+}
+
+.navlinks-wrapper > ul {
+     margin-left: auto;
+     display: flex;
+     gap: 2em;
+}
+.navlinks-wrapper > ul > li {
+     list-style-type: none;
+     font-family: $pr-montserrat;
+}
