@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import "../styling/home/skills.scss";
-import { FaNodeJs, FaAws, FaBootstrap, FaCss3Alt, FaHtml5, FaFacebookSquare, FaReact, FaChrome } from "react-icons/fa";
+import { FaNodeJs, FaAws, FaBootstrap, FaCss3Alt, FaHtml5, FaReact, FaChrome } from "react-icons/fa";
 import { SiPostman, SiGit, SiGithub, SiJavascript, SiSass, SiMongodb } from "react-icons/si";
 import { VscVscode } from "react-icons/vsc";
 

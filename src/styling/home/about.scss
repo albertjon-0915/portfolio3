@@ -65,10 +65,10 @@
                     gap: 1em;
                     width: 15em;
                     height: clamp(2.5em, 5vw, 5em);
-                    border-bottom: 3px solid rgba(0, 0, 0, 0.596);
+                    border-bottom: 3px solid $a-color;
                     background: $sc-color;
                     font: clamp(1em, 2vw, 1.5em) $tr-opensans;
-                    color: lighten(#000000, 30%);
+                    color: $a-color;
                     cursor: pointer;
                }
           }
