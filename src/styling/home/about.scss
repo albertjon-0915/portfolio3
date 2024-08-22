@@ -7,7 +7,7 @@
 }
 
 .about-wrapper {
-     border: 1px solid red;
+     // border: 1px solid red;
      width: 100%;
      display: flex;
      flex-direction: column;
@@ -15,7 +15,9 @@
 
      img {
           width: 80%;
-          height: 60vh;
+          aspect-ratio: 16 / 9;
+          height: auto;
+          max-height: 60vh;
           border-radius: 5px;
           object-fit: cover;
           object-position: top left;
@@ -25,15 +27,52 @@
      .about-title {
           width: 80%;
           padding: 2em 0;
-          font: 900 clamp(3em, 4vw, 4em) $sc-roboto;
+          font: clamp(2em, 4vw, 4em) $pr-montserrat;
+
+          .title-focal {
+               max-width: 60%;
+          }
      }
 
      .content {
           width: 80%;
-          border: 1px solid red;
+          font: normal 1em $tr-opensans;
+
+          h3 {
+               padding: 1.5em 0;
+               font-size: 2em;
+          }
 
           p {
-               width: 40%;
+               max-width: 40em;
+               text-indent: 5.5em;
+               text-wrap: wrap;
+               font-size: clamp(0.9em, 1vw, 1.1em);
+          }
+     }
+
+     .socials {
+          width: 80%;
+          padding: 10em 0;
+
+          ul {
+               list-style-type: none;
+               display: flex;
+               gap: clamp(0.5em, 4vw, 4em);
+
+               li {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    gap: 1em;
+                    width: 15em;
+                    height: clamp(2.5em, 5vw, 5em);
+                    border-bottom: 3px solid rgba(0, 0, 0, 0.596);
+                    background: $sc-color;
+                    font: clamp(1em, 2vw, 1.5em) $tr-opensans;
+                    color: lighten(#000000, 30%);
+                    cursor: pointer;
+               }
           }
      }
 }

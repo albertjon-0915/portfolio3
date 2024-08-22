@@ -3,7 +3,7 @@
 
 .nav-container {
      width: 100%;
-     padding: clamp(1em, 2vw, 2em);
+     padding: clamp(0.5em, 2vw, 2em);
      display: flex;
      position: absolute;
      top: 0;
@@ -19,26 +19,30 @@
      flex-shrink: 0;
      align-items: center;
      opacity: 0.85;
-}
+     cursor: pointer;
 
-.logo-wrapper > h1 {
-     font-family: $logo-font;
-     font-weight: 300;
-     letter-spacing: -3px;
+     h1 {
+          font-family: $logo-font;
+          font-weight: 300;
+          letter-spacing: -3px;
+     }
 }
 
 .navlinks-wrapper {
      flex-grow: 1;
      align-items: center;
-     margin-right: clamp(1.5em, 5vw, 5em);
-}
+     margin-right: clamp(0em, 5vw, 5em);
 
-.navlinks-wrapper > ul {
-     margin-left: auto;
-     display: flex;
-     gap: 2em;
-}
-.navlinks-wrapper > ul > li {
-     list-style-type: none;
-     font-family: $pr-montserrat;
+     ul {
+          margin-left: auto;
+          display: flex;
+          gap: clamp(1em, 2vw, 2em);
+
+          li {
+               font-size: clamp(0.8em, 1vw, 1.1em);
+               list-style-type: none;
+               font-family: $pr-montserrat;
+               cursor: pointer;
+          }
+     }
 }
