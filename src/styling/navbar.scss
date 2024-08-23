@@ -48,10 +48,32 @@
           gap: clamp(1em, 2vw, 2em);
 
           li {
+               position: relative;
                font-size: clamp(0.8em, 1vw, 1.1em);
                list-style-type: none;
                font-family: $pr-montserrat;
                cursor: pointer;
+
+               &:hover::after {
+                    width: 100%;
+               }
+
+               &::after {
+                    position: absolute;
+                    content: "";
+                    bottom: -3px;
+                    left: 50%;
+                    transform: translateX(-50%);
+                    height: 2px;
+                    width: 0%;
+                    background: #000;
+                    transition: all 0.3s ease-in-out;
+                    z-index: 11;
+
+                    @media (max-width: 576px) {
+                         height: 1px;
+                    }
+               }
 
                a {
                     all: unset;
