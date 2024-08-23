@@ -19,7 +19,7 @@ function Navbar() {
      return (
           <div className="nav-container">
                <div className="logo-wrapper">
-                    <img src={logo} alt="logo" width={"50px"} />
+                    <img src={logo} alt="logo" />
                     <h1>albert</h1>
                </div>
                <div className="navlinks-wrapper">

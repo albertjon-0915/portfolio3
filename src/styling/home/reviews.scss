@@ -5,7 +5,11 @@
      overflow: hidden;
      display: flex;
      justify-content: center;
-     padding: 10em 0;
+     padding: 0 0 10em 0;
+
+     @media (min-width: 992px) {
+          padding: 10em 0 10em 0;
+     }
 }
 
 .reviews-wrapper {

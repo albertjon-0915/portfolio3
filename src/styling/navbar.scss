@@ -21,10 +21,19 @@
      opacity: 0.85;
      cursor: pointer;
 
+     img {
+          width: clamp(2em, 2vw, 4em);
+     }
+
      h1 {
+          font-size: clamp(1em, 2vw, 2em);
           font-family: $logo-font;
           font-weight: 300;
           letter-spacing: -3px;
+
+          @media (max-width: 576px) {
+               letter-spacing: -2px;
+          }
      }
 }
 

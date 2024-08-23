@@ -3,32 +3,10 @@
 .hero-container {
      position: relative;
      width: 100%;
-     padding: clamp(3.5em, 5vw, 5em);
+     padding: clamp(1.5em, 5vw, 5em);
      height: 80vh;
      display: flex;
      align-items: end;
-     //  background:
-     //     radial-gradient(circle at 70% 40%,
-     //         rgba(236, 250, 42, 0.986),
-     //         transparent,
-     //         transparent,
-     //         transparent),
-     //     radial-gradient(circle at 40% 70%,
-     //         rgb(198, 98, 238),
-     //         transparent,
-     //         transparent,
-     //         transparent,
-     //         transparent,
-     //         transparent),
-     //     radial-gradient(circle at 60% 70%,
-     //         rgb(248, 53, 53),
-     //         transparent,
-     //         transparent,
-     //         transparent,
-     //         transparent,
-     //         transparent,
-     //         transparent);
-     //         background-position: center;
 
      &::before {
           position: absolute;

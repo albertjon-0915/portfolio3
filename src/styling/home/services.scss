@@ -38,7 +38,7 @@
 
 .content1 > .text-content {
      width: 100%;
-     padding: 5em;
+     padding: clamp(2em, 5vw, 5em);
 }
 
 .content1 > .text-content > h2 {
