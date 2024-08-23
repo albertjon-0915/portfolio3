@@ -40,7 +40,7 @@ function Skills() {
      ];
 
      return (
-          <div className="skills-container">
+          <div className="skills-container" id="skills">
                <div className="skills-wrapper">
                     <div className="skills-content1">
                          {skillsImg.map((item, index) => (

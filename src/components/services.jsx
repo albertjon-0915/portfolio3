@@ -4,7 +4,7 @@ import Me from "../assets/me.jpg";
 
 function Services() {
      return (
-          <div className="services-container">
+          <div className="services-container" id="service">
                <div className="services-wrapper">
                     <div className="content1">
                          <div className="text-content">

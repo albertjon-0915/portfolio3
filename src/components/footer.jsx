@@ -8,11 +8,57 @@ function Footer() {
                <div className="footer-wrapper">
                     <div className="footer-content1">
                          <div1 className="item1">
-                              <img src={logo} alt="logo" />
-                              <h1>albert</h1>
+                              <div className="logo-footer">
+                                   <img src={logo} alt="logo" />
+                                   <h1>albert</h1>
+                              </div>
                          </div1>
                          <div2 className="item2">
-                              <h3>Get in touch?</h3>
+                              <h3>Useful Links</h3>
+                              <span>
+                                   <a href="" className="page-links1">
+                                        Home
+                                   </a>
+                              </span>
+                              <span>
+                                   <a href="" className="page-links2">
+                                        Projects
+                                   </a>
+                              </span>
+                              <span>
+                                   <a href="" className="page-links3">
+                                        Contact
+                                   </a>
+                              </span>
+                              <span>
+                                   <a
+                                        href="src/assets/Albert Jon Inciong.pdf"
+                                        download="Albert Jon Inciong.pdf"
+                                        className="page-links4"
+                                   >
+                                        Resume
+                                   </a>
+                              </span>
+                              <span>
+                                   <a href="#about" className="page-links4">
+                                        About
+                                   </a>
+                              </span>
+                              <span>
+                                   <a href="#service" className="page-links4">
+                                        Services
+                                   </a>
+                              </span>
+                              <span>
+                                   <a href="#skills" className="page-links4">
+                                        Skills
+                                   </a>
+                              </span>
+                              <span>
+                                   <a href="#reviews" className="page-links4">
+                                        Review
+                                   </a>
+                              </span>
                          </div2>
                          <div3 className="item3">
                               <h3>Get in touch?</h3>

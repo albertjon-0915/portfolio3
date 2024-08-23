@@ -37,8 +37,12 @@
           font: normal 1em $tr-opensans;
 
           h3 {
-               padding: 1.5em 0;
+               margin: 1.5em 0;
+               padding: 3px;
                font-size: 2em;
+               max-width: 10em;
+               color: $sc-color;
+               background: darken($a-color, 15%);
           }
 
           p {
