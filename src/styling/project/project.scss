@@ -1,0 +1,159 @@
+@use "../variables.scss" as *;
+
+.project-container {
+     width: 100%;
+     height: 100vh;
+     display: flex;
+     justify-content: center;
+     align-items: end;
+}
+
+.project-wrapper {
+     width: 90%;
+     height: 80vh;
+     margin-bottom: 2em;
+     display: flex;
+     flex-wrap: wrap;
+     overflow: hidden;
+
+     .project-content1,
+     .project-content2 {
+          min-height: 30vh;
+          max-height: 80vh;
+          flex-grow: 1;
+     }
+}
+
+.project-content1 {
+     position: relative;
+     flex: 1 1 30em;
+     perspective: 2500px;
+     transform-style: preserve-3d;
+     background: darken($a-color, 10%);
+     overflow: hidden;
+
+     img {
+          position: absolute;
+          border-radius: 5px;
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          transform: rotateX(19deg) rotateY(-19deg) rotateZ(10deg);
+          box-shadow: 1px 1px 45px 2px $a-color;
+     }
+
+     &::after {
+          position: absolute;
+          content: "";
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          background: radial-gradient(ellipse at bottom right, rgba(0, 0, 0, 0.315), rgba(0, 0, 0, 0.24));
+          box-shadow: inset -100px -100px 355px 15px rgba(0, 0, 0, 0.87);
+          z-index: 1;
+     }
+}
+
+.project-content2 {
+     display: flex;
+     flex-direction: column;
+     gap: 10em;
+     flex: 1 1 30em;
+     padding: 0 clamp(2em, 5vw, 5em);
+     padding-bottom: 20em;
+     overflow-y: auto;
+     overflow-x: hidden;
+
+     @media (max-width: 992px) {
+          margin-top: 2em;
+     }
+
+     h3 {
+          padding-top: clamp(0em, 1vw, 1em);
+          font: clamp(3em, 5vw, 5em) $pr-montserrat;
+     }
+
+     .item {
+          display: flex;
+          flex-wrap: wrap;
+          padding: 0 clamp(0em, 0.5vw, 0.5em);
+
+          .project-card,
+          .progLang-card {
+               flex: 1 0 20em;
+          }
+
+          .project-card {
+               h3 {
+                    font: 700 clamp(1.5em, 2.5vw, 2.5em) $sc-roboto;
+                    letter-spacing: -2px;
+               }
+
+               p {
+                    font-size: 0.8em;
+               }
+
+               h4,
+               p,
+               a {
+                    font-family: $tr-opensans;
+                    margin-bottom: 1em;
+               }
+
+               a {
+                    all: unset;
+                    position: relative;
+                    font-family: $tr-opensans;
+                    cursor: pointer;
+
+                    &::after {
+                         position: absolute;
+                         content: "";
+                         bottom: -3px;
+                         left: 0;
+                         width: 100%;
+                         height: 3px;
+                         background: $a-color;
+                         z-index: 1;
+                    }
+               }
+          }
+
+          .progLang-card {
+               display: flex;
+               align-items: center;
+               flex-wrap: wrap;
+               padding: 2em clamp(0em, 1vw, 1em);
+               gap: 1em;
+
+               @media (min-width: 992px) {
+                    padding: 1em clamp(0em, 1vw, 1em);
+               }
+
+               span {
+                    font-size: clamp(0.8em, 1vw, 1em);
+                    font-family: $tr-opensans;
+                    background: $tr-color;
+                    padding: 0.2em 1.5em;
+                    border-radius: 15px;
+               }
+          }
+     }
+}
+
+.project-content2 {
+     &:hover::-webkit-scrollbar-thumb {
+          opacity: 1;
+     }
+}
+
+::-webkit-scrollbar {
+     width: 5px;
+}
+
+::-webkit-scrollbar-thumb {
+     opacity: 0;
+     background: lighten($a-color, 10%);
+     border-radius: 3px;
+}

@@ -46,13 +46,15 @@ function Navbar() {
                               </Link>
                          </li>
                          <li className="item1">
-                              <Link to={"/contact"}>About</Link>
+                              <a href="#about" onClick={goToHome}>
+                                   About
+                              </a>
                          </li>
                          <li className="item2">
                               <Link to={"/contact"}>Contact</Link>
                          </li>
                          <li className="item3">
-                              <Link to={"/contact"}>Projects</Link>
+                              <Link to={"/project"}>Projects</Link>
                          </li>
                          <li className="item4">
                               <a href="src/assets/Albert Jon Inciong.pdf" download="Albert Jon Inciong.pdf">
