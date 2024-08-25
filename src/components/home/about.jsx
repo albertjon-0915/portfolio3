@@ -1,6 +1,6 @@
 import React from "react";
-import "../styling/home/about.scss";
-import coding from "../assets/coding.png";
+import "../../styling/home/about.scss";
+import coding from "../../assets/coding.png";
 import { FaFacebookF, FaLinkedinIn, FaGithub } from "react-icons/fa";
 
 function About() {

@@ -1,6 +1,6 @@
 import React from "react";
-import contact from "../assets/contact.jpg";
-import "../styling/home/reviews.scss";
+import contact from "../../assets/contact.jpg";
+import "../../styling/home/reviews.scss";
 import { BiSolidQuoteRight } from "react-icons/bi";
 
 function Reviews() {

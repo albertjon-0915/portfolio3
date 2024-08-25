@@ -1,12 +1,12 @@
 import React from "react";
-import Hero from "../components/hero";
-import About from "../components/about";
-import Services from "../components/services";
-import Skills from "../components/skills";
+import Hero from "../components/home/hero";
+import About from "../components/home/about";
+import Services from "../components/home/services";
+import Skills from "../components/home/skills";
 import Footer from "../components/footer";
-import Reviews from "../components/reviews";
+import Reviews from "../components/home/reviews";
 
-function homepage() {
+function Homepage() {
      return (
           <>
                <Hero />
@@ -19,4 +19,4 @@ function homepage() {
      );
 }
 
-export default homepage;
+export default Homepage;

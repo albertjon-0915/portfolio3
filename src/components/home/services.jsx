@@ -1,6 +1,6 @@
 import React from "react";
-import "../styling/home/services.scss";
-import Me from "../assets/me.jpg";
+import "../../styling/home/services.scss";
+import Me from "../../assets/me.jpg";
 
 function Services() {
      return (
