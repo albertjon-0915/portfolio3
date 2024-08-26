@@ -45,11 +45,6 @@ function Navbar() {
                                    Home
                               </Link>
                          </li>
-                         <li className="item1">
-                              <a href="#about" onClick={goToHome}>
-                                   About
-                              </a>
-                         </li>
                          <li className="item2">
                               <Link to={"/contact"}>Contact</Link>
                          </li>
