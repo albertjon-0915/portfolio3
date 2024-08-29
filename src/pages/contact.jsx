@@ -15,7 +15,7 @@ function Contact() {
                               <label for="mobile">Mobile Number</label>
                               <input name="mobile" id="mobile" type="text" />
                               <label for="comment">Leave a message</label>
-                              <input name="comment" id="comment" type="text" />
+                              <textarea name="comment" id="comment"/>
                               <button>Submit</button>
                          </form>
                     </div>

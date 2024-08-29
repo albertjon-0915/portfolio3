@@ -2,12 +2,23 @@ import React from "react";
 import "../../styling/home/about.scss";
 import coding from "../../assets/coding.png";
 import { FaFacebookF, FaLinkedinIn, FaGithub } from "react-icons/fa";
+import { gsap } from "gsap";
+import { useGSAP } from "@gsap/react";
 
 function About() {
+     useGSAP(() => {
+          gsap.from(".image-about", {
+               y: 100,
+               opacity: 0,
+               duration: 1,
+               delay: .5,
+          });
+     });
+
      return (
           <div className="about-container" id="about">
                <div className="about-wrapper">
-                    <img src={coding} alt="img" />
+                    <img src={coding} alt="img" className="image-about" />
 
                     <div className="about-title">
                          <div className="title-focal">Want to know more about me &mdash; here's some brief info</div>

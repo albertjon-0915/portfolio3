@@ -47,7 +47,7 @@
 
 .content1 > .text-content > p {
      margin: 2em 1em;
-     font: normal clamp(0.8em, 1.2vw, 1.2em) "Open Sans", sans-serif;
+     font: normal clamp(0.8em, 1.2vw, 1.2em) $tr-opensans, sans-serif;
 }
 
 .content2 > img {
