@@ -2,18 +2,21 @@ import React from "react";
 import "../../styling/home/about.scss";
 import coding from "../../assets/coding.png";
 import { FaFacebookF, FaLinkedinIn, FaGithub } from "react-icons/fa";
-import { gsap } from "gsap";
+import { TranslateY, ScrollAnimFrom } from "../../animations/gsapAnimation";
 import { useGSAP } from "@gsap/react";
 
 function About() {
      useGSAP(() => {
-          gsap.from(".image-about", {
-               y: 100,
-               opacity: 0,
-               duration: 1,
-               delay: 0.5,
-          });
-     });
+          const contentHeader = document.querySelector(".content > h3");
+          const contentText = document.querySelector(".about-text-content");
+          const socials = document.querySelector(".socials > ul");
+          const socialsChildren = [...socials.children];
+
+          TranslateY(".image-about");
+          ScrollAnimFrom(contentText, "95%", { x: 100, duration: 0.5, opacity: 0, delay: 0.2 });
+          ScrollAnimFrom(contentHeader, "95%", { maxWidth: 0, duration: 0.5, opacity: 0, delay: 0.2 });
+          ScrollAnimFrom(socialsChildren, "95%", { x: 100, duration: 0.5, opacity: 0, delay: 0.2, stagger: 0.2 });
+     }, []);
 
      return (
           <div className="about-container" id="about">

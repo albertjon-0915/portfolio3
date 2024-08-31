@@ -1,8 +1,16 @@
 import React from "react";
 import "../../styling/home/services.scss";
 import Me from "../../assets/me.jpg";
+import { useGSAP } from "@gsap/react";
+import { ScrollAnimFrom, ScrollAnimTo } from "../../animations/gsapAnimation";
 
 function Services() {
+     useGSAP(() => {
+          ScrollAnimFrom(".animImg", "45%", { width: "0", duration: 0.6, yoyo: true, repeat: 1, delay: 0.2 });
+
+          ScrollAnimFrom(".img-content2", "45%", { opacity: "0", duration: 0.7, delay: 0.8 });
+     });
+
      return (
           <div className="services-container" id="service">
                <div className="services-wrapper">
@@ -24,7 +32,8 @@ function Services() {
                          </div>
                     </div>
                     <div className="content2">
-                         <img src={Me} alt="img" />
+                         <img src={Me} alt="img" className="img-content2" />
+                         <span className="animImg"></span>
                     </div>
                </div>
           </div>
