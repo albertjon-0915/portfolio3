@@ -16,8 +16,10 @@ function Hero() {
                rotation: 360,
                repeat: -1,
                repeatDelay: 1.5,
+               duration: 1,
+               ease: "power2.inOut",
           });
-     }, []);
+     });
 
      return (
           <div className="hero-container">
@@ -25,7 +27,9 @@ function Hero() {
                     <div className="hero-text">
                          Transforming Careers <span id="andSign">&</span> Building Web Futures{" "}
                          <span className="dash">-</span> Welcome to My Developer Portfoli
-                         <span id="oSign">o</span>
+                         {/* <span className="letters-portfolio" id="lSign">l</span>
+                         <span className="letters-portfolio" id="iSign">i</span> */}
+                         <span className="letters-portfolio" id="oSign">o</span>
                     </div>
                </div>
           </div>

@@ -34,5 +34,25 @@
           #andSign {
                font-size: clamp(20px, 3vw, 50px);
           }
+
+          .dash,
+          .letters-portfolio {
+               display: inline-block;
+               // border: 1px solid red;
+          }
+
+          // #oSign {
+          //      rotate: 25deg;
+          // }
+
+          // #lSign {
+          //      rotate: 15deg;
+          // }
+          // #iSign {
+          //      rotate: 20deg;
+          // }
+          #oSign {
+               rotate: 25deg;
+          }
      }
 }
