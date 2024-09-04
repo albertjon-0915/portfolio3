@@ -3,19 +3,69 @@ import "../../styling/home/about.scss";
 import coding from "../../assets/coding.png";
 import { FaFacebookF, FaLinkedinIn, FaGithub } from "react-icons/fa";
 import { TranslateY, ScrollAnimFrom } from "../../animations/gsapAnimation";
+
+// import GSAP dependencies
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
 
 function About() {
      useGSAP(() => {
-          const contentHeader = document.querySelector(".content > h3");
-          const contentText = document.querySelector(".about-text-content");
-          const socials = document.querySelector(".socials > ul");
-          const socialsChildren = [...socials.children];
+          let tl = gsap.timeline({
+               scrollTrigger: {
+                    trigger: ".about-wrapper",
+                    start: "45% 30%",
+                    end: "65% 40%",
+                    toggleActions: "restart none reverse none",
+                    stagger: 0.1,
+               },
+          });
 
-          TranslateY(".image-about");
-          ScrollAnimFrom(contentText, "95%", { x: 100, duration: 0.5, opacity: 0, delay: 0.2 });
-          ScrollAnimFrom(contentHeader, "95%", { maxWidth: 0, duration: 0.5, opacity: 0, delay: 0.2 });
-          ScrollAnimFrom(socialsChildren, "95%", { x: 100, duration: 0.5, opacity: 0, delay: 0.2, stagger: 0.2 });
+          tl.fromTo(
+               ".content h3",
+               {
+                    maxWidth: "0vw",
+                    opacity: 1,
+               },
+               {
+                    duration: 0.4,
+                    maxWidth: "20vw",
+               }
+          );
+
+          tl.fromTo(
+               ".about-text-content",
+               {
+                    x: 100,
+                    opacity: 0,
+               },
+               {
+                    x: 0,
+                    duration: 0.4,
+                    opacity: 1,
+               }
+          );
+
+          tl.fromTo(
+               ".socials li",
+               {
+                    x: 100,
+                    opacity: 0,
+               },
+               {
+                    x: 0,
+                    duration: 0.4,
+                    opacity: 1,
+                    stagger: 0.2,
+               }
+          );
+
+          gsap.from(".image-about", {
+               y: 100,
+               opacity: 0,
+               duration: 1,
+               delay: 0.5,
+          });
      }, []);
 
      return (

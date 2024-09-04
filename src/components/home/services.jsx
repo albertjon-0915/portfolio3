@@ -1,15 +1,55 @@
 import React from "react";
 import "../../styling/home/services.scss";
 import Me from "../../assets/me.jpg";
+
+// import GSAP dependencies
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
-import { ScrollAnimFrom, ScrollAnimTo } from "../../animations/gsapAnimation";
+
+gsap.registerPlugin(ScrollTrigger);
 
 function Services() {
+     // Animations using gsap, onScroll/onView animation
      useGSAP(() => {
-          ScrollAnimFrom(".animImg", "45%", { width: "0", duration: 0.6, yoyo: true, repeat: 1, delay: 0.2 });
+          // set DOM elements to initial positions
+          gsap.set(".img-content2", {
+               xPercent: 100,
+          });
 
-          ScrollAnimFrom(".img-content2", "45%", { opacity: "0", duration: 0.7, delay: 0.8 });
-     });
+          gsap.set(".animImg", {
+               width: "0",
+          });
+
+          // ScrollTrigger animation function
+          const scrollTriggerAnim = (item, properties, startProperty, endProperty) => {
+               gsap.to(item, {
+                    scrollTrigger: {
+                         trigger: ".services-wrapper",
+                         start: startProperty || "top center",
+                         end: endProperty || "top center",
+                         toggleActions: "restart none reverse none",
+                    },
+                    ...properties,
+               });
+          };
+
+          // Call scrollTriggerAnim function
+          scrollTriggerAnim(".animImg", {
+               width: "100%",
+               duration: 0.6,
+               yoyo: true,
+               repeat: 1,
+               repeatDelay: 0.2,
+               delay: 0.2,
+          });
+
+          scrollTriggerAnim(".img-content2", {
+               xPercent: 0,
+               duration: 0.7,
+               delay: 0.3,
+          });
+     }, []);
 
      return (
           <div className="services-container" id="service">

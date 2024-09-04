@@ -39,6 +39,7 @@
                max-width: 10em;
                color: $sc-color;
                background: darken($a-color, 15%);
+               overflow: hidden;
           }
 
           p {

@@ -11,14 +11,20 @@ function Hero() {
                duration: 1,
                delay: 0.3,
           });
-     });
+
+          gsap.to(".dash", {
+               rotation: 360,
+               repeat: -1,
+               repeatDelay: 1.5,
+          });
+     }, []);
 
      return (
           <div className="hero-container">
                <div className="hero-wrapper">
                     <div className="hero-text">
-                         Transforming Careers <span id="andSign">&</span> Building Web Futures - Welcome to My Developer
-                         Portfoli
+                         Transforming Careers <span id="andSign">&</span> Building Web Futures{" "}
+                         <span className="dash">-</span> Welcome to My Developer Portfoli
                          <span id="oSign">o</span>
                     </div>
                </div>
