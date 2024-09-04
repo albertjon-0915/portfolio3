@@ -1,6 +1,7 @@
 import React from "react";
 import "../../styling/home/services.scss";
 import Me from "../../assets/me.jpg";
+import { scrollTriggerAnimWithToggle } from "../../animations/gsapAnimation";
 
 // import GSAP dependencies
 import { gsap } from "gsap";
@@ -20,35 +21,29 @@ function Services() {
           gsap.set(".animImg", {
                width: "0",
           });
-
-          // ScrollTrigger animation function
-          const scrollTriggerAnim = (item, properties, startProperty, endProperty) => {
-               gsap.to(item, {
-                    scrollTrigger: {
-                         trigger: ".services-wrapper",
-                         start: startProperty || "top center",
-                         end: endProperty || "top center",
-                         toggleActions: "restart none reverse none",
-                    },
-                    ...properties,
-               });
-          };
-
           // Call scrollTriggerAnim function
-          scrollTriggerAnim(".animImg", {
-               width: "100%",
-               duration: 0.6,
-               yoyo: true,
-               repeat: 1,
-               repeatDelay: 0.2,
-               delay: 0.2,
-          });
+          scrollTriggerAnimWithToggle(
+               ".animImg",
+               {
+                    width: "100%",
+                    duration: 0.6,
+                    yoyo: true,
+                    repeat: 1,
+                    repeatDelay: 0.2,
+                    delay: 0.2,
+               },
+               ".services-wrapper",
+          );
 
-          scrollTriggerAnim(".img-content2", {
-               xPercent: 0,
-               duration: 0.7,
-               delay: 0.3,
-          });
+          scrollTriggerAnimWithToggle(
+               ".img-content2",
+               {
+                    xPercent: 0,
+                    duration: 0.7,
+                    delay: 0.3,
+               },
+               ".services-wrapper",
+          );
      }, []);
 
      return (

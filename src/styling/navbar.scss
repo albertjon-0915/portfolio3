@@ -84,7 +84,7 @@
 
 // actions to be added by classlist
 .blurry {
-     padding: 0.5em 2em !important;
+     padding: 0.5em clamp(0.5em, 2vw, 2em) !important;
      backdrop-filter: blur(15px);
      -webkit-backdrop-filter: blur(15px);
      background-color: rgba(255, 255, 255, 0.801);

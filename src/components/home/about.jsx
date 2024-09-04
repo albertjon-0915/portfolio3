@@ -2,63 +2,27 @@ import React from "react";
 import "../../styling/home/about.scss";
 import coding from "../../assets/coding.png";
 import { FaFacebookF, FaLinkedinIn, FaGithub } from "react-icons/fa";
-import { TranslateY, ScrollAnimFrom } from "../../animations/gsapAnimation";
+import { scrollTriggerAnimWithScrub } from "../../animations/gsapAnimation";
 
 // import GSAP dependencies
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
 
+// gsap plugin for useGSAP
+gsap.registerPlugin({ useGSAP, ScrollTrigger });
+
 function About() {
      useGSAP(() => {
-          let tl = gsap.timeline({
-               scrollTrigger: {
-                    trigger: ".about-wrapper",
-                    start: "45% 30%",
-                    end: "65% 40%",
-                    toggleActions: "restart none reverse none",
-                    stagger: 0.1,
-               },
+          gsap.set(".content h3", {
+               maxWidth: "0vw",
+               opacity: 0,
           });
 
-          tl.fromTo(
-               ".content h3",
-               {
-                    maxWidth: "0vw",
-                    opacity: 1,
-               },
-               {
-                    duration: 0.4,
-                    maxWidth: "20vw",
-               }
-          );
-
-          tl.fromTo(
-               ".about-text-content",
-               {
-                    x: 100,
-                    opacity: 0,
-               },
-               {
-                    x: 0,
-                    duration: 0.4,
-                    opacity: 1,
-               }
-          );
-
-          tl.fromTo(
-               ".socials li",
-               {
-                    x: 100,
-                    opacity: 0,
-               },
-               {
-                    x: 0,
-                    duration: 0.4,
-                    opacity: 1,
-                    stagger: 0.2,
-               }
-          );
+          gsap.set([".about-text-content", ".socials-item"], {
+               x: 100,
+               opacity: 0,
+          });
 
           gsap.from(".image-about", {
                y: 100,
@@ -66,6 +30,41 @@ function About() {
                duration: 1,
                delay: 0.5,
           });
+
+          scrollTriggerAnimWithScrub(
+               ".content h3",
+               {
+                    maxWidth: "30vw",
+                    minWidth: "30vw",
+                    opacity: 1,
+               },
+               ".about-wrapper",
+               "35% center",
+               "75% center"
+          );
+
+          scrollTriggerAnimWithScrub(
+               ".about-text-content",
+               {
+                    x: 0,
+                    opacity: 1,
+               },
+               ".about-wrapper",
+               "35% center",
+               "75% center"
+          );
+
+          scrollTriggerAnimWithScrub(
+               ".socials-item",
+               {
+                    x: 0,
+                    stagger: 0.1,
+                    opacity: 1,
+               },
+               ".socials",
+               "-80% center",
+               "-20% center"
+          );
      }, []);
 
      return (
@@ -90,15 +89,15 @@ function About() {
 
                     <div className="socials">
                          <ul>
-                              <li className="item1">
+                              <li className="socials-item">
                                    <FaFacebookF />
                                    <span>facebook</span>
                               </li>
-                              <li className="item2">
+                              <li className="socials-item">
                                    <FaLinkedinIn />
                                    <span>linkedIn</span>
                               </li>
-                              <li className="item3">
+                              <li className="socials-item">
                                    <FaGithub />
                                    <span>github</span>
                               </li>

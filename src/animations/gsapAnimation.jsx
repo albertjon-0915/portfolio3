@@ -13,28 +13,28 @@ export const TranslateY = (item) => {
      });
 };
 
-export const ScrollAnimFrom = (item, startContainer, animationProps) => {
-     gsap.from(item, {
+export const scrollTriggerAnimWithScrub = (item, properties, trigger, startProperty, endProperty) => {
+     gsap.to(item, {
           scrollTrigger: {
-               trigger: item,
-               start: `top ${startContainer}`,
-               end: "bottom 50%",
+               trigger: trigger,
+               start: startProperty || "center center",
+               end: endProperty || "ce center",
+               scrub: true,
                // markers: true,
-               toggleActions: "restart none reverse none ",
           },
-          ...animationProps,
+          ...properties,
      });
 };
 
-export const ScrollAnimTo = (item, startContainer, animationProps) => {
+export const scrollTriggerAnimWithToggle = (item, properties, trigger, startProperty, endProperty) => {
      gsap.to(item, {
           scrollTrigger: {
-               trigger: item,
-               start: `top ${startContainer}`,
-               end: "bottom 100%",
+               trigger: trigger,
+               start: startProperty || "top center",
+               end: endProperty || "top center",
+               toggleActions: "restart none reverse none",
                // markers: true,
-               toggleActions: "restart none reverse none ",
           },
-          ...animationProps,
+          ...properties,
      });
 };
