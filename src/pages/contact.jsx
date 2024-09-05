@@ -1,7 +1,7 @@
 import React from "react";
 import "../styling/contact.scss";
 import Lottie from "lottie-react";
-import letsTalk from "../assets/lottieSVG/lottieSVG.json";
+import letsTalk from "../assets/lottieSVG/contactSVG.json";
 
 function Contact() {
      return (

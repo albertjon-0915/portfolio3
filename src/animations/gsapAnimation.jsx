@@ -18,8 +18,8 @@ export const scrollTriggerAnimWithScrub = (item, properties, trigger, startPrope
           scrollTrigger: {
                trigger: trigger,
                start: startProperty || "center center",
-               end: endProperty || "ce center",
-               scrub: true,
+               end: endProperty || "center center",
+               scrub: 2,
                // markers: true,
           },
           ...properties,

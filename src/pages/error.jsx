@@ -1,7 +1,7 @@
 import React from "react";
 
-function error() {
+function Error() {
      return <div>not found</div>;
 }
 
-export default error;
+export default Error;
