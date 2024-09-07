@@ -105,6 +105,9 @@ function Reviews() {
 
      return (
           <div className="review-container" id="reviews">
+               <div className="title-review-testimonials">
+                    <h3>Echoes of Approval &mdash;</h3>
+               </div>
                <div className="reviews-wrapper" ref={main}>
                     {reviews.length > 0
                          ? reviews.map((item, index) => {
