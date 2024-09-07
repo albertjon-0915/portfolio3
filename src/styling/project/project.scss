@@ -70,8 +70,8 @@
 
      h3 {
           padding-top: clamp(0em, 1vw, 1em);
-          // color: darken($a-color, 15%);
-          font: 900 clamp(3em, 7vw, 7em) $sc-roboto;
+          font: 900 clamp(3em, 5vw, 5em) $sc-roboto;
+          opacity: 0.8;
           letter-spacing: -2px;
      }
 

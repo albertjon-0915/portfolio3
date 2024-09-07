@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef } from "react";
-import "../styling/project/project.scss";
+import "../styling/project/project2.scss";
 import ProjectContent from "../components/project/projectContent";
 
 function Project() {

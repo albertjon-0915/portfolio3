@@ -149,6 +149,7 @@
           border-radius: 35px;
           margin: 1em;
           opacity: 0.2;
+          animation: opacityReduce 4s linear infinite forwards;
      }
 
      .reviews-content2 {
@@ -157,9 +158,22 @@
           margin: 2em;
           border-radius: 35px;
           opacity: 0.2;
+          animation: opacityReduce 3s linear infinite forwards;
 
           img {
                display: none !important;
           }
+     }
+}
+
+@keyframes opacityReduce {
+     0% {
+          opacity: 0.3;
+     }
+     50% {
+          opacity: 0.1;
+     }
+     100% {
+          opacity: 0.3;
      }
 }
