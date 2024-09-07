@@ -8,6 +8,7 @@ import { scrollTriggerAnimWithScrub } from "../../animations/gsapAnimation";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
+import { SiCalendly } from "react-icons/si";
 
 // gsap plugin for useGSAP
 gsap.registerPlugin({ useGSAP, ScrollTrigger });
@@ -24,12 +25,29 @@ function About() {
                opacity: 0,
           });
 
+          gsap.set(".about-wrapper", {
+               y: 0,
+               perspective: 3000,
+          });
+
           gsap.from(".image-about", {
                y: 100,
                opacity: 0,
                duration: 1,
                delay: 0.5,
           });
+
+          scrollTriggerAnimWithScrub(
+               ".image-about",
+               {
+                    rotateY: -20,
+                    rotateZ: 5,
+                    scale: 0.8,
+               },
+               ".image-about",
+               "top center",
+               "bottom center"
+          );
 
           scrollTriggerAnimWithScrub(
                ".content h3",

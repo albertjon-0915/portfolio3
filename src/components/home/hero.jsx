@@ -15,10 +15,10 @@ function Hero() {
           gsap.to(".dash", {
                rotation: 360,
                repeat: -1,
-               repeatDelay: 1.5,
+               repeatDelay: 4.5,
                duration: 1,
                ease: "power2.inOut",
-               delay: 4,
+               delay: 5,
           });
 
           let tl = gsap.timeline({ delay: 4, repeat: -1, repeatDelay: 4.5 });

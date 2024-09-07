@@ -20,6 +20,7 @@
           object-fit: cover;
           object-position: top left;
           filter: saturate(70%) grayscale(10%) brightness(90%);
+          // transform: rotateY(-20deg) rotateZ(5deg);
      }
 
      .about-title {
@@ -75,3 +76,11 @@
           }
      }
 }
+
+// .wrap-original-transform {
+//   perspective: 1000px;
+//   transform-style: preserve-3d;
+// }
+
+// .original-transform {
+//   transform: rotateY(-20deg) rotateZ(5deg);

@@ -53,7 +53,7 @@ function Reviews() {
                          },
                          card,
                          "75% center",
-                         "80% center"
+                         "120% center"
                     );
                });
 
@@ -66,7 +66,7 @@ function Reviews() {
                          },
                          card,
                          "75% center",
-                         "80% center"
+                         "120% center"
                     );
                });
 
@@ -77,7 +77,7 @@ function Reviews() {
                          zIndex: 5,
                     },
                     ".reviews-bottom-content",
-                    "center center",
+                    "70% center",
                     "center center"
                );
           },

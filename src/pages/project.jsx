@@ -30,7 +30,7 @@ function Project() {
                          <img src={projects[currentIndex]?.imageString} alt="project" />
                     </div>
                     <div className="project-content2">
-                         <h3>Projects</h3>
+                         <h3>What I've Brought to Life</h3>
                          {projects.map((item, index) => (
                               <ProjectContent
                                    key={index}
