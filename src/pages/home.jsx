@@ -5,8 +5,17 @@ import Services from "../components/home/services";
 import Skills from "../components/home/skills";
 import Footer from "../components/footer";
 import Reviews from "../components/home/reviews";
+import { useGSAP } from "@gsap/react";
+import { scrollTriggerAnimWithScrub } from "../animations/gsapAnimation";
 
 function Homepage() {
+     useGSAP(() => {
+          scrollTriggerAnimWithScrub(
+
+          )
+     });
+
+     
      return (
           <>
                <Hero />

@@ -5,11 +5,12 @@ import { useGSAP } from "@gsap/react";
 
 function Hero() {
      useGSAP(() => {
-          gsap.from(".hero-text", {
+          gsap.from(".staggered-span", {
                opacity: 0,
                x: 300,
                duration: 1,
                delay: 0.3,
+               stagger: 0.1,
           });
 
           gsap.to(".dash", {
@@ -21,62 +22,29 @@ function Hero() {
                delay: 5,
           });
 
-          let tl = gsap.timeline({ delay: 4, repeat: -1, repeatDelay: 4.5 });
-
-          tl.to(".letters-portfolio", {
-               scale: 1.5,
-               y: -5,
-               transformOrigin: "bottom center",
-               x: 10,
-               ease: "elastic",
-               duration: 0.3,
-          });
-
-          tl.to(".letters-portfolio", {
-               scale: 1.5,
-               y: 15,
-               transformOrigin: "bottom center",
-               x: 10,
-               ease: "power2.inOut",
-               duration: 0.3,
-          });
-
-          tl.to(".letters-portfolio", {
-               rotation: 90,
-               y: 120,
+          gsap.from("#rotate-bg", {
                opacity: 0,
-               transformOrigin: "bottom center",
-               x: 10,
-               duration: 1.5,
-               ease: "power2.inOut",
-          });
-
-          tl.to(".letters-portfolio", {
-               rotation: 0,
-               x: 0,
-               y: 0,
-               scale: 1,
-               transformOrigin: "bottom center",
-               duration: 1.5,
-               ease: "power2.inOut",
-          });
-
-          tl.to(".letters-portfolio", {
-               opacity: 1,
-               transformOrigin: "bottom center",
-               duration: 1.5,
-               ease: "power2.inOut",
+               duration: 2.5,
+               delay: 2.5,
           });
      });
 
      return (
           <div className="hero-container">
+               <span className="playful-color"></span>
                <div className="hero-wrapper">
                     <div className="hero-text">
-                         Transforming Careers <span id="andSign">&</span> Building Web Futures{" "}
-                         <span className="dash">-</span> Welcome to My Developer Portfoli
-                         <span className="letters-portfolio" id="oSign">
-                              o
+                         <span className="staggered-span">
+                              Transforming Careers <span id="andSign">&</span> Building{" "}
+                         </span>
+                         <span className="staggered-span">
+                              Web Futures <span className="dash">-</span> Welcome{" "}
+                         </span>
+                         <span className="staggered-span">
+                              to My Developer Portfoli
+                              <span className="letters-portfolio" id="oSign">
+                                   o<span id="rotate-bg"></span>
+                              </span>
                          </span>
                     </div>
                </div>
