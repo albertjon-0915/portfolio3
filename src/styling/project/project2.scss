@@ -4,6 +4,29 @@
     width: 100%;
     display: flex;
     justify-content: center;
+    // border: 1px solid red;
+}
+
+.project-wrapper{
+    // border: 1px solid red;
+    width: 80%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+}
+
+.project-content2{
+    h3, h4{
+        color: darken($a-color, 15%);
+        font:900 clamp(1em, 7vw, 7em) $sc-roboto;
+        letter-spacing: -3px;
+    }
+
+    h4{
+        font:normal clamp(1em, 2vw, 2em) $sc-roboto;
+        letter-spacing: -1px;
+        margin-left: clamp(.5em, 1vw, 1em);
+    }
 }
 
 

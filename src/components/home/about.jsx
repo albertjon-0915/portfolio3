@@ -108,15 +108,15 @@ function About() {
                     <div className="socials">
                          <ul>
                               <li className="socials-item">
-                                   <FaFacebookF />
+                                   <FaFacebookF style={{ color: '#d19a66' }} />
                                    <span>facebook</span>
                               </li>
                               <li className="socials-item">
-                                   <FaLinkedinIn />
+                                   <FaLinkedinIn style={{ color: "#98c379" }} />
                                    <span>linkedIn</span>
                               </li>
                               <li className="socials-item">
-                                   <FaGithub />
+                                   <FaGithub style={{ color: "#e06c75" }} />
                                    <span>github</span>
                               </li>
                          </ul>

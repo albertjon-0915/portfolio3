@@ -29,7 +29,7 @@ function ProjectContent({ title, subtitle, description, link, stack, index, onEn
      }, []);
 
      return (
-          <div className="item" onMouseEnter={() => onEnter(index)}>
+          <div className="item">
                <div className="project-card">
                     <h3>
                          <span>{title}</span>

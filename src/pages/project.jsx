@@ -27,11 +27,12 @@ function Project() {
           <div className="project-container">
                <div className="project-wrapper">
                     <div className="project-content1">
-                         <img src={projects[currentIndex]?.imageString} alt="project" />
+                         {/* <img src={projects[currentIndex]?.imageString} alt="project" /> */}
                     </div>
                     <div className="project-content2">
-                         <h3>What I've Brought to Life</h3>
-                         {projects.map((item, index) => (
+                         <h3>What I've Brought to Life &mdash;</h3>
+                         <h4>Projects</h4>
+                         {/* {projects.map((item, index) => (
                               <ProjectContent
                                    key={index}
                                    title={item.title}
@@ -43,7 +44,7 @@ function Project() {
                                    onEnter={(index) => setCurrentIndex(index)}
                                    ref={(el) => (itemRefs.current[index] = el)}
                               />
-                         ))}
+                         ))} */}
                     </div>
                </div>
           </div>

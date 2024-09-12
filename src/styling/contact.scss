@@ -57,9 +57,16 @@
           display: flex;
           flex-direction: column;
           font: clamp(1em, 1.7vw, 1.7em) $pr-montserrat;
+          overflow: hidden;
+          padding: .5em;
 
-          label {
-               margin: 1em 0 0 0;
+          .label-enclosure {
+          overflow: hidden;
+               label {
+                    margin: 1em 0 0 0;
+                    display: flex;
+                    flex-direction: column;
+               }
           }
 
           input {

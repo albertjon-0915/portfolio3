@@ -9,13 +9,6 @@ import { useGSAP } from "@gsap/react";
 import { scrollTriggerAnimWithScrub } from "../animations/gsapAnimation";
 
 function Homepage() {
-     useGSAP(() => {
-          scrollTriggerAnimWithScrub(
-
-          )
-     });
-
-     
      return (
           <>
                <Hero />

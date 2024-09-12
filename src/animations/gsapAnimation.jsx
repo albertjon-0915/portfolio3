@@ -13,6 +13,15 @@ export const TranslateY = (item) => {
      });
 };
 
+export const maxHeight = (item) => {
+     gsap.from(item, {
+          maxHeight: 0,
+          opacity: 0,
+          duration: 1,
+          delay: 0.5,
+     });
+};
+
 export const scrollTriggerAnimWithScrub = (item, properties, trigger, startProperty, endProperty) => {
      gsap.to(item, {
           scrollTrigger: {

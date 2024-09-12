@@ -63,7 +63,7 @@
                li {
                     display: flex;
                     align-items: center;
-                    justify-content: center;
+                    padding: 1em;
                     gap: clamp(0.1em, 1vw, 1em);
                     width: 15em;
                     height: clamp(2.5em, 5vw, 5em);
@@ -84,3 +84,4 @@
 
 // .original-transform {
 //   transform: rotateY(-20deg) rotateZ(5deg);
+// }

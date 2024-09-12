@@ -1,5 +1,8 @@
 import React from "react";
 import "../../styling/home/hero.scss";
+import { SiCalendly } from "react-icons/si";
+
+// import GSAP dependencies
 import { gsap } from "gsap";
 import { useGSAP } from "@gsap/react";
 
@@ -24,14 +27,14 @@ function Hero() {
 
           gsap.from("#rotate-bg", {
                opacity: 0,
-               duration: 2.5,
-               delay: 2.5,
+               duration: 2,
+               ease: "power3.inOut",
+               delay: 3,
           });
      });
 
      return (
           <div className="hero-container">
-               <span className="playful-color"></span>
                <div className="hero-wrapper">
                     <div className="hero-text">
                          <span className="staggered-span">

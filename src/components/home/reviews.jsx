@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import contact from "../../assets/contact.jpg";
 import "../../styling/home/reviews.scss";
 import { BiSolidQuoteRight } from "react-icons/bi";
@@ -17,6 +18,7 @@ gsap.registerPlugin(ScrollTrigger);
 function Reviews() {
      const main = useRef(null);
      const [reviews, setReview] = useState([]);
+     const navigate = useNavigate();
 
      const fetchData = async () => {
           const response = await fetch(`${import.meta.env.VITE_APP_API_URL}/reviews`);
@@ -103,6 +105,10 @@ function Reviews() {
           );
      };
 
+     const handleNavigate = () => {
+          navigate("/contact");
+     };
+
      return (
           <div className="review-container" id="reviews">
                <div className="title-review-testimonials">
@@ -120,7 +126,7 @@ function Reviews() {
                     <div className="reviews-bottom-content">
                          <Lottie animationData={message} loop={true} className="lottie-reviews" />
                          <div>How about my work?</div>
-                         <button>Leave a message</button>
+                         <button onClick={handleNavigate}>Leave a message</button>
                     </div>
                </div>
           </div>
