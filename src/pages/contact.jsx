@@ -26,6 +26,11 @@ function Contact() {
                opacity: 0,
                duration: 1,
           });
+
+          gsap.from('.lottie', {
+               opacity: 0,
+               duration: 1,
+          })
      });
 
      return (

@@ -55,6 +55,11 @@
           width: 80%;
           padding: clamp(6em, 10vw, 10em) 0;
 
+          @media (max-width: 576px) {
+               padding: clamp(6em, 10vw, 10em) .5em;
+               width: 100%;
+          }
+
           ul {
                list-style-type: none;
                display: flex;
@@ -66,7 +71,7 @@
                     padding: 1em;
                     gap: clamp(0.1em, 1vw, 1em);
                     width: 15em;
-                    height: clamp(2.5em, 5vw, 5em);
+                    height: clamp(3.5em, 5vw, 5em);
                     border-bottom: 3px solid $a-color;
                     background: $sc-color;
                     font: clamp(1em, 2vw, 1.5em) $tr-opensans;

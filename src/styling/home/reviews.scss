@@ -26,12 +26,13 @@
      display: grid;
      grid-template-columns: 1fr 1fr;
      gap: 1em;
-     padding: clamp(1em, 5vw, 5em);
+     padding: 2em clamp(0em, 3vw, 3em);
 
      @media (max-width: 992px) {
-          width: 90%;
+          width: 100%;
           grid-template-columns: 1fr;
      }
+
 
      .reviews-bottom-content {
           position: absolute;

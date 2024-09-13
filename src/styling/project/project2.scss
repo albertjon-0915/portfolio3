@@ -16,14 +16,15 @@
 }
 
 .project-content2{
-    h3, h4{
+    h3{
         color: darken($a-color, 15%);
-        font:900 clamp(1em, 7vw, 7em) $sc-roboto;
+        font:900 clamp(1em, 6vw, 6em) $sc-roboto;
         letter-spacing: -3px;
     }
 
     h4{
         font:normal clamp(1em, 2vw, 2em) $sc-roboto;
+        color: lighten($a-color, 5%);
         letter-spacing: -1px;
         margin-left: clamp(.5em, 1vw, 1em);
     }
