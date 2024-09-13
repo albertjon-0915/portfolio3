@@ -28,3 +28,19 @@ $a-color: #5e5e5e; //additional color - 'a' for additional hehe ;>
      top: $Y;
      left: $X;
 }
+
+@mixin opacityReduce($time) {
+     animation: opacityReduce $time linear infinite forwards;
+
+     @keyframes opacityReduce {
+          0% {
+               opacity: 0.4;
+          }
+          50% {
+               opacity: 0.1;
+          }
+          100% {
+               opacity: 0.4;
+          }
+     }
+}

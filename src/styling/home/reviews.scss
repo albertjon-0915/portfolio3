@@ -33,7 +33,6 @@
           grid-template-columns: 1fr;
      }
 
-
      .reviews-bottom-content {
           position: absolute;
           bottom: 0;
@@ -145,36 +144,26 @@
      min-height: 5em;
 
      .reviews-content1 {
+          @include opacityReduce(3s);
+
           width: 80%;
           background-color: lighten($a-color, 20%);
           border-radius: 35px;
           margin: 1em;
           opacity: 0.2;
-          animation: opacityReduce 4s linear infinite forwards;
      }
 
      .reviews-content2 {
+          @include opacityReduce(3s);
+
           width: 80%;
           background-color: lighten($a-color, 20%);
           margin: 2em;
           border-radius: 35px;
           opacity: 0.2;
-          animation: opacityReduce 3s linear infinite forwards;
 
           img {
                display: none !important;
           }
-     }
-}
-
-@keyframes opacityReduce {
-     0% {
-          opacity: 0.3;
-     }
-     50% {
-          opacity: 0.1;
-     }
-     100% {
-          opacity: 0.3;
      }
 }
