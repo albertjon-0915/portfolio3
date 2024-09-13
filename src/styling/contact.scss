@@ -50,6 +50,10 @@
           // color: darken($a-color, 10%);
           font: 900 clamp(3.5em, 6vw, 6em) $sc-roboto;
           letter-spacing: -3px;
+
+          @media (max-width: 576px) {
+               width: 80%;
+          }
      }
 
      .contact-form {
@@ -59,6 +63,10 @@
           font: clamp(1em, 1.7vw, 1.7em) $pr-montserrat;
           overflow: hidden;
           padding: 0.5em;
+
+          @media (max-width: 576px) {
+               width: 80%;
+          }
 
           .label-enclosure {
                overflow: hidden;
@@ -101,7 +109,7 @@
                }
 
                &:hover::after {
-                    transform: translateX(.5em);
+                    transform: translateX(0.5em);
                }
 
                &::after {
