@@ -1,9 +1,5 @@
 import React, { useEffect, useState, useRef } from "react";
 import "../styling/project/project3.scss";
-import videoCoding from "../assets/videos/video-coding.mp4";
-import projectSVG from "../assets/lottieSVG/projectSVG.json";
-import Lottie from "lottie-react";
-import codingImage from "../assets/projects-coding.png";
 import Footer from "../components/footer.jsx";
 // import GSAP dependencies
 // import gsap from "gsap";
