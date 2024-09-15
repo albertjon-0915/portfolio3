@@ -83,6 +83,7 @@ function About() {
                "-80% center",
                "-20% center"
           );
+
      }, []);
 
      return (

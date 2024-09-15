@@ -1,7 +1,11 @@
 import React from "react";
 import "../../styling/home/services.scss";
 import Me from "../../assets/me.jpg";
-import { scrollTriggerAnimWithToggle } from "../../animations/gsapAnimation";
+import {
+     scrollTriggerAnimWithToggle,
+     scrollTriggerAnimWithScrubPin,
+     scrollTriggerAnimWithScrub,
+} from "../../animations/gsapAnimation";
 
 // import GSAP dependencies
 import { gsap } from "gsap";
@@ -21,7 +25,6 @@ function Services() {
           gsap.set(".animImg", {
                width: "0",
           });
-          // Call scrollTriggerAnim function
           scrollTriggerAnimWithToggle(
                ".animImg",
                {
@@ -32,7 +35,7 @@ function Services() {
                     repeatDelay: 0.2,
                     delay: 0.2,
                },
-               ".services-wrapper",
+               ".services-wrapper"
           );
 
           scrollTriggerAnimWithToggle(
@@ -42,8 +45,46 @@ function Services() {
                     duration: 0.7,
                     delay: 0.3,
                },
-               ".services-wrapper",
+               ".services-wrapper"
           );
+
+          gsap.set(".text-content", {
+               opacity: 0,
+          });
+
+          const mm = gsap.matchMedia();
+
+          mm.add("(min-width: 1200px)", () => {
+               scrollTriggerAnimWithScrubPin(
+                    ".services-wrapper",
+                    {
+                         opacity: 1,
+                    },
+                    ".text-content",
+                    "top center",
+                    "40% center"
+               );
+          });
+
+          mm.add("(max-width: 1199px)", () => {
+               gsap.set(".text-content", {
+                    opacity: 0,
+                    x: -100,
+                    y: 100,
+               });
+
+               scrollTriggerAnimWithScrub(
+                    ".text-content",
+                    {
+                         opacity: 1,
+                         x: 0,
+                         y: 0,
+                    },
+                    ".services-wrapper",
+                    "30% center",
+                    "80% center"
+               );
+          });
      }, []);
 
      return (

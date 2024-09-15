@@ -1,0 +1,96 @@
+@use "../variables.scss" as *;
+
+.project-container {
+     border: 1px solid red;
+     width: 100%;
+     display: flex;
+     justify-content: center;
+     align-items: center;
+     flex-direction: column;
+}
+
+.project-title-content {
+     // border: 1px solid red;
+     width: 100%;
+     height: 90vh;
+     padding: 10em clamp(2em, 5vw, 5em);
+     display: flex;
+     justify-content: flex-end;
+     flex-direction: column;
+
+     h3 {
+          color: darken($a-color, 15%);
+          font: 900 clamp(3em, 6vw, 6em) $sc-roboto;
+          letter-spacing: -3px;
+     }
+
+     h5 {
+          font: normal clamp(1.4em, 2vw, 2em) / 0.2em $pr-montserrat;
+          color: lighten($a-color, 2%);
+          letter-spacing: -1px;
+          margin-left: clamp(0.1em, 0.8vw, 0.8em);
+     }
+}
+
+.project-wrapper {
+     // border: 1px solid red;
+     display: flex;
+     width: 80%;
+
+     @media (max-width: 768px) {
+          padding: 0 1em;
+          width: 100%;
+     }
+
+     .project-content1 {
+          height: clamp(50vh, 100vw, 90vh);
+          display: flex;
+          gap: clamp(0em, 5vw, 5em);
+          // border: 1px solid red;
+
+          .project-text-context,
+          .project-image {
+               flex-grow: 1;
+          }
+
+          .project-text-context {
+               max-width: 30%;
+               // display: flex;
+               // justify-content: center;
+               // flex-direction: column;
+
+               h4 {
+                    font: 900 clamp(1.4em, 3vw, 3em) / 1em $sc-roboto;
+                    color: darken($a-color, 5%);
+                    letter-spacing: -3px;
+               }
+
+               p {
+                    display: inline-block;
+                    font: normal clamp(1.3em, 1.5vw, 1.5em) / 0.9em $pr-montserrat;
+                    color: lighten($a-color, 15%);
+
+                    span {
+                         display: inline-block;
+                         font: 900 clamp(1.5em, 3.5vw, 3.5em) / 0.9em $sc-roboto;
+                         letter-spacing: -5px;
+                         color: darken($a-color, 15%);
+                    }
+               }
+          }
+
+          .project-image-content {
+               width: 70%;
+               min-width: 20em;
+
+               img {
+                    width: 100%;
+                    height: 100%;
+                    border-radius: 5px;
+                    object-fit: cover;
+                    object-position: top left;
+                    filter: saturate(70%) grayscale(10%) brightness(90%);
+               }
+          }
+     }
+}

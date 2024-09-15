@@ -35,6 +35,21 @@ export const scrollTriggerAnimWithScrub = (item, properties, trigger, startPrope
      });
 };
 
+export const scrollTriggerAnimWithScrubPin = (itemTrigger, properties, pinnedItem, startProperty, endProperty) => {
+     gsap.to(pinnedItem, {
+          scrollTrigger: {
+               trigger: itemTrigger,
+               start: startProperty || "center center",
+               end: endProperty || "center center",
+               scrub: 2,
+               pin: pinnedItem,
+               pinSpacing: false,
+               // markers: true,
+          },
+          ...properties,
+     });
+};
+
 export const scrollTriggerAnimWithToggle = (item, properties, trigger, startProperty, endProperty) => {
      gsap.to(item, {
           scrollTrigger: {
