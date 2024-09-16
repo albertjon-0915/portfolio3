@@ -1,7 +1,7 @@
 @use "../variables.scss" as *;
 
 .project-container {
-     border: 1px solid red;
+     // border: 1px solid red;
      width: 100%;
      display: flex;
      justify-content: center;
@@ -10,7 +10,6 @@
 }
 
 .project-title-content {
-     // border: 1px solid red;
      width: 100%;
      height: 90vh;
      padding: 10em clamp(2em, 5vw, 5em);
@@ -32,8 +31,7 @@
      }
 }
 
-.project-wrapper {
-     // border: 1px solid red;
+.project-section-wrapper {
      display: flex;
      width: 80%;
 
@@ -46,7 +44,6 @@
           height: clamp(50vh, 100vw, 90vh);
           display: flex;
           gap: clamp(0em, 5vw, 5em);
-          // border: 1px solid red;
 
           .project-text-context,
           .project-image {
@@ -55,9 +52,8 @@
 
           .project-text-context {
                max-width: 30%;
-               // display: flex;
-               // justify-content: center;
-               // flex-direction: column;
+               display: flex;
+               flex-direction: column;
 
                h4 {
                     font: 900 clamp(1.4em, 3vw, 3em) / 1em $sc-roboto;
@@ -92,5 +88,72 @@
                     filter: saturate(70%) grayscale(10%) brightness(90%);
                }
           }
+     }
+}
+
+.project-slider {
+     width: 100%;
+     height: clamp(50vh, 80vw, 80vh);
+     display: flex;
+     flex-direction: column;
+     justify-content: center;
+     overflow: hidden;
+     gap: 2em;
+
+     .images-panel {
+          display: flex;
+          flex-wrap: nowrap;
+          gap: 1em;
+
+          &:last-child {
+               flex-direction: row-reverse;
+          }
+
+          .image-card {
+               width: clamp(12em, 20vw, 20em);
+               aspect-ratio: 1 / 0.5;
+               box-shadow: 0 0 5px 1px lighten($a-color, 45%);
+          }
+     }
+}
+
+.project-contents {
+     width: 100%;
+     border: 1px solid red;
+
+     .project-content-wrapper {
+          padding: 2em;
+
+          .text-content {
+               h3 {
+                    color: darken($a-color, 15%);
+                    font: 600 clamp(1.5em, 3vw, 3em) / 1.5em $sc-roboto;
+                    letter-spacing: -2px;
+               }
+
+               h5 {
+                    color: lighten($a-color, 35%);
+                    font: 600 clamp(0.9em, 1.2vw, 1.2em) / 2em $pr-montserrat;
+               }
+          }
+
+          .stack-content {
+          }
+     }
+}
+
+// preloaders
+.image-preloader {
+     width: clamp(12em, 20vw, 20em);
+     aspect-ratio: 1 / 0.5;
+     background: darken($a-color, 15%);
+     box-shadow: 0 0 5px 1px lighten($a-color, 45%);
+     display: flex;
+     justify-content: center;
+     align-items: center;
+
+     .image-icon {
+          color: lighten($a-color, 5%);
+          font-size: 5em;
      }
 }

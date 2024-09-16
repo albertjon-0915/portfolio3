@@ -29,7 +29,7 @@ export const scrollTriggerAnimWithScrub = (item, properties, trigger, startPrope
                start: startProperty || "center center",
                end: endProperty || "center center",
                scrub: 2,
-               markers: true,
+               // markers: true,
           },
           ...properties,
      });
@@ -44,7 +44,7 @@ export const scrollTriggerAnimWithScrubPin = (itemTrigger, properties, pinnedIte
                scrub: 2,
                pin: pinnedItem,
                pinSpacing: false,
-               // markers: true,
+               markers: true,
           },
           ...properties,
      });
