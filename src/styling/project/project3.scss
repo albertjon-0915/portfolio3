@@ -113,19 +113,21 @@
                width: clamp(12em, 20vw, 20em);
                aspect-ratio: 1 / 0.5;
                box-shadow: 0 0 5px 1px lighten($a-color, 45%);
+               filter: saturate(70%) grayscale(50%) brightness(90%);
           }
      }
 }
 
 .project-contents {
      width: 100%;
-     // border: 1px solid red;
+     padding: 10em 0;
 
      .project-content-wrapper {
           position: relative;
           padding: 4em;
           border-top: 1px solid lighten($a-color, 50%);
           overflow: hidden;
+          transition: all 0.2s ease-in-out;
 
           &::before,
           &::after {
@@ -135,16 +137,10 @@
                left: 0;
                width: clamp(10em, 25vw, 25em);
                height: 200%;
-               background: radial-gradient(
-                    circle at top center,
-                    lighten($a-color, 45%) 20%,
-                    $pr-color 70%,
-                    $pr-color 100%
-               );
+               background: radial-gradient(circle at top center, lighten($a-color, 35%) 20%, white 70%, white 100%);
                opacity: 0;
                transform: rotate(-20deg);
-               transition: all 0.5s ease-in-out;
-               z-index: -1;
+               transition: all 0.7s ease-in-out;
           }
 
           &::before {
@@ -161,16 +157,15 @@
                border-bottom: 1px solid lighten($a-color, 50%);
           }
 
-          // &:hover img {
-          //      opacity: 1;
-          // }
-
-          &:hover .text-content h5 {
+          &:hover .text-content > h5 {
                color: $pr-color;
                text-shadow: 0 0 15px lighten($a-color, 20%);
           }
 
           .text-content {
+               position: inherit;
+               z-index: 5;
+
                h3 {
                     color: darken($a-color, 15%);
                     font: 600 clamp(1.5em, 3vw, 3em) / 1.2em $sc-roboto;
@@ -184,11 +179,13 @@
           }
 
           .stack-content {
+               position: inherit;
                font: normal clamp(0.6em, 1vw, 1em) $tr-opensans;
                display: flex;
                flex-wrap: wrap;
                padding: 1.5em 0;
                gap: 1em;
+               z-index: 5;
 
                span {
                     display: block;
@@ -201,20 +198,24 @@
 
           img {
                position: fixed;
-               opacity: 0;
                bottom: 2em;
                right: 2em;
+               opacity: 0;
                max-height: 40em;
                max-width: 50em;
                aspect-ratio: 16 / 9;
                box-shadow: 0 0 5px 1px lighten($a-color, 45%);
                transition: all 0.5s ease-in-out;
-               filter: saturate(70%) grayscale(10%) brightness(90%);
-               z-index: 5;
+               // filter: saturate(70%) grayscale(10%) brightness(90%);
+               z-index: 10;
           }
 
           .image-show {
                opacity: 1;
+          }
+
+          .image-hide {
+               opacity: 0;
           }
      }
 }

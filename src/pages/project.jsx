@@ -15,14 +15,15 @@ import { Flip } from "gsap/Flip";
 gsap.registerPlugin(Flip, ScrollTrigger);
 
 function Project() {
-     const [projects, setProjects] = useState([]);
-     const [imageStates, setImageStates] = useState(projects.map(() => false));
+     const [projectItems, setProjectItems] = useState([]);
+     const [imageStates, setImageStates] = useState(projectItems.map(() => false));
+
      const fetchData = async () => {
           const response = await fetch(`${import.meta.env.VITE_APP_API_URL}/stack`);
           const data = await response.json();
 
           if (data) {
-               setProjects([
+               setProjectItems([
                     ...data.result.projects.fullstack,
                     ...data.result.projects.frontend,
                     ...data.result.projects.backend,
@@ -34,28 +35,6 @@ function Project() {
           fetchData();
      }, []);
 
-     const Left = () => {
-          let leftFiltered = projects.filter((item, index) => index % 2 === 0);
-          console.log("left", leftFiltered);
-
-          return leftFiltered.map((item, index) => (
-               <div className="left-image-panel">
-                    <img src={item.imageString} alt="img" key={index} className="image-card" />
-               </div>
-          ));
-     };
-
-     const Right = () => {
-          let rightFiltered = projects.filter((item, index) => index % 2 !== 0);
-          console.log("right", rightFiltered);
-
-          return rightFiltered.map((item, index) => (
-               <div className="right-image-panel">
-                    <img src={item.imageString} alt="img" key={index} className="image-card" />
-               </div>
-          ));
-     };
-
      const projectImages = (items, classes) => {
           return (
                <div className="images-panel" id={classes}>
@@ -63,13 +42,21 @@ function Project() {
                          ? items.map((item, index) => (
                                 <img src={item.imageString} alt="img" key={index} className="image-card" />
                            ))
-                         : [1, 2, 3, 4, 5].map((item) => (
-                                <div className="image-preloader">
+                         : [1, 2, 3, 4, 5].map((item, index) => (
+                                <div className="image-preloader" key={index}>
                                      <IoIosImages className="image-icon" />
                                 </div>
                            ))}
                </div>
           );
+     };
+
+     const handleMouseEnter = (index) => {
+          setImageStates((prevStates) => ({ ...prevStates, [index]: true }));
+     };
+
+     const handleMouseLeave = (index) => {
+          setImageStates((prevStates) => ({ ...prevStates, [index]: false }));
      };
 
      const getFirstSentence = (description) => {
@@ -79,27 +66,25 @@ function Project() {
      };
 
      useGSAP(() => {
-          if (projects.length > 0) {
-               scrollTriggerAnimWithScrub(
-                    "#images-panel1",
-                    {
-                         xPercent: -40,
-                    },
-                    ".project-slider",
-                    "top center",
-                    "bottom center"
-               );
+          scrollTriggerAnimWithScrub(
+               "#images-panel1",
+               {
+                    xPercent: -40,
+               },
+               ".project-slider",
+               "top center",
+               "bottom center"
+          );
 
-               scrollTriggerAnimWithScrub(
-                    "#images-panel2",
-                    {
-                         xPercent: 40,
-                    },
-                    ".project-slider",
-                    "top center",
-                    "bottom center"
-               );
-          }
+          scrollTriggerAnimWithScrub(
+               "#images-panel2",
+               {
+                    xPercent: 40,
+               },
+               ".project-slider",
+               "top center",
+               "bottom center"
+          );
      });
 
      return (
@@ -124,28 +109,16 @@ function Project() {
                     <div className="project-content2"></div>
                </div>
                <div className="project-slider">
-                    {projectImages(projects, "images-panel1")}
-                    {projectImages(projects.reverse(), "images-panel2")}
+                    {projectImages(projectItems, "images-panel1")}
+                    {projectImages(projectItems.reverse(), "images-panel2")}
                </div>
                <div className="project-contents">
-                    {projects.map((item, index) => (
+                    {projectItems.map((item, index) => (
                          <div
                               className="project-content-wrapper"
                               key={index}
-                              onMouseEnter={() =>
-                                   setImageStates((prevStates) => [
-                                        ...prevStates.slice(0, index),
-                                        true,
-                                        ...prevStates.slice(index + 1),
-                                   ])
-                              }
-                              onMouseLeave={() =>
-                                   setImageStates((prevStates) => [
-                                        ...prevStates.slice(0, index),
-                                        false,
-                                        ...prevStates.slice(index + 1),
-                                   ])
-                              }
+                              onMouseEnter={(e) => handleMouseEnter(index)}
+                              onMouseLeave={(e) => handleMouseLeave(index)}
                          >
                               <div className="text-content">
                                    <h3>{item.title}</h3>
@@ -153,13 +126,13 @@ function Project() {
                               </div>
 
                               <div className="stack-content">
-                                   {item.stack.map((spanItem) => (
-                                        <span>{spanItem}</span>
+                                   {item.stack.map((spanItem, index) => (
+                                        <span key={index}>{spanItem}</span>
                                    ))}
                               </div>
 
                               <img
-                                   className={imageStates[index] ? "image-show" : null}
+                                   className={imageStates[index] ? "image-show" : "image-hide"}
                                    src={item.imageString}
                                    alt="img"
                               />
