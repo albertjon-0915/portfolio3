@@ -119,25 +119,102 @@
 
 .project-contents {
      width: 100%;
-     border: 1px solid red;
+     // border: 1px solid red;
 
      .project-content-wrapper {
-          padding: 2em;
+          position: relative;
+          padding: 4em;
+          border-top: 1px solid lighten($a-color, 50%);
+          overflow: hidden;
+
+          &::before,
+          &::after {
+               content: "";
+               position: absolute;
+               top: -5em;
+               left: 0;
+               width: clamp(10em, 25vw, 25em);
+               height: 200%;
+               background: radial-gradient(
+                    circle at top center,
+                    lighten($a-color, 45%) 20%,
+                    $pr-color 70%,
+                    $pr-color 100%
+               );
+               opacity: 0;
+               transform: rotate(-20deg);
+               transition: all 0.5s ease-in-out;
+               z-index: -1;
+          }
+
+          &::before {
+               top: -7em;
+               left: clamp(1em, 5vw, 5em);
+          }
+
+          &:hover::before,
+          &:hover::after {
+               opacity: 1;
+          }
+
+          &:last-child {
+               border-bottom: 1px solid lighten($a-color, 50%);
+          }
+
+          // &:hover img {
+          //      opacity: 1;
+          // }
+
+          &:hover .text-content h5 {
+               color: $pr-color;
+               text-shadow: 0 0 15px lighten($a-color, 20%);
+          }
 
           .text-content {
                h3 {
                     color: darken($a-color, 15%);
-                    font: 600 clamp(1.5em, 3vw, 3em) / 1.5em $sc-roboto;
+                    font: 600 clamp(1.5em, 3vw, 3em) / 1.2em $sc-roboto;
                     letter-spacing: -2px;
                }
 
                h5 {
                     color: lighten($a-color, 35%);
-                    font: 600 clamp(0.9em, 1.2vw, 1.2em) / 2em $pr-montserrat;
+                    font: normal clamp(0.9em, 1.3vw, 1.3em) / 2em $pr-montserrat;
                }
           }
 
           .stack-content {
+               font: normal clamp(0.6em, 1vw, 1em) $tr-opensans;
+               display: flex;
+               flex-wrap: wrap;
+               padding: 1.5em 0;
+               gap: 1em;
+
+               span {
+                    display: block;
+                    padding: 0.5em 1.5em;
+                    background: $tr-color;
+                    border-radius: 35px;
+                    box-shadow: -3px 3px 5px 1px lighten($a-color, 55%);
+               }
+          }
+
+          img {
+               position: fixed;
+               opacity: 0;
+               bottom: 2em;
+               right: 2em;
+               max-height: 40em;
+               max-width: 50em;
+               aspect-ratio: 16 / 9;
+               box-shadow: 0 0 5px 1px lighten($a-color, 45%);
+               transition: all 0.5s ease-in-out;
+               filter: saturate(70%) grayscale(10%) brightness(90%);
+               z-index: 5;
+          }
+
+          .image-show {
+               opacity: 1;
           }
      }
 }
@@ -155,5 +232,7 @@
      .image-icon {
           color: lighten($a-color, 5%);
           font-size: 5em;
+
+          @include opacityReduce(3s);
      }
 }

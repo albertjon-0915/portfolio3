@@ -2,6 +2,7 @@ import React, { useEffect, useState, useRef } from "react";
 import "../styling/project/project3.scss";
 import Footer from "../components/footer.jsx";
 import codingImage from "../assets/projects-coding.png";
+import me from "../assets/me.jpg";
 import { IoIosImages } from "react-icons/io";
 import { scrollTriggerAnimWithScrub } from "../animations/gsapAnimation.jsx";
 
@@ -15,6 +16,7 @@ gsap.registerPlugin(Flip, ScrollTrigger);
 
 function Project() {
      const [projects, setProjects] = useState([]);
+     const [imageStates, setImageStates] = useState(projects.map(() => false));
      const fetchData = async () => {
           const response = await fetch(`${import.meta.env.VITE_APP_API_URL}/stack`);
           const data = await response.json();
@@ -126,16 +128,41 @@ function Project() {
                     {projectImages(projects.reverse(), "images-panel2")}
                </div>
                <div className="project-contents">
-                    {projects.map((item) => (
-                         <div className="project-content-wrapper">
+                    {projects.map((item, index) => (
+                         <div
+                              className="project-content-wrapper"
+                              key={index}
+                              onMouseEnter={() =>
+                                   setImageStates((prevStates) => [
+                                        ...prevStates.slice(0, index),
+                                        true,
+                                        ...prevStates.slice(index + 1),
+                                   ])
+                              }
+                              onMouseLeave={() =>
+                                   setImageStates((prevStates) => [
+                                        ...prevStates.slice(0, index),
+                                        false,
+                                        ...prevStates.slice(index + 1),
+                                   ])
+                              }
+                         >
                               <div className="text-content">
                                    <h3>{item.title}</h3>
                                    <h5>{item.subtitle}</h5>
-                                   {/* <p>{getFirstSentence(item.description)}</p> */}
                               </div>
+
                               <div className="stack-content">
-                                   <span>{item.stack}</span>
+                                   {item.stack.map((spanItem) => (
+                                        <span>{spanItem}</span>
+                                   ))}
                               </div>
+
+                              <img
+                                   className={imageStates[index] ? "image-show" : null}
+                                   src={item.imageString}
+                                   alt="img"
+                              />
                          </div>
                     ))}
                </div>
