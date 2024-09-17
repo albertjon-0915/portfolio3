@@ -4,7 +4,7 @@ import Footer from "../components/footer.jsx";
 import codingImage from "../assets/projects-coding.png";
 import me from "../assets/me.jpg";
 import { IoIosImages } from "react-icons/io";
-import { scrollTriggerAnimWithScrub } from "../animations/gsapAnimation.jsx";
+import { scrollTriggerAnimWithScrubPin, scrollTriggerAnimWithScrub } from "../animations/gsapAnimation.jsx";
 
 // import GSAP dependencies
 import gsap from "gsap";
@@ -17,6 +17,7 @@ gsap.registerPlugin(Flip, ScrollTrigger);
 function Project() {
      const [projectItems, setProjectItems] = useState([]);
      const [imageStates, setImageStates] = useState(projectItems.map(() => false));
+     const main = useRef(null);
 
      const fetchData = async () => {
           const response = await fetch(`${import.meta.env.VITE_APP_API_URL}/stack`);
@@ -51,14 +52,6 @@ function Project() {
           );
      };
 
-     const handleMouseEnter = (index) => {
-          setImageStates((prevStates) => ({ ...prevStates, [index]: true }));
-     };
-
-     const handleMouseLeave = (index) => {
-          setImageStates((prevStates) => ({ ...prevStates, [index]: false }));
-     };
-
      const getFirstSentence = (description) => {
           const firstSentence = description.split(/(?<=[.!?])\s+/);
 
@@ -85,6 +78,21 @@ function Project() {
                "top center",
                "bottom center"
           );
+
+          const gallery = gsap.utils.toArray(".project-content-wrapper");
+
+          gallery.forEach((item, index) => {
+               // gsap.to(item, {
+               //      scrollTrigger: {
+               //           trigger: item,
+               //           start: "top center ",
+               //           end: "center center ",
+               //           scrub: 1,
+               //           markers: true,
+               //      },
+               //      x: 500,
+               // });
+          });
      });
 
      return (
@@ -112,14 +120,9 @@ function Project() {
                     {projectImages(projectItems, "images-panel1")}
                     {projectImages(projectItems.reverse(), "images-panel2")}
                </div>
-               <div className="project-contents">
+               <div className="project-contents" ref={main}>
                     {projectItems.map((item, index) => (
-                         <div
-                              className="project-content-wrapper"
-                              key={index}
-                              onMouseEnter={(e) => handleMouseEnter(index)}
-                              onMouseLeave={(e) => handleMouseLeave(index)}
-                         >
+                         <div className="project-content-wrapper" key={index}>
                               <div className="text-content">
                                    <h3>{item.title}</h3>
                                    <h5>{item.subtitle}</h5>
@@ -131,11 +134,7 @@ function Project() {
                                    ))}
                               </div>
 
-                              <img
-                                   className={imageStates[index] ? "image-show" : "image-hide"}
-                                   src={item.imageString}
-                                   alt="img"
-                              />
+                              <img src={item.imageString} alt="img" className="image-gallery" />
                          </div>
                     ))}
                </div>

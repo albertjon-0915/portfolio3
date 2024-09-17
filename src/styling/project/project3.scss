@@ -121,45 +121,21 @@
 .project-contents {
      width: 100%;
      padding: 10em 0;
+     overflow: hidden;
 
      .project-content-wrapper {
           position: relative;
+          overflow: hidden;
           padding: 4em;
           border-top: 1px solid lighten($a-color, 50%);
-          overflow: hidden;
           transition: all 0.2s ease-in-out;
-
-          &::before,
-          &::after {
-               content: "";
-               position: absolute;
-               top: -5em;
-               left: 0;
-               width: clamp(10em, 25vw, 25em);
-               height: 200%;
-               background: radial-gradient(circle at top center, lighten($a-color, 35%) 20%, white 70%, white 100%);
-               opacity: 0;
-               transform: rotate(-20deg);
-               transition: all 0.7s ease-in-out;
-          }
-
-          &::before {
-               top: -7em;
-               left: clamp(1em, 5vw, 5em);
-          }
-
-          &:hover::before,
-          &:hover::after {
-               opacity: 1;
-          }
 
           &:last-child {
                border-bottom: 1px solid lighten($a-color, 50%);
           }
 
-          &:hover .text-content > h5 {
-               color: $pr-color;
-               text-shadow: 0 0 15px lighten($a-color, 20%);
+          &:hover img {
+               opacity: 1;
           }
 
           .text-content {
@@ -173,26 +149,23 @@
                }
 
                h5 {
-                    color: lighten($a-color, 35%);
+                    color: lighten($a-color, 25%);
                     font: normal clamp(0.9em, 1.3vw, 1.3em) / 2em $pr-montserrat;
                }
           }
 
           .stack-content {
                position: inherit;
-               font: normal clamp(0.6em, 1vw, 1em) $tr-opensans;
+               font: normal clamp(0.6em, 0.9vw, 0.9em) $tr-opensans;
                display: flex;
                flex-wrap: wrap;
                padding: 1.5em 0;
-               gap: 1em;
+               gap: 2em;
                z-index: 5;
 
                span {
                     display: block;
-                    padding: 0.5em 1.5em;
-                    background: $tr-color;
-                    border-radius: 35px;
-                    box-shadow: -3px 3px 5px 1px lighten($a-color, 55%);
+                    color: lighten($a-color, 25%);
                }
           }
 
@@ -206,16 +179,11 @@
                aspect-ratio: 16 / 9;
                box-shadow: 0 0 5px 1px lighten($a-color, 45%);
                transition: all 0.5s ease-in-out;
-               // filter: saturate(70%) grayscale(10%) brightness(90%);
                z-index: 10;
-          }
 
-          .image-show {
-               opacity: 1;
-          }
-
-          .image-hide {
-               opacity: 0;
+               &:hover {
+                    opacity: 0;
+               }
           }
      }
 }
