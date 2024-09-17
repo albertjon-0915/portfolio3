@@ -4,7 +4,10 @@ import Footer from "../components/footer.jsx";
 import codingImage from "../assets/projects-coding.png";
 import me from "../assets/me.jpg";
 import { IoIosImages } from "react-icons/io";
-import { scrollTriggerAnimWithScrubPin, scrollTriggerAnimWithScrub } from "../animations/gsapAnimation.jsx";
+import {
+     scrollTriggerAnimWithScrubPin,
+     scrollTriggerAnimWithScrub,
+} from "../animations/gsapAnimation.jsx";
 
 // import GSAP dependencies
 import gsap from "gsap";
@@ -41,7 +44,12 @@ function Project() {
                <div className="images-panel" id={classes}>
                     {items.length > 0
                          ? items.map((item, index) => (
-                                <img src={item.imageString} alt="img" key={index} className="image-card" />
+                                <img
+                                     src={item.imageString}
+                                     alt="img"
+                                     key={index}
+                                     className="image-card"
+                                />
                            ))
                          : [1, 2, 3, 4, 5].map((item, index) => (
                                 <div className="image-preloader" key={index}>
@@ -81,17 +89,58 @@ function Project() {
 
           const gallery = gsap.utils.toArray(".project-content-wrapper");
 
-          gallery.forEach((item, index) => {
-               // gsap.to(item, {
-               //      scrollTrigger: {
-               //           trigger: item,
-               //           start: "top center ",
-               //           end: "center center ",
-               //           scrub: 1,
-               //           markers: true,
-               //      },
-               //      x: 500,
-               // });
+          // gallery.forEach((item, index) => {
+          //      // gsap.to(item, {
+          //      //      scrollTrigger: {
+          //      //           trigger: item,
+          //      //           start: "top center ",
+          //      //           end: "center center ",
+          //      //           scrub: 1,
+          //      //           markers: true,
+          //      //      },
+          //      //      x: 500,
+          //      // });
+          // });
+
+          const movingSpanTitle = document.getElementById("moving-title");
+          const temporaryTitleWrapper = document.getElementById("temporary-title-wrapper");
+          const movingTitleWrapper = document.getElementById("moving-title-wrapper");
+          console.log(movingSpanTitle, temporaryTitleWrapper, movingTitleWrapper);
+
+          ScrollTrigger.create({
+               trigger: ".project-section-wrapper",
+               start: "40% 90% ",
+               end: "40% 90% ",
+               markers: true,
+               onEnter: () => {
+                    console.log("onEnter");
+
+                    const state = Flip.getState(movingSpanTitle);
+
+                    movingTitleWrapper.appendChild(movingSpanTitle);
+
+                    Flip.from(state, {
+                         absolute: true,
+                         duration: 0.5,
+                         scale: true,
+                         ease: "power1.inOut",
+                    });
+               },
+
+               onEnterBack: () => {
+                    console.log("onEnterBack");
+
+                    const state = Flip.getState(movingSpanTitle);
+
+                    temporaryTitleWrapper.appendChild(movingSpanTitle);
+
+                    Flip.from(state, {
+                         absolute: true,
+                         duration: 0.5,
+                         scale: true,
+                         ease: "power1.inOut",
+                    });
+               },
           });
      });
 
@@ -99,14 +148,17 @@ function Project() {
           <div className="project-container">
                <div className="project-title-content">
                     <h3>What I've Brought to Life &mdash;</h3>
-                    <h5>Projects</h5>
+                    <div id="temporary-title-wrapper">
+                         <span id="moving-title">Projects</span>
+                    </div>
                </div>
                <div className="project-section-wrapper">
                     <div className="project-content1">
                          <div className="project-text-context">
                               <h4>Okay I know I'm a newbie</h4>
                               <p>
-                                   But dont judge me yet! &mdash; Let me first show you my <span>PROJECTS</span>
+                                   But dont judge me yet! &mdash; Let me first show you my{" "}
+                                   <div id="moving-title-wrapper"></div>
                               </p>
                          </div>
 
@@ -120,7 +172,7 @@ function Project() {
                     {projectImages(projectItems, "images-panel1")}
                     {projectImages(projectItems.reverse(), "images-panel2")}
                </div>
-               <div className="project-contents" ref={main}>
+               {/* <div className="project-contents" ref={main}>
                     {projectItems.map((item, index) => (
                          <div className="project-content-wrapper" key={index}>
                               <div className="text-content">
@@ -137,7 +189,7 @@ function Project() {
                               <img src={item.imageString} alt="img" className="image-gallery" />
                          </div>
                     ))}
-               </div>
+               </div> */}
                <Footer />
           </div>
      );
