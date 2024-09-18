@@ -1,127 +1,217 @@
 @use "../variables.scss" as *;
 
 .skills-container {
+     position: relative;
      width: 100%;
-     height: 90vh;
+     height: 200vh;
+     display: flex;
+     align-items: center;
+     justify-content: center;
      margin: clamp(5em, 10vw, 10em) 0;
+     background: radial-gradient(circle at center, darken($tr-color, 5%) 0, transparent 60%);
+     overflow: hidden;
 
-     .skills-wrapper {
-          width: 100%;
-          height: 100%;
-          display: flex;
-          align-items: center;
-
-          @media (max-width: 992px) {
-               align-items: unset;
-               justify-content: center;
-               flex-direction: column;
-               padding: 1em;
-          }
+     h2 {
+          position: absolute;
+          top: 0;
+          left: 50%;
+          transform: translateX(-50%);
+          font: 500 clamp(1.5em, 50vw, 50em) $pr-montserrat;
+          color: rgba(136, 136, 136, 0.152);
+          //     z-index: ;
      }
 
-     @media (max-width: 576px) {
-          height: 100vh;
+     .skills-wrapper {
+          width: 80%;
+          height: 100%;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          position: relative;
+          //    border: 1px solid red;
+
+          @media (max-width: 992px) {
+               width: 90%;
+          }
      }
 }
 
 .skills-content1 {
-     position: relative;
-     flex: 1 0 50%;
-     height: 100%;
+     position: absolute;
+     $gap: clamp(0em, 0.5vw, 0.5em);
+     top: 50%;
+     left: 50%;
+     transform: translate(-50%, -50%);
+     width: 50%;
+     min-height: 20vh;
+     columns: 3;
+     gap: $gap;
+     border: 1px solid red;
+     //   z-index: 2;
 
-     span {
-          position: absolute;
-          font-size: clamp(3em, 8vw, 8em);
-          color: darken($a-color, 10%);
-          padding: 0.1em;
-          background: #0000004b;
-          border-radius: 5px;
-          box-shadow: 0 0 10px 2px lighten($a-color, 20%);
+     @media (max-width: 992px) {
+          width: 90%;
+     }
 
-          &:nth-child(3n) {
-               transform: scale(1.2);
-          }
+     @media (max-width: 768px) {
+          $gap: 0.5em;
+          gap: $gap;
+          width: 100%;
+     }
 
-          &:nth-child(2n) {
-               transform: scale(0.5);
-               filter: blur(4px);
-          }
-
-          &:nth-child(4n) {
-               transform: scale(0.9);
-               filter: blur(2px);
-          }
+     div {
+          display: flex;
+          justify-content: center;
+          flex-direction: column;
+          align-items: center;
+          break-inside: avoid;
 
           &:nth-child(1) {
-               @include positioning(85%, 1%);
+               transform: translateY(4em);
           }
+
           &:nth-child(2) {
-               @include positioning(25%, 10%);
+               transform: translateY(-5em);
           }
+
           &:nth-child(3) {
-               @include positioning(1%, 10%);
+               transform: translateY(6em);
           }
-          &:nth-child(4) {
-               @include positioning(30%, 25%);
-          }
-          &:nth-child(5) {
-               @include positioning(55%, 40%);
-          }
-          &:nth-child(6) {
-               @include positioning(65%, 70%);
-          }
-          &:nth-child(7) {
-               @include positioning(75%, 45%);
-          }
-          &:nth-child(8) {
-               @include positioning(80%, 65%);
-          }
-          &:nth-child(9) {
-               @include positioning(15%, 35%);
-          }
-          &:nth-child(10) {
-               @include positioning(35%, 65%);
-          }
-          &:nth-child(11) {
-               @include positioning(45%, 80%);
-          }
-          &:nth-child(12) {
-               @include positioning(75%, 15%);
-          }
-          &:nth-child(13) {
-               @include positioning(15%, 85%);
-          }
-          &:nth-child(14) {
-               @include positioning(5%, 70%);
+
+          .item {
+               margin-bottom: $gap;
+               border: 1px solid lighten($a-color, 45%);
+               border-radius: 5px;
+               display: flex;
+               align-items: center;
+               width: 100%;
+               min-height: clamp(10vh, 15vw, 15vh);
+               backdrop-filter: blur(2px);
+               -webkit-backdrop-filter: blur(2px);
+
+               .icon {
+                    width: 100%;
+                    font-size: clamp(3em, 6vw, 6em);
+                    color: darken($a-color, 10%);
+               }
           }
      }
 }
 
 .skills-content2 {
-     display: flex;
-     flex-direction: column;
-     justify-content: center;
-     flex: 1 0 50%;
-     height: 100%;
-
-     h2 {
-          font: clamp(2em, 4vw, 4em) $pr-montserrat;
-     }
+     max-width: 50em;
+     z-index: 2;
 
      .skillset {
-          padding: clamp(2em, 4vw, 4em) 0;
-          min-width: 50%;
-          flex-wrap: wrap;
-          align-items: center;
           display: flex;
-          gap: 1em;
+          flex-wrap: wrap;
 
           span {
-               background: $tr-color;
-               border-radius: 50px;
-               font: clamp(0.9em, 1.7vw, 1.7em) $tr-opensans;
-               padding: 0.3em 1.2em;
-               box-shadow: -3px 5px 10px 2px lighten($a-color, 58%);
+               display: inline-block;
+               font: normal clamp(1em, 1.5vw, 1.5em) $tr-opensans;
+               //  font-size: ;
           }
      }
 }
+
+// .skills-content1 {
+//      position: relative;
+//      flex: 1 0 50%;
+//      height: 100%;
+
+//      span {
+//           position: absolute;
+//           font-size: clamp(3em, 8vw, 8em);
+//           color: darken($a-color, 10%);
+//           padding: 0.1em;
+//           background: #0000004b;
+//           border-radius: 5px;
+//           box-shadow: 0 0 10px 2px lighten($a-color, 20%);
+
+//           &:nth-child(3n) {
+//                transform: scale(1.2);
+//           }
+
+//           &:nth-child(2n) {
+//                transform: scale(0.5);
+//                filter: blur(4px);
+//           }
+
+//           &:nth-child(4n) {
+//                transform: scale(0.9);
+//                filter: blur(2px);
+//           }
+
+//           &:nth-child(1) {
+//                @include positioning(85%, 1%);
+//           }
+//           &:nth-child(2) {
+//                @include positioning(25%, 10%);
+//           }
+//           &:nth-child(3) {
+//                @include positioning(1%, 10%);
+//           }
+//           &:nth-child(4) {
+//                @include positioning(30%, 25%);
+//           }
+//           &:nth-child(5) {
+//                @include positioning(55%, 40%);
+//           }
+//           &:nth-child(6) {
+//                @include positioning(65%, 70%);
+//           }
+//           &:nth-child(7) {
+//                @include positioning(75%, 45%);
+//           }
+//           &:nth-child(8) {
+//                @include positioning(80%, 65%);
+//           }
+//           &:nth-child(9) {
+//                @include positioning(15%, 35%);
+//           }
+//           &:nth-child(10) {
+//                @include positioning(35%, 65%);
+//           }
+//           &:nth-child(11) {
+//                @include positioning(45%, 80%);
+//           }
+//           &:nth-child(12) {
+//                @include positioning(75%, 15%);
+//           }
+//           &:nth-child(13) {
+//                @include positioning(15%, 85%);
+//           }
+//           &:nth-child(14) {
+//                @include positioning(5%, 70%);
+//           }
+//      }
+// }
+
+// .skills-content2 {
+//      display: flex;
+//      flex-direction: column;
+//      justify-content: center;
+//      flex: 1 0 50%;
+//      height: 100%;
+
+//      h2 {
+//           font: clamp(2em, 4vw, 4em) $pr-montserrat;
+//      }
+
+//      .skillset {
+//           padding: clamp(2em, 4vw, 4em) 0;
+//           min-width: 50%;
+//           flex-wrap: wrap;
+//           align-items: center;
+//           display: flex;
+//           gap: 1em;
+
+//           span {
+//                background: $tr-color;
+//                border-radius: 50px;
+//                font: clamp(0.9em, 1.7vw, 1.7em) $tr-opensans;
+//                padding: 0.3em 1.2em;
+//                box-shadow: -3px 5px 10px 2px lighten($a-color, 58%);
+//           }
+//      }
+// }

@@ -1,82 +1,81 @@
 @use "../../styling/variables.scss" as *;
 
 .about-container {
-     width: 100%;
-     overflow: hidden;
+  width: 100%;
+  overflow: hidden;
 }
 
 .about-wrapper {
-     width: 100%;
-     display: flex;
-     flex-direction: column;
-     align-items: center;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 
-     img {
-          width: 80%;
-          aspect-ratio: 16 / 9;
-          height: auto;
-          max-height: 60vh;
-          border-radius: 5px;
-          object-fit: cover;
-          object-position: top left;
-          filter: saturate(70%) grayscale(10%) brightness(90%);
-     }
+  img {
+    width: 80%;
+    aspect-ratio: 16 / 9;
+    height: auto;
+    max-height: 60vh;
+    border-radius: 5px;
+    object-fit: cover;
+    object-position: top left;
+    filter: saturate(70%) grayscale(10%) brightness(90%);
+  }
 
-     .about-title {
-          width: 80%;
-          padding: 2em 0;
-          font: clamp(2em, 4vw, 4em) $pr-montserrat;
-     }
+  .about-title {
+    width: 80%;
+    padding: 2em 0;
+    font: clamp(2em, 4vw, 4em) $pr-montserrat;
+  }
 
-     .content {
-          width: 80%;
-          font: normal clamp(0.8em, 1.2vw, 1.2em) $tr-opensans, sans-serif;
+  .content {
+    width: 80%;
+    font: normal clamp(0.8em, 1.2vw, 1.2em) $tr-opensans, sans-serif;
 
-          h3 {
-               margin: 1.5em 0;
-               padding: 3px;
-               font-size: 2em;
-               max-width: 10em;
-               color: $sc-color;
-               background: darken($a-color, 15%);
-               overflow: hidden;
-          }
+    h3 {
+      margin: 1.5em 0;
+      padding: 3px;
+      font-size: 2em;
+      max-width: 10em;
+      color: $sc-color;
+      background: darken($a-color, 15%);
+      overflow: hidden;
+    }
 
-          p {
-               max-width: 40em;
-               text-indent: 3.5em;
-               text-wrap: wrap;
-               font: normal clamp(0.8em, 1.2vw, 1.2em) $tr-opensans, sans-serif;
-          }
-     }
+    p {
+      max-width: 40em;
+      text-indent: 3.5em;
+      text-wrap: wrap;
+      font: normal clamp(0.8em, 1vw, 1em) / 1.8em $tr-opensans;
+    }
+  }
 
-     .socials {
-          width: 80%;
-          padding: clamp(6em, 10vw, 10em) 0;
+  .socials {
+    width: 80%;
+    padding: clamp(6em, 10vw, 10em) 0;
 
-          @media (max-width: 576px) {
-               padding: clamp(6em, 10vw, 10em) .5em;
-               width: 100%;
-          }
+    @media (max-width: 576px) {
+      padding: clamp(6em, 10vw, 10em) 0.5em;
+      width: 100%;
+    }
 
-          ul {
-               list-style-type: none;
-               display: flex;
-               gap: clamp(0.5em, 4vw, 4em);
+    ul {
+      list-style-type: none;
+      display: flex;
+      gap: clamp(0.5em, 4vw, 4em);
 
-               li {
-                    display: flex;
-                    align-items: center;
-                    padding: 1em;
-                    gap: clamp(0.1em, 1vw, 1em);
-                    width: 15em;
-                    height: clamp(3.5em, 5vw, 5em);
-                    border-bottom: 3px solid $a-color;
-                    background: $sc-color;
-                    font: clamp(1em, 2vw, 1.5em) $tr-opensans;
-                    // color: $a-color;
-                    cursor: pointer;
-               }
-          }
-     }
+      li {
+        display: flex;
+        align-items: center;
+        padding: 1em;
+        gap: clamp(0.1em, 1vw, 1em);
+        width: 15em;
+        height: clamp(3.5em, 5vw, 5em);
+        border-bottom: 3px solid $a-color;
+        background: $sc-color;
+        font: clamp(1em, 2vw, 1.5em) $tr-opensans;
+        cursor: pointer;
+      }
+    }
+  }
 }
