@@ -11,7 +11,7 @@ import { useGSAP } from "@gsap/react";
 function Contact() {
   const { pathname } = useLocation();
   const [email, setEmail] = useState("");
-  const [mobile, setMobile] = useState("");
+  const [mobile, setMobile] = useState(0);
   const [comment, setComment] = useState("");
 
   console.log(email, mobile, comment);
