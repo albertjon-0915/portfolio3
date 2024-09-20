@@ -24,19 +24,20 @@ export const maxHeight = (item) => {
 
 export const scrollTriggerAnimWithScrub = (item, properties, trigger, startProperty, endProperty) => {
   gsap.to(item, {
+    ...properties,
     scrollTrigger: {
       trigger: trigger,
       start: startProperty || "center center",
       end: endProperty || "center center",
       scrub: 2,
-      // markers: true,
+      markers: true,
     },
-    ...properties,
   });
 };
 
 export const scrollTriggerAnimWithScrubPin = (itemTrigger, properties, pinnedItem, startProperty, endProperty) => {
   gsap.to(pinnedItem, {
+    ...properties,
     scrollTrigger: {
       trigger: itemTrigger,
       start: startProperty || "center center",
@@ -46,12 +47,12 @@ export const scrollTriggerAnimWithScrubPin = (itemTrigger, properties, pinnedIte
       pinSpacing: false,
       markers: true,
     },
-    ...properties,
   });
 };
 
 export const scrollTriggerAnimWithToggle = (item, properties, trigger, startProperty, endProperty) => {
   gsap.to(item, {
+    ...properties,
     scrollTrigger: {
       trigger: trigger,
       start: startProperty || "top center",
@@ -59,6 +60,5 @@ export const scrollTriggerAnimWithToggle = (item, properties, trigger, startProp
       toggleActions: "restart none reverse none",
       // markers: true,
     },
-    ...properties,
   });
 };
