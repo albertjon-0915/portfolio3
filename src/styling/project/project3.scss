@@ -7,20 +7,24 @@
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  overflow: hidden;
 }
 
 .project-title-content {
+  position: relative;
   width: 100%;
   height: 90vh;
   padding: 10em clamp(2em, 5vw, 5em);
   display: flex;
   justify-content: flex-end;
   flex-direction: column;
+  z-index: 5;
 
   h3 {
     color: darken($a-color, 15%);
     font: 900 clamp(3em, 6vw, 6em) / 0.9em $sc-roboto;
     letter-spacing: -3px;
+    text-shadow: 0px 0px 25px $tr-color;
   }
 
   #temporary-title-wrapper {
@@ -39,7 +43,8 @@
 
 .project-section-wrapper {
   display: flex;
-  width: 80%;
+  width: 100%;
+  border: 1px solid red;
 
   @media (max-width: 768px) {
     padding: 0 1em;
@@ -47,14 +52,23 @@
   }
 
   .project-content1 {
+    width: 100%;
     height: clamp(50vh, 100vw, 90vh);
     display: flex;
+    flex-wrap: wrap;
     gap: clamp(0em, 5vw, 5em);
 
     .project-text-context,
-    .project-image {
-      flex-grow: 1;
+    .project-image-content {
+      // flex-grow: 1;
+      flex: 1 1 30vw;
+      // min-width: 40vw;
     }
+
+    // .project-text-context,
+    // .project-image-content {
+    //   flex-grow: 1;
+    // }
 
     .project-text-context {
       max-width: 30%;
@@ -99,15 +113,17 @@
     }
 
     .project-image-content {
-      width: 70%;
-      min-width: 20em;
+      position: relative;
+      width: 100vh;
+      border: 1px solid red;
 
-      img {
+      .spline {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
         width: 100%;
         height: 100%;
-        border-radius: 5px;
-        object-fit: cover;
-        object-position: top left;
         filter: saturate(70%) grayscale(10%) brightness(90%);
       }
     }

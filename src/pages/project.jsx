@@ -99,45 +99,58 @@ function Project() {
     //      // });
     // });
 
-    const movingSpanTitle = document.getElementById("moving-title");
-    const temporaryTitleWrapper = document.getElementById("temporary-title-wrapper");
-    const movingTitleWrapper = document.getElementById("moving-title-wrapper");
-    console.log(movingSpanTitle, temporaryTitleWrapper, movingTitleWrapper);
+    // const movingSpanTitle = document.getElementById("moving-title");
+    // const temporaryTitleWrapper = document.getElementById("temporary-title-wrapper");
+    // const movingTitleWrapper = document.getElementById("moving-title-wrapper");
+    // console.log(movingSpanTitle, temporaryTitleWrapper, movingTitleWrapper);
+
+    // ScrollTrigger.create({
+    //   trigger: ".project-section-wrapper",
+    //   start: "40% 90% ",
+    //   end: "40% 90% ",
+    //   markers: true,
+    //   onEnter: () => {
+    //     console.log("onEnter");
+
+    //     const state = Flip.getState(movingSpanTitle);
+
+    //     movingTitleWrapper.appendChild(movingSpanTitle);
+
+    //     Flip.from(state, {
+    //       absolute: true,
+    //       duration: 0.5,
+    //       scale: true,
+    //       ease: "power1.inOut",
+    //     });
+    //   },
+
+    //   onEnterBack: () => {
+    //     console.log("onEnterBack");
+
+    //     const state = Flip.getState(movingSpanTitle);
+
+    //     temporaryTitleWrapper.appendChild(movingSpanTitle);
+
+    //     Flip.from(state, {
+    //       absolute: true,
+    //       duration: 0.5,
+    //       scale: true,
+    //       ease: "power1.inOut",
+    //     });
+    //   },
+    // });
+
+    const tl = gsap.timeline();
+    tl.from(".project-image-content", { yPercent: -105, scale: 1.3 });
 
     ScrollTrigger.create({
-      trigger: ".project-section-wrapper",
-      start: "40% 90% ",
-      end: "40% 90% ",
+      animation: tl,
+      trigger: ".project-content1",
+      start: "top center",
+      end: "top center",
+      scrub: 3,
+      pin: true,
       markers: true,
-      onEnter: () => {
-        console.log("onEnter");
-
-        const state = Flip.getState(movingSpanTitle);
-
-        movingTitleWrapper.appendChild(movingSpanTitle);
-
-        Flip.from(state, {
-          absolute: true,
-          duration: 0.5,
-          scale: true,
-          ease: "power1.inOut",
-        });
-      },
-
-      onEnterBack: () => {
-        console.log("onEnterBack");
-
-        const state = Flip.getState(movingSpanTitle);
-
-        temporaryTitleWrapper.appendChild(movingSpanTitle);
-
-        Flip.from(state, {
-          absolute: true,
-          duration: 0.5,
-          scale: true,
-          ease: "power1.inOut",
-        });
-      },
     });
   });
 
@@ -159,11 +172,14 @@ function Project() {
           </div>
 
           <div className="project-image-content">
-            {/* <img src={deskImage} alt="img" /> */}
-            <Spline scene="https://prod.spline.design/fRwUh5klecyI-Ak4/scene.splinecode" width={500} height={500} />
+            <Spline
+              className="spline"
+              scene="https://prod.spline.design/fRwUh5klecyI-Ak4/scene.splinecode"
+              width={1129}
+              height={998}
+            />
           </div>
         </div>
-        <div className="project-content2"></div>
       </div>
       <div className="project-slider">
         {projectImages(projectItems, "images-panel1")}
