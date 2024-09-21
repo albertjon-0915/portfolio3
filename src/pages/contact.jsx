@@ -11,10 +11,14 @@ import { useGSAP } from "@gsap/react";
 function Contact() {
   const { pathname } = useLocation();
   const [email, setEmail] = useState("");
-  const [mobile, setMobile] = useState(0);
+  const [mobile, setMobile] = useState("");
   const [comment, setComment] = useState("");
 
-  console.log(email, mobile, comment);
+  const resetInput = () => {
+    setEmail("");
+    setMobile("");
+    setComment("");
+  };
 
   const handleOnSubmit = (e) => {
     e.preventDefault();
@@ -37,11 +41,12 @@ function Contact() {
         if (result.message !== "Successfully created a comment") {
           console.log("error here");
           toast.error(result.message || result.err || result.error);
+
+          resetInput();
         } else {
           toast.success(result.message);
-          setEmail("");
-          setMobile("");
-          setComment("");
+
+          resetInput();
         }
       });
   };
@@ -78,7 +83,7 @@ function Contact() {
             <div className="label-enclosure">
               <label for="email">
                 Email
-                <input name="email" id="email" type="text" value={email} onChange={(e) => setEmail(e.target.value)} />
+                <input name="email" id="email" type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
               </label>
             </div>
             <div className="label-enclosure">
@@ -87,7 +92,7 @@ function Contact() {
                 <input
                   name="mobile"
                   id="mobile"
-                  type="text"
+                  type="number"
                   value={mobile}
                   onChange={(e) => setMobile(e.target.value)}
                 />

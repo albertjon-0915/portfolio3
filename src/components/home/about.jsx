@@ -8,7 +8,6 @@ import { scrollTriggerAnimWithScrub } from "../../animations/gsapAnimation";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
-import { SiCalendly } from "react-icons/si";
 
 // gsap plugin for useGSAP
 gsap.registerPlugin({ useGSAP, ScrollTrigger });

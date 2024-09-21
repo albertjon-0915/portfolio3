@@ -53,7 +53,7 @@ function Skills() {
       {
         scale: 1.1,
         filter: "blur(8px)",
-        opacity: 0.6,
+        opacity: 0.5,
       },
       "#bg-text",
       "20% center",
@@ -94,6 +94,8 @@ function Skills() {
       "-40% center",
       "center center"
     );
+
+    scrollTriggerAnimWithScrubPin(".skillset", { delay: 2, opacity: 0 }, ".skillset", "90% center", "+=300");
   });
 
   return (

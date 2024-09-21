@@ -2,10 +2,11 @@ import React, { useEffect, useState, useRef } from "react";
 import { useLocation } from "react-router-dom";
 import "../styling/project/project3.scss";
 import Footer from "../components/footer.jsx";
-import codingImage from "../assets/projects-coding.png";
+import deskImage from "../assets/desk.png";
 import me from "../assets/me.jpg";
 import { IoIosImages } from "react-icons/io";
 import { scrollTriggerAnimWithScrubPin, scrollTriggerAnimWithScrub } from "../animations/gsapAnimation.jsx";
+import Spline from "@splinetool/react-spline";
 
 // import GSAP dependencies
 import gsap from "gsap";
@@ -158,7 +159,8 @@ function Project() {
           </div>
 
           <div className="project-image-content">
-            <img src={codingImage} alt="img" />
+            {/* <img src={deskImage} alt="img" /> */}
+            <Spline scene="https://prod.spline.design/fRwUh5klecyI-Ak4/scene.splinecode" width={500} height={500} />
           </div>
         </div>
         <div className="project-content2"></div>
