@@ -84,8 +84,6 @@ function Project() {
       "bottom center"
     );
 
-    scrollTriggerAnimWithScrubPin("#proj-item1", { x: 0, y: 0 }, "#proj-item1", "center center", "+=1000");
-
     const tl1 = gsap.timeline();
     const mm = gsap.matchMedia();
 
@@ -104,8 +102,24 @@ function Project() {
       end: "top center",
       scrub: 3,
       pin: false,
-      // markers: true,
+      invalidateOnRefresh: true,
     });
+
+    const tl2 = gsap.timeline();
+
+    tl2.to("#proj-item2", { yPercent: -100 });
+
+    ScrollTrigger.create({
+      animation: tl2,
+      trigger: ".project-content1",
+      start: "25% center",
+      end: "75% center",
+      scrub: 2,
+      pin: true,
+      markers: true,
+    });
+
+    scrollTriggerAnimWithScrub("#proj-item1", { opacity: 0 }, "#proj-item2", "top center", "center center");
   });
 
   useEffect(() => {
@@ -127,7 +141,7 @@ function Project() {
           <div className="project-text-context">
             <h4 id="proj-item1">Okay I know I'm a newbie</h4>
             <p id="proj-item2">
-              <span>But dont judge me yet! &mdash; Let me first show you my</span> <span>PROJECTS</span>
+              <span>But dont judge me yet! &mdash; Let me first show you my</span> <span>PR<span>O</span>JECTS</span>
             </p>
           </div>
 
