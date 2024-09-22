@@ -84,100 +84,55 @@ function Project() {
       "bottom center"
     );
 
-    const gallery = gsap.utils.toArray(".project-content-wrapper");
+    scrollTriggerAnimWithScrubPin("#proj-item1", { x: 0, y: 0 }, "#proj-item1", "center center", "+=1000");
 
-    // gallery.forEach((item, index) => {
-    //      // gsap.to(item, {
-    //      //      scrollTrigger: {
-    //      //           trigger: item,
-    //      //           start: "top center ",
-    //      //           end: "center center ",
-    //      //           scrub: 1,
-    //      //           markers: true,
-    //      //      },
-    //      //      x: 500,
-    //      // });
-    // });
+    const tl1 = gsap.timeline();
+    const mm = gsap.matchMedia();
 
-    // const movingSpanTitle = document.getElementById("moving-title");
-    // const temporaryTitleWrapper = document.getElementById("temporary-title-wrapper");
-    // const movingTitleWrapper = document.getElementById("moving-title-wrapper");
-    // console.log(movingSpanTitle, temporaryTitleWrapper, movingTitleWrapper);
+    mm.add("(max-width: 768px)", () => {
+      tl1.from(".project-image-content", { yPercent: -100, scale: 1.3 });
+    });
 
-    // ScrollTrigger.create({
-    //   trigger: ".project-section-wrapper",
-    //   start: "40% 90% ",
-    //   end: "40% 90% ",
-    //   markers: true,
-    //   onEnter: () => {
-    //     console.log("onEnter");
-
-    //     const state = Flip.getState(movingSpanTitle);
-
-    //     movingTitleWrapper.appendChild(movingSpanTitle);
-
-    //     Flip.from(state, {
-    //       absolute: true,
-    //       duration: 0.5,
-    //       scale: true,
-    //       ease: "power1.inOut",
-    //     });
-    //   },
-
-    //   onEnterBack: () => {
-    //     console.log("onEnterBack");
-
-    //     const state = Flip.getState(movingSpanTitle);
-
-    //     temporaryTitleWrapper.appendChild(movingSpanTitle);
-
-    //     Flip.from(state, {
-    //       absolute: true,
-    //       duration: 0.5,
-    //       scale: true,
-    //       ease: "power1.inOut",
-    //     });
-    //   },
-    // });
-
-    const tl = gsap.timeline();
-    tl.from(".project-image-content", { yPercent: -105, scale: 1.3 });
+    mm.add("(min-width: 768px)", () => {
+      tl1.from(".project-image-content", { yPercent: -105, scale: 1.3 });
+    });
 
     ScrollTrigger.create({
-      animation: tl,
+      animation: tl1,
       trigger: ".project-content1",
       start: "top center",
       end: "top center",
       scrub: 3,
-      pin: true,
-      markers: true,
+      pin: false,
+      // markers: true,
     });
   });
+
+  useEffect(() => {
+    document.querySelector(".spline").addEventListener("wheel", (event) => {
+      event.stopPropagation();
+    });
+  }, []);
 
   return (
     <div className="project-container">
       <div className="project-title-content">
         <h3>What I've Brought to Life &mdash;</h3>
         <div id="temporary-title-wrapper">
-          <span id="moving-title">Projects</span>
+          <span id="moving-title">My Works</span>
         </div>
       </div>
       <div className="project-section-wrapper">
         <div className="project-content1">
           <div className="project-text-context">
-            <h4>Okay I know I'm a newbie</h4>
-            <p>
-              But dont judge me yet! &mdash; Let me first show you my <div id="moving-title-wrapper"></div>
+            <h4 id="proj-item1">Okay I know I'm a newbie</h4>
+            <p id="proj-item2">
+              <span>But dont judge me yet! &mdash; Let me first show you my</span> <span>PROJECTS</span>
             </p>
           </div>
 
           <div className="project-image-content">
-            <Spline
-              className="spline"
-              scene="https://prod.spline.design/fRwUh5klecyI-Ak4/scene.splinecode"
-              width={1129}
-              height={998}
-            />
+            <Spline className="spline" scene="https://prod.spline.design/fRwUh5klecyI-Ak4/scene.splinecode" />
           </div>
         </div>
       </div>
@@ -185,24 +140,6 @@ function Project() {
         {projectImages(projectItems, "images-panel1")}
         {projectImages(projectItems.reverse(), "images-panel2")}
       </div>
-      {/* <div className="project-contents" ref={main}>
-                    {projectItems.map((item, index) => (
-                         <div className="project-content-wrapper" key={index}>
-                              <div className="text-content">
-                                   <h3>{item.title}</h3>
-                                   <h5>{item.subtitle}</h5>
-                              </div>
-
-                              <div className="stack-content">
-                                   {item.stack.map((spanItem, index) => (
-                                        <span key={index}>{spanItem}</span>
-                                   ))}
-                              </div>
-
-                              <img src={item.imageString} alt="img" className="image-gallery" />
-                         </div>
-                    ))}
-               </div> */}
       <Footer />
     </div>
   );

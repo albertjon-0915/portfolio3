@@ -1,7 +1,6 @@
 @use "../variables.scss" as *;
 
 .project-container {
-  // border: 1px solid red;
   width: 100%;
   display: flex;
   justify-content: center;
@@ -30,7 +29,6 @@
   #temporary-title-wrapper {
     display: flex;
     min-height: 2.5em;
-    // border: 1px solid red;
 
     #moving-title {
       font: normal clamp(1.4em, 2vw, 2em) $pr-montserrat;
@@ -43,6 +41,9 @@
 
 .project-section-wrapper {
   display: flex;
+  // height: 200vh;
+  min-height: 200vh;
+  // height: max-content;
   width: 100%;
   border: 1px solid red;
 
@@ -52,79 +53,78 @@
   }
 
   .project-content1 {
+    position: relative;
     width: 100%;
-    height: clamp(50vh, 100vw, 90vh);
+    // height: clamp(50vh, 100vw, 90vh);
     display: flex;
+    justify-content: center;
     flex-wrap: wrap;
     gap: clamp(0em, 5vw, 5em);
 
-    .project-text-context,
-    .project-image-content {
-      // flex-grow: 1;
-      flex: 1 1 30vw;
-      // min-width: 40vw;
-    }
-
-    // .project-text-context,
-    // .project-image-content {
-    //   flex-grow: 1;
-    // }
-
     .project-text-context {
-      max-width: 30%;
+      border: 1px solid red;
+      width: 80%;
       display: flex;
       flex-direction: column;
+      justify-content: space-around;
 
       h4 {
-        font: 900 clamp(1.4em, 3vw, 3em) / 1em $sc-roboto;
+        display: flex;
+        align-items: center;
+        border: 1px solid red;
+        height: 100vh;
+        font: normal clamp(1.4em, 3vw, 3em) / 0.9em $pr-montserrat;
         color: darken($a-color, 5%);
         letter-spacing: -3px;
       }
 
       p {
-        display: inline-block;
+        border: 1px solid red;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
         font: normal clamp(1.3em, 1.5vw, 1.5em) / 0.9em $pr-montserrat;
         color: lighten($a-color, 15%);
 
-        #moving-title-wrapper {
-          display: inline;
+        span {
+          display: inline-block;
 
-          #moving-title {
-            position: relative;
-            display: inline-block;
-            font: 900 clamp(1.5em, 8.5vw, 8.5em) / 0.9em $sc-roboto;
-            letter-spacing: -2px;
+          &:nth-child(2) {
+            margin-left: -10px;
             color: darken($a-color, 15%);
-            text-transform: uppercase;
-            z-index: 5;
-
-            &::after {
-              position: absolute;
-              content: "PROJECTS";
-              top: 0;
-              left: 0;
-              color: transparent;
-              // -webkit-text-stroke: 2px white;
-              z-index: 5;
-            }
+            font: 900 clamp(1.5em, 10.5vw, 10.5em) / 0.9em $sc-roboto;
           }
         }
       }
     }
 
     .project-image-content {
-      position: relative;
-      width: 100vh;
+      position: absolute;
       border: 1px solid red;
+      top: 0;
+      right: 0;
+      // top: 50%;
+      // right: 0;
+      // transform: translateY(-50%);
+      min-width: 50%;
+      height: 90vh;
+      z-index: -10;
 
       .spline {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
+        pointer-events: none;
         width: 100%;
         height: 100%;
-        filter: saturate(70%) grayscale(10%) brightness(90%);
+
+        &::after {
+          position: absolute;
+          content: "";
+          bottom: 0;
+          left: 0;
+          width: 100%;
+          height: 5em;
+          background: white;
+        }
       }
     }
   }
@@ -156,76 +156,6 @@
     }
   }
 }
-
-// .project-contents {
-//      width: 100%;
-//      padding: 10em 0;
-//      overflow: hidden;
-
-//      .project-content-wrapper {
-//           position: absolute;
-//           overflow: hidden;
-//           padding: 4em;
-//           border-top: 1px solid lighten($a-color, 50%);
-//           transition: all 0.2s ease-in-out;
-
-//           &:last-child {
-//                border-bottom: 1px solid lighten($a-color, 50%);
-//           }
-
-//           &:hover img {
-//                opacity: 1;
-//           }
-
-//           .text-content {
-//                position: inherit;
-//                z-index: 5;
-
-//                h3 {
-//                     color: darken($a-color, 15%);
-//                     font: 600 clamp(1.5em, 3vw, 3em) / 1.2em $sc-roboto;
-//                     letter-spacing: -2px;
-//                }
-
-//                h5 {
-//                     color: lighten($a-color, 25%);
-//                     font: normal clamp(0.9em, 1.3vw, 1.3em) / 2em $pr-montserrat;
-//                }
-//           }
-
-//           .stack-content {
-//                position: inherit;
-//                font: normal clamp(0.6em, 0.9vw, 0.9em) $tr-opensans;
-//                display: flex;
-//                flex-wrap: wrap;
-//                padding: 1.5em 0;
-//                gap: 2em;
-//                z-index: 5;
-
-//                span {
-//                     display: block;
-//                     color: lighten($a-color, 25%);
-//                }
-//           }
-
-//           img {
-//                position: fixed;
-//                bottom: 2em;
-//                right: 2em;
-//                opacity: 0;
-//                max-height: 40em;
-//                max-width: 50em;
-//                aspect-ratio: 16 / 9;
-//                box-shadow: 0 0 5px 1px lighten($a-color, 45%);
-//                transition: all 0.5s ease-in-out;
-//                z-index: 10;
-
-//                &:hover {
-//                     opacity: 0;
-//                }
-//           }
-//      }
-// }
 
 // preloaders
 .image-preloader {
