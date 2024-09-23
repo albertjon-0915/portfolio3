@@ -1,8 +1,28 @@
 import React from "react";
-import '../../styling/project/projectContent.scss';
+import "../../styling/project/projectContent.scss";
 import Spline from "@splinetool/react-spline";
 
+import gsap from "gsap";
+import { useGSAP } from "@gsap/react";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
 function ProjectContent() {
+  useGSAP(() => {
+    const tl2 = gsap.timeline();
+
+    tl2.to("#proj-item2", { yPercent: -100 });
+
+    ScrollTrigger.create({
+      animation: tl2,
+      trigger: ".project-content1",
+      start: "250 center",
+      end: "800 center",
+      scrub: 2,
+      pin: true,
+      // markers: true,
+    });
+  });
+
   return (
     <div className="project-content-wrapper">
       <div className="project-content1">

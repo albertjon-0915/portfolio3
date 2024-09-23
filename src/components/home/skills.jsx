@@ -5,7 +5,6 @@ import { SiPostman, SiGit, SiGithub, SiJavascript, SiSass, SiMongodb } from "rea
 import { VscVscode } from "react-icons/vsc";
 import { useGSAP } from "@gsap/react";
 import { scrollTriggerAnimWithScrub, scrollTriggerAnimWithScrubPin } from "../../animations/gsapAnimation";
-import { MdOpacity } from "react-icons/md";
 
 import gsap from "gsap";
 

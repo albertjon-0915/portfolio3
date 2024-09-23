@@ -5,6 +5,7 @@ import { useLocation } from "react-router-dom";
 import Footer from "../components/footer.jsx";
 import ProjectSlider from "../components/project/projectSlider.jsx";
 import ProjectContent from "../components/project/projectContent.jsx";
+import ProjectWorks from "../components/project/projectWorks.jsx";
 
 // import GSAP dependencies
 import gsap from "gsap";
@@ -64,20 +65,6 @@ function Project() {
       invalidateOnRefresh: true,
     });
 
-    const tl2 = gsap.timeline();
-
-    tl2.to("#proj-item2", { yPercent: -100 });
-
-    ScrollTrigger.create({
-      animation: tl2,
-      trigger: ".project-content1",
-      start: "25% center",
-      end: "75% center",
-      scrub: 2,
-      pin: true,
-      markers: true,
-    });
-
     scrollTriggerAnimWithScrub("#proj-item1", { opacity: 0 }, "#proj-item2", "top center", "center center");
   });
 
@@ -97,6 +84,7 @@ function Project() {
       </div>
       <ProjectContent />
       <ProjectSlider projectItems={projectItems} />
+      <ProjectWorks projectItems={projectItems} />
       <Footer />
     </div>
   );

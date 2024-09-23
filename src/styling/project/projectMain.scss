@@ -38,21 +38,3 @@
     }
   }
 }
-
-// preloaders
-.image-preloader {
-  width: clamp(12em, 20vw, 20em);
-  aspect-ratio: 1 / 0.5;
-  background: darken($a-color, 15%);
-  box-shadow: 0 0 5px 1px lighten($a-color, 45%);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  .image-icon {
-    color: lighten($a-color, 5%);
-    font-size: 5em;
-
-    @include opacityReduce(3s);
-  }
-}

@@ -30,7 +30,6 @@
         justify-content: center;
         height: 60vh;
         font: normal clamp(2em, 3vw, 3em) / 0.9em $pr-montserrat;
-        color: darken($a-color, 5%);
         letter-spacing: -3px;
 
         span {
@@ -38,7 +37,7 @@
 
           &:nth-child(2) {
             font: normal clamp(0.4em, 1.5vw, 1.5em) $pr-montserrat;
-            color: lighten($a-color, 15%);
+            color: lighten($a-color, 35%);
             letter-spacing: initial;
           }
         }
