@@ -45,7 +45,7 @@ export const scrollTriggerAnimWithScrubPin = (itemTrigger, properties, pinnedIte
       scrub: 2,
       pin: pinnedItem,
       pinSpacing: false,
-      markers: true,
+      // markers: true,
     },
   });
 };

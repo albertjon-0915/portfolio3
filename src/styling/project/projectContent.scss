@@ -57,7 +57,7 @@
           &:nth-child(2) {
             margin-left: -10px;
             color: darken($a-color, 15%);
-            font: 900 clamp(4.5em, 10vw, 10em) / 0.9em $sc-roboto;
+            font: 900 clamp(4em, 10vw, 10em) / 0.9em $sc-roboto;
 
             @media (max-width: 992px) {
               margin-left: -3px;

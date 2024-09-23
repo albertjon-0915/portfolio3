@@ -5,6 +5,7 @@ import { useLocation } from "react-router-dom";
 import Footer from "../components/footer.jsx";
 import ProjectSlider from "../components/project/projectSlider.jsx";
 import ProjectContent from "../components/project/projectContent.jsx";
+
 // import GSAP dependencies
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";

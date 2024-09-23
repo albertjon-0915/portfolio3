@@ -112,22 +112,20 @@
 .skills-content2 {
   margin: clamp(6em, 10vw, 10em) 0;
   max-width: 50em;
+  width: 100%;
   z-index: 2;
 
   .skillset {
     display: flex;
     flex-wrap: wrap;
-    padding: clamp(2em, 4vw, 4em) 0;
-    min-width: 50em;
-    max-width: 50em;
-    flex-wrap: wrap;
     align-items: center;
-    display: flex;
+    padding: clamp(2em, 4vw, 4em) 0;
+    width: 100%;
     gap: 1em;
 
     span {
       display: inline-block;
-      font: normal clamp(1em, 1.5vw, 1.5em) $tr-opensans;
+      font: normal clamp(0.8em, 1.5vw, 1.5em) $tr-opensans;
       background: $tr-color;
       border-radius: 50px;
       padding: 0.3em 1.2em;
