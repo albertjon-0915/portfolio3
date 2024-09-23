@@ -1,25 +1,21 @@
-import React, { useEffect, useState, useRef } from "react";
+import "../styling/project/projectMain.scss";
+import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
-import "../styling/project/project3.scss";
-import Footer from "../components/footer.jsx";
-import deskImage from "../assets/desk.png";
-import me from "../assets/me.jpg";
-import { IoIosImages } from "react-icons/io";
-import { scrollTriggerAnimWithScrubPin, scrollTriggerAnimWithScrub } from "../animations/gsapAnimation.jsx";
-import Spline from "@splinetool/react-spline";
 
+import Footer from "../components/footer.jsx";
+import ProjectSlider from "../components/project/projectSlider.jsx";
+import ProjectContent from "../components/project/projectContent.jsx";
 // import GSAP dependencies
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Flip } from "gsap/Flip";
+import { scrollTriggerAnimWithScrub } from "../animations/gsapAnimation.jsx";
 
 gsap.registerPlugin(Flip, ScrollTrigger);
 
 function Project() {
   const [projectItems, setProjectItems] = useState([]);
-  const [imageStates, setImageStates] = useState(projectItems.map(() => false));
-  const main = useRef(null);
   const { pathname } = useLocation();
 
   useEffect(() => {
@@ -43,56 +39,18 @@ function Project() {
     fetchData();
   }, []);
 
-  const projectImages = (items, classes) => {
-    return (
-      <div className="images-panel" id={classes}>
-        {items.length > 0
-          ? items.map((item, index) => <img src={item.imageString} alt="img" key={index} className="image-card" />)
-          : [1, 2, 3, 4, 5].map((item, index) => (
-              <div className="image-preloader" key={index}>
-                <IoIosImages className="image-icon" />
-              </div>
-            ))}
-      </div>
-    );
-  };
-
-  const getFirstSentence = (description) => {
-    const firstSentence = description.split(/(?<=[.!?])\s+/);
-
-    return firstSentence[0].trim();
-  };
-
   useGSAP(() => {
-    scrollTriggerAnimWithScrub(
-      "#images-panel1",
-      {
-        xPercent: -40,
-      },
-      ".project-slider",
-      "top center",
-      "bottom center"
-    );
-
-    scrollTriggerAnimWithScrub(
-      "#images-panel2",
-      {
-        xPercent: 40,
-      },
-      ".project-slider",
-      "top center",
-      "bottom center"
-    );
-
     const tl1 = gsap.timeline();
     const mm = gsap.matchMedia();
 
     mm.add("(max-width: 768px)", () => {
-      tl1.from(".project-image-content", { yPercent: -100, scale: 1.3 });
+      gsap.set(".project-spline-content", { yPercent: -125, scale: 1.3 });
+      tl1.fromTo(".project-spline-content", { yPercent: -125, scale: 1.3 }, { yPercent: 0, scale: 1 });
     });
 
     mm.add("(min-width: 768px)", () => {
-      tl1.from(".project-image-content", { yPercent: -105, scale: 1.3 });
+      gsap.set(".project-spline-content", { yPercent: -80, scale: 1.3 });
+      tl1.fromTo(".project-spline-content", { yPercent: -80, scale: 1.3 }, { yPercent: 0, scale: 1 });
     });
 
     ScrollTrigger.create({
@@ -132,28 +90,12 @@ function Project() {
     <div className="project-container">
       <div className="project-title-content">
         <h3>What I've Brought to Life &mdash;</h3>
-        <div id="temporary-title-wrapper">
-          <span id="moving-title">My Works</span>
+        <div id="subtitle">
+          <span>My Works</span>
         </div>
       </div>
-      <div className="project-section-wrapper">
-        <div className="project-content1">
-          <div className="project-text-context">
-            <h4 id="proj-item1">Okay I know I'm a newbie</h4>
-            <p id="proj-item2">
-              <span>But dont judge me yet! &mdash; Let me first show you my</span> <span>PR<span>O</span>JECTS</span>
-            </p>
-          </div>
-
-          <div className="project-image-content">
-            <Spline className="spline" scene="https://prod.spline.design/fRwUh5klecyI-Ak4/scene.splinecode" />
-          </div>
-        </div>
-      </div>
-      <div className="project-slider">
-        {projectImages(projectItems, "images-panel1")}
-        {projectImages(projectItems.reverse(), "images-panel2")}
-      </div>
+      <ProjectContent />
+      <ProjectSlider projectItems={projectItems} />
       <Footer />
     </div>
   );

@@ -1,0 +1,28 @@
+@use "../variables.scss" as *;
+
+.project-slider {
+  width: 100%;
+  height: clamp(50vh, 80vw, 80vh);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  overflow: hidden;
+  gap: 2em;
+
+  .images-panel {
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 1em;
+
+    &:last-child {
+      flex-direction: row-reverse;
+    }
+
+    .image-card {
+      width: clamp(12em, 20vw, 20em);
+      aspect-ratio: 1 / 0.5;
+      box-shadow: 0 0 5px 1px lighten($a-color, 45%);
+      filter: saturate(70%) grayscale(50%) brightness(90%);
+    }
+  }
+}

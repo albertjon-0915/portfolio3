@@ -1,64 +1,30 @@
-import React, { useEffect, useState } from "react";
-import { GoArrowUpRight } from "react-icons/go";
+import React from "react";
+import '../../styling/project/projectContent.scss';
+import Spline from "@splinetool/react-spline";
 
-function ProjectContent({ title, subtitle, description, link, stack, index, onEnter }) {
-     const [isExpanded, setIsExpanded] = useState(false);
+function ProjectContent() {
+  return (
+    <div className="project-content-wrapper">
+      <div className="project-content1">
+        <div className="project-text-context">
+          <h4 id="proj-item1">
+            <span>Okay I know I'm a newbie</span>
+            <span>But dont judge me yet! &mdash;</span>
+          </h4>
+          <p id="proj-item2">
+            <span> Let me first show you my</span>
+            <span>
+              PR<span>O</span>JECTS
+            </span>
+          </p>
+        </div>
 
-     const expandedDescription = () => {
-          setIsExpanded(!isExpanded);
-     };
-
-     useEffect(() => {
-          const target = document.getElementById("targetedExpand");
-          const btn = document.getElementById("btn-toExpand");
-
-          const updateButtonText = () => {
-               if (target.classList.contains("expanded")) {
-                    btn.innerHTML = "see less";
-               } else {
-                    btn.innerHTML = "see more";
-               }
-          };
-
-          updateButtonText();
-
-          const observer = new MutationObserver(updateButtonText);
-          observer.observe(target, { attributes: true, attributeFilter: ["class"] });
-
-          return () => observer.disconnect();
-     }, []);
-
-     return (
-          <div className="item">
-               <div className="project-card">
-                    <h3>
-                         <span>{title}</span>
-                    </h3>
-                    <h4>{subtitle}</h4>
-                    <p className={isExpanded ? "expanded" : "notexpanded"} id="targetedExpand">
-                         {description}
-                    </p>
-                    <button onClick={expandedDescription} id="btn-toExpand">
-                         see more
-                    </button>
-                    <a href={link}>
-                         checkout
-                         <span>
-                              <GoArrowUpRight />
-                         </span>
-                    </a>
-               </div>
-               <div className="progLang-card">
-                    <div className="progLang-wrapper">
-                         {stack.map((item, index) => (
-                              <span key={index} className={`progLang${index}`}>
-                                   {item}
-                              </span>
-                         ))}
-                    </div>
-               </div>
-          </div>
-     );
+        <div className="project-spline-content">
+          <Spline className="spline" scene="https://prod.spline.design/fRwUh5klecyI-Ak4/scene.splinecode" />
+        </div>
+      </div>
+    </div>
+  );
 }
 
 export default ProjectContent;
