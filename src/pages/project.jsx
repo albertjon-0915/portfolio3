@@ -76,13 +76,16 @@ function Project() {
 
   return (
     <div className="project-container">
-      <div className="project-title-content">
-        <h3>What I've Brought to Life &mdash;</h3>
-        <div id="subtitle">
-          <span>My Works</span>
+      <div className="bg-project-wrapper">
+        <div className="project-title-content">
+          <h3>What I've Brought to Life &mdash;</h3>
+          <div id="subtitle">
+            <span>My Works</span>
+          </div>
         </div>
+        <ProjectContent />
       </div>
-      <ProjectContent />
+
       <ProjectSlider projectItems={projectItems} />
       <ProjectWorks projectItems={projectItems} />
       <Footer />

@@ -15,11 +15,11 @@ function ProjectContent() {
     ScrollTrigger.create({
       animation: tl2,
       trigger: ".project-content1",
-      start: "250 center",
-      end: "800 center",
-      scrub: 2,
+      start: "250 60%",
+      end: "+=700",
+      scrub: 1,
       pin: true,
-      // markers: true,
+      markers: true,
     });
   });
 

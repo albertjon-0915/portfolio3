@@ -7,6 +7,18 @@
   align-items: center;
   flex-direction: column;
   overflow: hidden;
+
+  .bg-project-wrapper {
+    width: 100%;
+    background: url("../../assets/gridpattern.png"),
+      radial-gradient(
+        circle at center,
+        transparent,
+        rgb(255, 255, 255)
+      );
+    background-blend-mode: screen;
+    background-position: center;
+  }
 }
 
 .project-title-content {
