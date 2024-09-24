@@ -29,7 +29,7 @@ function ProjectWorks({ projectItems }) {
               start: "700 center",
               end: "+=100",
               scrub: 1,
-              markers: true,
+              // markers: true,
             },
           });
         });
@@ -38,13 +38,14 @@ function ProjectWorks({ projectItems }) {
           animation: tl3,
           trigger: refWorks.current,
           start: "290 center",
-          end: "+=3500",
+          end: "+=4100",
           scrub: 1,
           pin: true,
           pinSpacing: false,
-          markers: true,
+          // markers: true,
         });
       });
+
       mm2.add("(min-width: 768px)", () => {
         workedProj.map((item, index) => {
           tl3.to(item, { yPercent: -98 * index }, index * 0.5);
@@ -56,7 +57,7 @@ function ProjectWorks({ projectItems }) {
               start: "600 center",
               end: "+=300",
               scrub: 1,
-              markers: true,
+              // markers: true,
             },
           });
         });
@@ -69,7 +70,7 @@ function ProjectWorks({ projectItems }) {
           scrub: 1,
           pin: true,
           pinSpacing: false,
-          markers: true,
+          // markers: true,
         });
       });
     },

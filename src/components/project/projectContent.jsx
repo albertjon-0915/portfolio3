@@ -5,25 +5,45 @@ import Spline from "@splinetool/react-spline";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { scrollTriggerAnimWithScrub } from "../../animations/gsapAnimation";
 
 function ProjectContent() {
   const refSpline = useRef(null);
 
   useGSAP(
     () => {
+      const mm3 = gsap.matchMedia();
       const tl2 = gsap.timeline();
 
       tl2.to("#proj-item2", { yPercent: -100 });
 
-      ScrollTrigger.create({
-        animation: tl2,
-        trigger: ".project-content1",
-        start: "400 50%",
-        end: "+=600",
-        scrub: 1,
-        pin: true,
-        markers: true,
+      mm3.add("(max-width: 768px)", () => {
+        ScrollTrigger.create({
+          animation: tl2,
+          trigger: ".project-content1",
+          start: "150 50%",
+          end: "+=550",
+          scrub: 1,
+          pin: true,
+          // markers: true,
+        });
+
+        scrollTriggerAnimWithScrub("#proj-item1", { opacity: 0 }, "#proj-item2", "top center", "20% center");
       });
+
+      mm3.add("(min-width: 768px)", () => {
+        ScrollTrigger.create({
+          animation: tl2,
+          trigger: ".project-content1",
+          start: "400 50%",
+          end: "+=600",
+          scrub: 1,
+          pin: true,
+          // markers: true,
+        });
+      });
+
+      scrollTriggerAnimWithScrub("#proj-item1", { opacity: 0 }, "#proj-item2", "top center", "center center");
     },
     { dependencies: [refSpline.current], revertOnUpdate: true }
   );

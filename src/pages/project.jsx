@@ -64,8 +64,6 @@ function Project() {
       pin: false,
       invalidateOnRefresh: true,
     });
-
-    scrollTriggerAnimWithScrub("#proj-item1", { opacity: 0 }, "#proj-item2", "top center", "center center");
   }, []);
 
   return (

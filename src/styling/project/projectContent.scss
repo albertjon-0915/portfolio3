@@ -6,6 +6,7 @@
   width: 100%;
 
   @media (max-width: 768px) {
+    min-height: 80vh;
     padding: 0 1em;
     width: 100%;
   }
@@ -23,6 +24,13 @@
       display: flex;
       flex-direction: column;
       justify-content: space-around;
+
+      @media (max-width: 768px) {
+        p,
+        h4 {
+          height: 40vh;
+        }
+      }
 
       h4 {
         display: flex;
@@ -56,7 +64,7 @@
           &:nth-child(2) {
             margin-left: -10px;
             color: darken($a-color, 15%);
-            font: 900 clamp(4em, 10vw, 10em) / 0.9em $sc-roboto;
+            font: 900 clamp(3.5em, 10vw, 10em) / 0.9em $sc-roboto;
 
             @media (max-width: 992px) {
               margin-left: -3px;
