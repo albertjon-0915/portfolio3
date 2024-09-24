@@ -66,12 +66,6 @@ function Project() {
     });
 
     scrollTriggerAnimWithScrub("#proj-item1", { opacity: 0 }, "#proj-item2", "top center", "center center");
-  });
-
-  useEffect(() => {
-    document.querySelector(".spline").addEventListener("wheel", (event) => {
-      event.stopPropagation();
-    });
   }, []);
 
   return (

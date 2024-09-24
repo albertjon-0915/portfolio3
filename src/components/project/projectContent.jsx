@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 import "../../styling/project/projectContent.scss";
 import Spline from "@splinetool/react-spline";
 
@@ -7,21 +7,26 @@ import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 function ProjectContent() {
-  useGSAP(() => {
-    const tl2 = gsap.timeline();
+  const refSpline = useRef(null);
 
-    tl2.to("#proj-item2", { yPercent: -100 });
+  useGSAP(
+    () => {
+      const tl2 = gsap.timeline();
 
-    ScrollTrigger.create({
-      animation: tl2,
-      trigger: ".project-content1",
-      start: "250 60%",
-      end: "+=700",
-      scrub: 1,
-      pin: true,
-      markers: true,
-    });
-  });
+      tl2.to("#proj-item2", { yPercent: -100 });
+
+      ScrollTrigger.create({
+        animation: tl2,
+        trigger: ".project-content1",
+        start: "400 50%",
+        end: "+=600",
+        scrub: 1,
+        pin: true,
+        markers: true,
+      });
+    },
+    { dependencies: [refSpline.current], revertOnUpdate: true }
+  );
 
   return (
     <div className="project-content-wrapper">
@@ -40,7 +45,11 @@ function ProjectContent() {
         </div>
 
         <div className="project-spline-content">
-          <Spline className="spline" scene="https://prod.spline.design/fRwUh5klecyI-Ak4/scene.splinecode" />
+          <Spline
+            className="spline"
+            scene="https://prod.spline.design/fRwUh5klecyI-Ak4/scene.splinecode"
+            ref={refSpline}
+          />
         </div>
       </div>
     </div>

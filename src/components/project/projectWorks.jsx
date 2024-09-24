@@ -9,47 +9,74 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 function ProjectWorks({ projectItems }) {
   const refWorks = useRef(null);
-  const projectWorks = (items) => {
-    return null;
-  };
 
   useGSAP(
     () => {
-      console.log("(projectItems.length > 0) ");
-
       const workedProj = gsap.utils.toArray(".works-section");
       const tl3 = gsap.timeline();
 
       console.log(workedProj);
+      const mm2 = gsap.matchMedia();
 
-      workedProj.map((item, index) => {
-        tl3.to(item, { yPercent: -98 * index }, index * 0.5);
+      mm2.add("(max-width: 768px)", () => {
+        workedProj.map((item, index) => {
+          tl3.to(item, { yPercent: -98 * index }, index * 0.5);
 
-        gsap.to(item, {
-          autoAlpha: 0.15,
-          scrollTrigger: {
-            trigger: projectItems.length > 0 ? item : null,
-            start: "700 center",
-            end: "+=300",
-            scrub: 1,
-            markers: true,
-          },
+          gsap.to(item, {
+            autoAlpha: 0.15,
+            scrollTrigger: {
+              trigger: item,
+              start: "700 center",
+              end: "+=100",
+              scrub: 1,
+              markers: true,
+            },
+          });
+        });
+
+        ScrollTrigger.create({
+          animation: tl3,
+          trigger: refWorks.current,
+          start: "290 center",
+          end: "+=3500",
+          scrub: 1,
+          pin: true,
+          pinSpacing: false,
+          markers: true,
         });
       });
+      mm2.add("(min-width: 768px)", () => {
+        workedProj.map((item, index) => {
+          tl3.to(item, { yPercent: -98 * index }, index * 0.5);
 
-      ScrollTrigger.create({
-        animation: tl3,
-        trigger: refWorks.current,
-        start: "350 center",
-        end: "+=4200",
-        scrub: 1,
-        pin: true,
-        pinSpacing: false,
-        markers: true,
+          gsap.to(item, {
+            autoAlpha: 0.15,
+            scrollTrigger: {
+              trigger: item,
+              start: "600 center",
+              end: "+=300",
+              scrub: 1,
+              markers: true,
+            },
+          });
+        });
+
+        ScrollTrigger.create({
+          animation: tl3,
+          trigger: refWorks.current,
+          start: "290 center",
+          end: "+=3800",
+          scrub: 1,
+          pin: true,
+          pinSpacing: false,
+          markers: true,
+        });
       });
     },
-    { scope: refWorks, revertOnUpdate: true }
+
+    { dependencies: [projectItems], scope: refWorks, revertOnUpdate: true }
   );
+
   return (
     <div className="project-works-container">
       <div className="project-works-wrapper" ref={refWorks}>
@@ -75,19 +102,7 @@ function ProjectWorks({ projectItems }) {
                 </div>
               </div>
             ))
-          : [1, 2, 3].map((item, index) => (
-              <div className="works-section" key={index}>
-                <div className="works-text">
-                  <div></div>
-                  <div></div>
-                  <div></div>
-                </div>
-
-                <div className="works-img">
-                  <ImImage className="proj-image-icon" />
-                </div>
-              </div>
-            ))}
+          : null}
       </div>
     </div>
   );
