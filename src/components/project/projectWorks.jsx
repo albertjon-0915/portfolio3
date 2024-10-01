@@ -85,42 +85,33 @@ function ProjectWorks({ projectItems }) {
           scrub: true,
           markers: true,
           onEnter: () => {
-            const state = Flip.getState(item);
+            const children = item.children;
+            const state = Flip.getState(children);
 
             item.classList.add("expanded-works-section");
 
             Flip.from(state, {
               duration: 1,
               ease: "power3.inOut",
-              absolute: true,
-              scale: true,
+              // absolute: true,
+              // scale: true,
             });
           },
           onEnterBack: () => {
-            const state = Flip.getState(item);
+            const children = item.children;
+            const state = Flip.getState(children);
 
             item.classList.remove("expanded-works-section");
 
             Flip.from(state, {
               duration: 1,
               ease: "power3.inOut",
-              absolute: true,
-              scale: true,
+              // absolute: true,
+              // scale: true,
             });
           },
         });
       });
-
-      // workedProj.forEach((item) => {
-      //   const state = Flip.getState(item);
-
-      //   Flip.from(state, {
-      //     duration: 1,
-      //     ease: "power1.inOut",
-      //     absolute: true,
-      //     scale: true,
-      //   });
-      // });
     },
 
     { dependencies: [projectItems], scope: refWorks, revertOnUpdate: true }
