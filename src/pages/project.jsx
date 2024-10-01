@@ -12,7 +12,6 @@ import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Flip } from "gsap/Flip";
-import { scrollTriggerAnimWithScrub } from "../animations/gsapAnimation.jsx";
 
 gsap.registerPlugin(Flip, ScrollTrigger);
 
@@ -64,7 +63,7 @@ function Project() {
       pin: false,
       invalidateOnRefresh: true,
     });
-  }, []);
+  });
 
   return (
     <div className="project-container">

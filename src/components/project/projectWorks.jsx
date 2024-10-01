@@ -6,6 +6,9 @@ import { ImImage } from "react-icons/im";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { Flip } from "gsap/Flip";
+
+gsap.registerPlugin(Flip);
 
 function ProjectWorks({ projectItems }) {
   const refWorks = useRef(null);
@@ -54,7 +57,7 @@ function ProjectWorks({ projectItems }) {
             autoAlpha: 0.15,
             scrollTrigger: {
               trigger: item,
-              start: "600 center",
+              start: "550 center",
               end: "+=300",
               scrub: 1,
               // markers: true,
@@ -66,13 +69,58 @@ function ProjectWorks({ projectItems }) {
           animation: tl3,
           trigger: refWorks.current,
           start: "290 center",
-          end: "+=3800",
+          end: "+=3600",
           scrub: 1,
           pin: true,
           pinSpacing: false,
           // markers: true,
         });
       });
+
+      workedProj.forEach((item) => {
+        ScrollTrigger.create({
+          trigger: item,
+          start: "top 20%",
+          end: "top center",
+          scrub: true,
+          markers: true,
+          onEnter: () => {
+            const state = Flip.getState(item);
+
+            item.classList.add("expanded-works-section");
+
+            Flip.from(state, {
+              duration: 1,
+              ease: "power3.inOut",
+              absolute: true,
+              scale: true,
+            });
+          },
+          onEnterBack: () => {
+            const state = Flip.getState(item);
+
+            item.classList.remove("expanded-works-section");
+
+            Flip.from(state, {
+              duration: 1,
+              ease: "power3.inOut",
+              absolute: true,
+              scale: true,
+            });
+          },
+        });
+      });
+
+      // workedProj.forEach((item) => {
+      //   const state = Flip.getState(item);
+
+      //   Flip.from(state, {
+      //     duration: 1,
+      //     ease: "power1.inOut",
+      //     absolute: true,
+      //     scale: true,
+      //   });
+      // });
     },
 
     { dependencies: [projectItems], scope: refWorks, revertOnUpdate: true }
@@ -98,7 +146,7 @@ function ProjectWorks({ projectItems }) {
                   </div>
                 </div>
 
-                <div className="works-img">
+                <div className="works-img" id={`img${index}`}>
                   <img src={item.imageString} alt="img" />
                 </div>
               </div>
