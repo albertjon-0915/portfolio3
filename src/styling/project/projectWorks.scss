@@ -1,110 +1,123 @@
 @use "../variables.scss" as *;
 
 .project-works-container {
-  //   border: 1px solid red;
   width: 100%;
 
   .project-works-wrapper {
-    // border: 1px solid red;
     width: 100%;
   }
 }
 
 .works-section {
   position: relative;
-  background-color: white;
-  border-top: 1px solid lighten($a-color, 50%);
-  padding: 5em clamp(2em, 5vw, 5em);
-  width: 100%;
-  height: 50vh;
   display: flex;
   justify-content: space-between;
-
-  @media (max-width: 768px) {
-    flex-direction: column-reverse;
-    height: 70vh;
-  }
+  height: 50vh;
+  padding: 5em clamp(2em, 5vw, 5em);
+  background-color: white;
+  border-top: 1px solid lighten($a-color, 50%);
 
   &:last-child {
     border-top: 1px solid lighten($a-color, 50%);
   }
 
   .works-text {
-    h3 {
-      a {
-        all: unset;
-        font: normal clamp(1.2em, 3vw, 3em) / 1.5em $pr-montserrat;
-      }
+    h3 > a {
+      all: unset;
+      font: normal clamp(1.2em, 3vw, 3em) / 1.5em $pr-montserrat;
     }
 
     h5 {
-      font: normal clamp(0.8em, 1.5vw, 1.5em) / 1.5em $pr-montserrat;
       color: lighten($a-color, 15%);
+      font: normal clamp(0.8em, 1.5vw, 1.5em) / 1.5em $pr-montserrat;
       margin-top: 1em;
     }
 
     div {
-      margin-top: 2em;
       display: flex;
       flex-wrap: wrap;
-      gap: 0.5em;
       max-width: 30em;
+      margin-top: 2em;
+      gap: 0.5em;
 
       span {
-        font: clamp(0.5em, 1vw, 1em) $tr-opensans;
-        color: darken($a-color, 15%);
-        border: 1px solid lighten($a-color, 35%);
         display: inline-block;
+        color: darken($a-color, 15%);
+        font: clamp(0.5em, 1vw, 1em) $tr-opensans;
         padding: 0.5em 1.5em;
-        border-radius: 35px;
         margin-right: 1em;
+        border-radius: 35px;
+        border: 1px solid lighten($a-color, 35%);
       }
     }
   }
+}
 
-  .works-img {
-    @media (max-width: 992px) {
-      margin-bottom: 2em;
+// =============== [EXPANDED] status ================== //
+.not-expanded-image {
+  img {
+    height: clamp(10em, 20vw, 20em);
+    aspect-ratio: 16 / 9;
+    box-shadow: 1px -1px 15px 2px lighten($a-color, 35%);
+  }
+}
 
-      img {
-        max-width: 100%;
-      }
+.expanded-image {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  z-index: -1;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: brightness(0.4) blur(1.5px);
+  }
+}
+
+.expanded-text {
+  position: initial;
+  z-index: 5;
+
+  h3 {
+    a {
+      color: darken($tr-color, 5%) !important;
     }
+  }
 
-    img {
-      aspect-ratio: 16 / 9;
-      height: 100%;
-      box-shadow: 1px -1px 15px 2px lighten($a-color, 35%);
+  h5 {
+    color: lighten($a-color, 30%) !important;
+  }
+
+  div {
+    span {
+      border: none !important;
+      color: $tr-color !important;
+      background-color: rgba(255, 255, 255, 0.2);
+      backdrop-filter: blur(15px);
+      -webkit-backdrop-filter: blur(15px);
+    }
+  }
+}
+
+// ================= MEDIA QUERIES ================== //
+
+@media (max-width: 768px) {
+  .works-section {
+    flex-direction: column-reverse;
+    height: 60vh;
+
+    .works-img > img {
+      height: auto;
+      width: 100%;
     }
   }
 }
 
 // expanded states
-// .expanded-text {
-//   position: initial;
-//   z-index: 5;
-
-//   h3 {
-//     a {
-//       color: darken($tr-color, 5%) !important;
-//     }
-//   }
-
-//   h5 {
-//     color: lighten($a-color, 30%) !important;
-//   }
-
-//   div {
-//     span {
-//       font: clamp(0.5em, 1vw, 1em) $tr-opensans;
-//       border: none !important;
-//       color: $tr-color !important;
-//       background-color: rgba(255, 255, 255, 0.2);
-//       backdrop-filter: blur(15px);
-//       -webkit-backdrop-filter: blur(15px);
-//     }
-//   }
-// }
 
 // .expanded-img {
 //   margin: clamp(0.5em, 2vw, 2em) 0;
@@ -140,105 +153,105 @@
 //   }
 // }
 
-.expanded-works-section {
-  border: 1px solid red;
-  position: relative;
-  background-color: white;
-  border-top: 1px solid lighten($a-color, 50%);
-  padding: 5em clamp(2em, 5vw, 5em);
-  width: 100%;
-  height: 50vh;
-  display: flex;
-  justify-content: space-between;
+// .expanded-works-section {
+//   border: 1px solid red;
+//   position: relative;
+//   background-color: white;
+//   border-top: 1px solid lighten($a-color, 50%);
+//   padding: 5em clamp(2em, 5vw, 5em);
+//   width: 100%;
+//   height: 50vh;
+//   display: flex;
+//   justify-content: space-between;
 
-  @media (max-width: 768px) {
-    flex-direction: column-reverse;
-    height: 70vh;
-  }
+//   @media (max-width: 768px) {
+//     flex-direction: column-reverse;
+//     height: 70vh;
+//   }
 
-  &:last-child {
-    border-top: 1px solid lighten($a-color, 50%);
-  }
+//   &:last-child {
+//     border-top: 1px solid lighten($a-color, 50%);
+//   }
 
-  .works-text {
-    position: initial;
-    z-index: 5;
+//   .works-text {
+//     position: initial;
+//     z-index: 5;
 
-    h3 {
-      a {
-        color: darken($tr-color, 5%) !important;
-        all: unset;
-        font: normal clamp(1.2em, 3vw, 3em) / 1.5em $pr-montserrat;
-      }
-    }
+//     h3 {
+//       a {
+//         color: darken($tr-color, 5%) !important;
+//         all: unset;
+//         font: normal clamp(1.2em, 3vw, 3em) / 1.5em $pr-montserrat;
+//       }
+//     }
 
-    h5 {
-      font: normal clamp(0.8em, 1.5vw, 1.5em) / 1.5em $pr-montserrat;
-      color: lighten($a-color, 30%) !important;
-      margin-top: 1em;
-    }
+//     h5 {
+//       font: normal clamp(0.8em, 1.5vw, 1.5em) / 1.5em $pr-montserrat;
+//       color: lighten($a-color, 30%) !important;
+//       margin-top: 1em;
+//     }
 
-    div {
-      margin-top: 2em;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.5em;
-      max-width: 30em;
+//     div {
+//       margin-top: 2em;
+//       display: flex;
+//       flex-wrap: wrap;
+//       gap: 0.5em;
+//       max-width: 30em;
 
-      span {
-        font: clamp(0.5em, 1vw, 1em) $tr-opensans;
-        display: inline-block;
-        padding: 0.5em 1.5em;
-        border-radius: 35px;
-        margin-right: 1em;
-        border: none;
-        color: $tr-color;
-        background-color: rgba(255, 255, 255, 0.2);
-        backdrop-filter: blur(15px);
-        -webkit-backdrop-filter: blur(15px);
-      }
-    }
-  }
+//       span {
+//         font: clamp(0.5em, 1vw, 1em) $tr-opensans;
+//         display: inline-block;
+//         padding: 0.5em 1.5em;
+//         border-radius: 35px;
+//         margin-right: 1em;
+//         border: none;
+//         color: $tr-color;
+//         background-color: rgba(255, 255, 255, 0.2);
+//         backdrop-filter: blur(15px);
+//         -webkit-backdrop-filter: blur(15px);
+//       }
+//     }
+//   }
 
-  .works-img {
-    margin: clamp(0.5em, 2vw, 2em) 0;
-    position: absolute;
-    top: 0;
-    left: 50%;
-    transform: translate(-50%);
-    width: 96vw;
-    height: 110%;
-    border-radius: 15px;
-    overflow: hidden;
+//   .works-img {
+//     margin: clamp(0.5em, 2vw, 2em) 0;
+//     position: absolute;
+//     top: 0;
+//     left: 50%;
+//     transform: translate(-50%);
+//     width: 96vw;
+//     height: 110%;
+//     border-radius: 15px;
+//     overflow: hidden;
 
-    &:before {
-      content: "";
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(
-        to top,
-        rgba(0, 0, 0, 0.8),
-        transparent
-      );
-    }
+//     &:before {
+//       content: "";
+//       position: absolute;
+//       top: 0;
+//       left: 0;
+//       width: 100%;
+//       height: 100%;
+//       background: linear-gradient(
+//         to top,
+//         rgba(0, 0, 0, 0.8),
+//         transparent
+//       );
+//     }
 
-    @media (max-width: 992px) {
-      margin-bottom: 2em;
+//     @media (max-width: 992px) {
+//       margin-bottom: 2em;
 
-      img {
-        max-width: 100%;
-      }
-    }
+//       img {
+//         max-width: 100%;
+//       }
+//     }
 
-    img {
-      object-fit: cover;
-      width: 100%;
-      box-shadow: 1px -1px 15px 2px lighten($a-color, 35%);
-      filter: brightness(0.4) blur(1.5px);
-      mix-blend-mode: multiply;
-    }
-  }
-}
+//     img {
+//       object-fit: cover;
+//       width: 100%;
+//       box-shadow: 1px -1px 15px 2px lighten($a-color, 35%);
+//       filter: brightness(0.4) blur(1.5px);
+//       mix-blend-mode: multiply;
+//     }
+//   }
+// }

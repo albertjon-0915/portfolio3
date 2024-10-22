@@ -23,7 +23,7 @@ function ProjectWorks({ projectItems }) {
 
       mm2.add("(max-width: 768px)", () => {
         workedProj.map((item, index) => {
-          tl3.to(item, { yPercent: -98 * index }, index * 0.5);
+          tl3.to(item, { yPercent: -99.5 * index }, index * 0.5);
 
           gsap.to(item, {
             autoAlpha: 0.15,
@@ -32,7 +32,6 @@ function ProjectWorks({ projectItems }) {
               start: "700 center",
               end: "+=100",
               scrub: 1,
-              // markers: true,
             },
           });
         });
@@ -45,13 +44,13 @@ function ProjectWorks({ projectItems }) {
           scrub: 1,
           pin: true,
           pinSpacing: false,
-          // markers: true,
+          markers: true,
         });
       });
 
       mm2.add("(min-width: 768px)", () => {
         workedProj.map((item, index) => {
-          tl3.to(item, { yPercent: -98 * index }, index * 0.5);
+          tl3.to(item, { yPercent: -99.5 * index }, index * 0.5);
 
           gsap.to(item, {
             autoAlpha: 0.15,
@@ -68,47 +67,72 @@ function ProjectWorks({ projectItems }) {
         ScrollTrigger.create({
           animation: tl3,
           trigger: refWorks.current,
-          start: "290 center",
-          end: "+=3600",
+          start: "320 center",
+          end: `+=${workedProj.length * 440}`,
           scrub: 1,
           pin: true,
           pinSpacing: false,
-          // markers: true,
+          markers: true,
         });
       });
 
       workedProj.forEach((item) => {
         ScrollTrigger.create({
           trigger: item,
-          start: "top 20%",
-          end: "top center",
+          start: "10% 10%",
+          end: "10% 20%",
+          invalidateOnRefresh: true,
           scrub: true,
           markers: true,
           onEnter: () => {
-            const children = item.children;
-            const state = Flip.getState(children);
+            const childrenImage = item.querySelector(".works-img");
+            const childrenText = item.querySelector(".works-text");
+            const state1 = Flip.getState(childrenImage);
+            const state2 = Flip.getState(childrenText);
 
-            item.classList.add("expanded-works-section");
+            const classListAddOrRemove = (element, action, classListNames) => {
+              action === "add" ? element.classList.add(classListNames) : element.classList.remove(classListNames);
+            };
 
-            Flip.from(state, {
-              duration: 1,
-              ease: "power3.inOut",
-              // absolute: true,
-              // scale: true,
-            });
+            classListAddOrRemove(childrenImage, "add", "expanded-image");
+            classListAddOrRemove(childrenImage, "remove", "not-expanded-image");
+            classListAddOrRemove(childrenText, "add", "expanded-text");
+
+            const properties = {
+              duration: 0.5,
+              ease: "power1.inOut",
+              absolute: true,
+              nested: true,
+              scale: true,
+            };
+
+            Flip.from(state1, { ...properties });
+            Flip.from(state2, { ...properties });
           },
           onEnterBack: () => {
-            const children = item.children;
-            const state = Flip.getState(children);
+            const childrenImage = item.querySelector(".works-img");
+            const childrenText = item.querySelector(".works-text");
+            const state1 = Flip.getState(childrenImage);
+            const state2 = Flip.getState(childrenText);
 
-            item.classList.remove("expanded-works-section");
+            const classListAddOrRemove = (element, action, classListNames) => {
+              action === "add" ? element.classList.add(classListNames) : element.classList.remove(classListNames);
+            };
 
-            Flip.from(state, {
-              duration: 1,
-              ease: "power3.inOut",
-              // absolute: true,
-              // scale: true,
-            });
+            classListAddOrRemove(childrenImage, "add", "not-expanded-image");
+            classListAddOrRemove(childrenImage, "remove", "expanded-image");
+            classListAddOrRemove(childrenText, "remove", "expanded-text");
+
+            const properties = {
+              duration: 0.5,
+              ease: "power1.inOut",
+              absolute: true,
+              nested: true,
+              scale: true,
+            };
+
+            Flip.from(state1, { ...properties });
+            Flip.from(state2, { ...properties });
           },
         });
       });
@@ -137,8 +161,8 @@ function ProjectWorks({ projectItems }) {
                   </div>
                 </div>
 
-                <div className="works-img" id={`img${index}`}>
-                  <img src={item.imageString} alt="img" />
+                <div className="works-img not-expanded-image" id={`img${index}`}>
+                  <img src={item.imageString} alt="img" className="children-image" />
                 </div>
               </div>
             ))
