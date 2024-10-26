@@ -1,7 +1,5 @@
 import React, { useRef } from "react";
 import "../../styling/project/projectWorks.scss";
-import { scrollTriggerAnimWithScrub } from "../../animations/gsapAnimation";
-import { ImImage } from "react-icons/im";
 
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
@@ -13,12 +11,15 @@ gsap.registerPlugin(Flip);
 function ProjectWorks({ projectItems }) {
   const refWorks = useRef(null);
 
+  const classListAddOrRemove = (element, action, classListNames) => {
+    action === "add" ? element.classList.add(classListNames) : element.classList.remove(classListNames);
+  };
+
   useGSAP(
     () => {
       const workedProj = gsap.utils.toArray(".works-section");
       const tl3 = gsap.timeline();
 
-      console.log(workedProj);
       const mm2 = gsap.matchMedia();
 
       mm2.add("(max-width: 768px)", () => {
@@ -74,66 +75,58 @@ function ProjectWorks({ projectItems }) {
           pinSpacing: false,
           markers: true,
         });
-      });
 
-      workedProj.forEach((item) => {
-        ScrollTrigger.create({
-          trigger: item,
-          start: "10% 10%",
-          end: "10% 20%",
-          invalidateOnRefresh: true,
-          scrub: true,
-          markers: true,
-          onEnter: () => {
-            const childrenImage = item.querySelector(".works-img");
-            const childrenText = item.querySelector(".works-text");
-            const state1 = Flip.getState(childrenImage);
-            const state2 = Flip.getState(childrenText);
+        workedProj.forEach((item) => {
+          ScrollTrigger.create({
+            trigger: item,
+            start: "10% 10%",
+            end: "10% 20%",
+            invalidateOnRefresh: true,
+            scrub: true,
+            markers: true,
+            onEnter: () => {
+              const childrenImage = item.querySelector(".works-img");
+              const childrenText = item.querySelector(".works-text");
+              const state1 = Flip.getState(childrenImage);
+              const state2 = Flip.getState(childrenText);
 
-            const classListAddOrRemove = (element, action, classListNames) => {
-              action === "add" ? element.classList.add(classListNames) : element.classList.remove(classListNames);
-            };
+              classListAddOrRemove(childrenImage, "add", "expanded-image");
+              classListAddOrRemove(childrenImage, "remove", "not-expanded-image");
+              classListAddOrRemove(childrenText, "add", "expanded-text");
 
-            classListAddOrRemove(childrenImage, "add", "expanded-image");
-            classListAddOrRemove(childrenImage, "remove", "not-expanded-image");
-            classListAddOrRemove(childrenText, "add", "expanded-text");
+              const properties = {
+                duration: 0.5,
+                ease: "power1.inOut",
+                absolute: true,
+                nested: true,
+                scale: true,
+              };
 
-            const properties = {
-              duration: 0.5,
-              ease: "power1.inOut",
-              absolute: true,
-              nested: true,
-              scale: true,
-            };
+              Flip.from(state1, { ...properties });
+              Flip.from(state2, { ...properties });
+            },
+            onEnterBack: () => {
+              const childrenImage = item.querySelector(".works-img");
+              const childrenText = item.querySelector(".works-text");
+              const state1 = Flip.getState(childrenImage);
+              const state2 = Flip.getState(childrenText);
 
-            Flip.from(state1, { ...properties });
-            Flip.from(state2, { ...properties });
-          },
-          onEnterBack: () => {
-            const childrenImage = item.querySelector(".works-img");
-            const childrenText = item.querySelector(".works-text");
-            const state1 = Flip.getState(childrenImage);
-            const state2 = Flip.getState(childrenText);
+              classListAddOrRemove(childrenImage, "add", "not-expanded-image");
+              classListAddOrRemove(childrenImage, "remove", "expanded-image");
+              classListAddOrRemove(childrenText, "remove", "expanded-text");
 
-            const classListAddOrRemove = (element, action, classListNames) => {
-              action === "add" ? element.classList.add(classListNames) : element.classList.remove(classListNames);
-            };
+              const properties = {
+                duration: 0.5,
+                ease: "power1.inOut",
+                absolute: true,
+                nested: true,
+                scale: true,
+              };
 
-            classListAddOrRemove(childrenImage, "add", "not-expanded-image");
-            classListAddOrRemove(childrenImage, "remove", "expanded-image");
-            classListAddOrRemove(childrenText, "remove", "expanded-text");
-
-            const properties = {
-              duration: 0.5,
-              ease: "power1.inOut",
-              absolute: true,
-              nested: true,
-              scale: true,
-            };
-
-            Flip.from(state1, { ...properties });
-            Flip.from(state2, { ...properties });
-          },
+              Flip.from(state1, { ...properties });
+              Flip.from(state2, { ...properties });
+            },
+          });
         });
       });
     },

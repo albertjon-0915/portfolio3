@@ -1,11 +1,13 @@
 import "../styling/project/projectMain.scss";
-import React, { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
+import React from "react";
 
 import Footer from "../components/footer.jsx";
 import ProjectSlider from "../components/project/projectSlider.jsx";
 import ProjectContent from "../components/project/projectContent.jsx";
 import ProjectWorks from "../components/project/projectWorks.jsx";
+
+// import hooks
+import useFetchProj from "../hooks/useFetchProj.jsx";
 
 // import GSAP dependencies
 import gsap from "gsap";
@@ -16,29 +18,7 @@ import { Flip } from "gsap/Flip";
 gsap.registerPlugin(Flip, ScrollTrigger);
 
 function Project() {
-  const [projectItems, setProjectItems] = useState([]);
-  const { pathname } = useLocation();
-
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, [pathname]);
-
-  const fetchData = async () => {
-    const response = await fetch(`${import.meta.env.VITE_APP_API_URL}/stack`);
-    const data = await response.json();
-
-    if (data) {
-      setProjectItems([
-        ...data.result.projects.fullstack,
-        ...data.result.projects.frontend,
-        ...data.result.projects.backend,
-      ]);
-    }
-  };
-
-  useEffect(() => {
-    fetchData();
-  }, []);
+  const { projectItems } = useFetchProj();
 
   useGSAP(() => {
     const tl1 = gsap.timeline();
