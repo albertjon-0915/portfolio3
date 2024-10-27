@@ -25,6 +25,7 @@ function Reviews() {
 
   const { reviews } = useFetchReviews();
 
+  // useGSAP hook for animation
   useGSAP(
     () => {
       const cards = gsap.utils.toArray(".reviews-cards");

@@ -1,9 +1,14 @@
 import React, { useState } from "react";
-import toast, { Toaster } from "react-hot-toast";
 import "../styling/contact.scss";
+
+// import toast package/library
+import toast, { Toaster } from "react-hot-toast";
+
+// import lottie package/depencies/media
 import Lottie from "lottie-react";
 import letsTalk from "../assets/lottieSVG/contactSVG.json";
 
+// import GSAP dependencies
 import { gsap } from "gsap";
 import { useGSAP } from "@gsap/react";
 
@@ -31,6 +36,7 @@ function Contact() {
     });
   };
 
+  // handle submit form
   const handleOnSubmit = async (e) => {
     e.preventDefault();
 
@@ -51,6 +57,7 @@ function Contact() {
     }
   };
 
+  // useGSAP hooks for animation
   useGSAP(() => {
     gsap.from(["label", ".contact-form > button"], {
       stagger: 0.2,

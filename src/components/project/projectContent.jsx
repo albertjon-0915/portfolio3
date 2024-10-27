@@ -1,7 +1,10 @@
 import React, { useRef } from "react";
 import "../../styling/project/projectContent.scss";
+
+// import spline
 import Spline from "@splinetool/react-spline";
 
+// import GSAP dependencies
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -10,6 +13,7 @@ import { scrollTriggerAnimWithScrub } from "../../animations/gsapAnimation";
 function ProjectContent() {
   const refSpline = useRef(null);
 
+  // useGSAP hook for animation
   useGSAP(
     () => {
       const mm3 = gsap.matchMedia();

@@ -1,10 +1,13 @@
 import React from "react";
 import "../../styling/project/projectSlider.scss";
+
+// import GSAP dependencies
 import { useGSAP } from "@gsap/react";
 import { IoIosImages } from "react-icons/io";
 import { scrollTriggerAnimWithScrub } from "../../animations/gsapAnimation";
 
 function ProjectSlider({ projectItems }) {
+  // useGSAP hook for animation
   useGSAP(() => {
     scrollTriggerAnimWithScrub(
       "#images-panel1",

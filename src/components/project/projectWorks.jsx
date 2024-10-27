@@ -1,6 +1,7 @@
 import React, { useRef } from "react";
 import "../../styling/project/projectWorks.scss";
 
+// import GSAP dependencies
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -15,6 +16,7 @@ function ProjectWorks({ projectItems }) {
     action === "add" ? element.classList.add(classListNames) : element.classList.remove(classListNames);
   };
 
+  // useGSAP hooks for animation
   useGSAP(
     () => {
       const workedProj = gsap.utils.toArray(".works-section");

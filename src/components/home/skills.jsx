@@ -1,12 +1,15 @@
-import React, { useEffect, useRef } from "react";
+import React, { useRef } from "react";
 import "../../styling/home/skills.scss";
+
+// import media
 import { FaNodeJs, FaAws, FaBootstrap, FaCss3Alt, FaHtml5, FaReact, FaChrome } from "react-icons/fa";
 import { SiPostman, SiGit, SiGithub, SiJavascript, SiSass, SiMongodb } from "react-icons/si";
 import { VscVscode } from "react-icons/vsc";
+
+// import GSAP dependencies
+import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { scrollTriggerAnimWithScrub, scrollTriggerAnimWithScrubPin } from "../../animations/gsapAnimation";
-
-import gsap from "gsap";
 
 function Skills() {
   const skillsImagesRef = useRef([]);
@@ -46,6 +49,7 @@ function Skills() {
     <SiMongodb className="icon" />,
   ];
 
+  // useGSAP hook for animation
   useGSAP(() => {
     scrollTriggerAnimWithScrubPin(
       ".skills-container",

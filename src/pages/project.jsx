@@ -1,6 +1,7 @@
 import "../styling/project/projectMain.scss";
 import React from "react";
 
+// import components
 import Footer from "../components/footer.jsx";
 import ProjectSlider from "../components/project/projectSlider.jsx";
 import ProjectContent from "../components/project/projectContent.jsx";
@@ -20,6 +21,7 @@ gsap.registerPlugin(Flip, ScrollTrigger);
 function Project() {
   const { projectItems } = useFetchProj();
 
+  // useGSAP hooks for animation
   useGSAP(() => {
     const tl1 = gsap.timeline();
     const mm = gsap.matchMedia();

@@ -1,5 +1,7 @@
 import React from "react";
 import "../../styling/home/about.scss";
+
+// import media
 import coding from "../../assets/coding.png";
 import { FaFacebookF, FaLinkedinIn, FaGithub } from "react-icons/fa";
 import { scrollTriggerAnimWithScrub } from "../../animations/gsapAnimation";
@@ -13,6 +15,7 @@ import { useGSAP } from "@gsap/react";
 gsap.registerPlugin({ useGSAP, ScrollTrigger });
 
 function About() {
+  // useGSAP hook for animtion
   useGSAP(() => {
     gsap.set(".content h3", {
       maxWidth: "0vw",
