@@ -1,5 +1,9 @@
+import React, { lazy, Suspense } from "react";
 import "../styling/project/projectMain.scss";
-import React from "react";
+
+// import spline
+const Spline = lazy(() => import("@splinetool/react-spline"));
+// import Spline from "@splinetool/react-spline";
 
 // import components
 import Footer from "../components/footer.jsx";
@@ -50,6 +54,9 @@ function Project() {
   return (
     <div className="project-container">
       <div className="bg-project-wrapper">
+        <div className="spline-wrapper">
+          <Spline scene="https://prod.spline.design/fRwUh5klecyI-Ak4/scene.splinecode" />
+        </div>
         <div className="project-title-content">
           <h3>What I've Brought to Life &mdash;</h3>
           <div id="subtitle">
@@ -59,8 +66,8 @@ function Project() {
         <ProjectContent />
       </div>
 
-      <ProjectSlider projectItems={projectItems} />
-      <ProjectWorks projectItems={projectItems} />
+      {/* <ProjectSlider projectItems={projectItems} /> */}
+      {/* <ProjectWorks projectItems={projectItems} /> */}
       <Footer />
     </div>
   );

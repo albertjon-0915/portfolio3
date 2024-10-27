@@ -12,6 +12,7 @@
   "dependencies": {
     "@gsap/react": "^2.1.1",
     "@splinetool/react-spline": "^4.0.0",
+    "@splinetool/runtime": "^1.9.35",
     "@studio-freight/lenis": "^1.0.42",
     "gsap": "^3.12.5",
     "lenis": "^1.1.13",

@@ -1,8 +1,9 @@
-import React, { useRef } from "react";
+import React, { useRef, Suspense } from "react";
 import "../../styling/project/projectContent.scss";
 
 // import spline
-import Spline from "@splinetool/react-spline";
+// lazy load for better performance as spline is quite heavy to render
+const Spline = React.lazy(() => import("@splinetool/react-spline"));
 
 // import GSAP dependencies
 import gsap from "gsap";
@@ -69,11 +70,14 @@ function ProjectContent() {
         </div>
 
         <div className="project-spline-content">
-          <Spline
-            className="spline"
-            scene="https://prod.spline.design/fRwUh5klecyI-Ak4/scene.splinecode"
-            ref={refSpline}
-          />
+          <Suspense fallback={null}>
+            {/* <Spline scene="https://prod.spline.design/fRwUh5klecyI-Ak4/scene.splinecode" /> */}
+            {/* <Spline
+              className="spline"
+              scene="https://prod.spline.design/fRwUh5klecyI-Ak4/scene.splinecode"
+              ref={refSpline}
+            /> */}
+          </Suspense>
         </div>
       </div>
     </div>

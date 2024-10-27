@@ -9,6 +9,9 @@
   overflow: hidden;
 
   .bg-project-wrapper {
+    position: relative;
+
+    border: 1px solid red;
     width: 100%;
     background: url("../../assets/gridpattern.png"),
       radial-gradient(
@@ -18,6 +21,14 @@
       );
     background-blend-mode: screen;
     background-position: center;
+
+    .spline-wrapper {
+      border: 1px solid red;
+      position: absolute;
+      height: 100vh;
+      top: 0;
+      left: 0;
+    }
   }
 }
 
