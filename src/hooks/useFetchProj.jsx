@@ -7,18 +7,17 @@ function useFetchProj() {
     const response = await fetch(`${import.meta.env.VITE_APP_API_URL}/stack`);
     const data = await response.json();
 
-    if (data) {
+    if (data)
       setProjectItems([
         ...data.result.projects.fullstack,
         ...data.result.projects.frontend,
         ...data.result.projects.backend,
       ]);
-    }
   };
 
   useEffect(() => {
     fetchData();
-  }, []);
+  }, [projectItems]);
 
   return { projectItems };
 }

@@ -62,7 +62,6 @@ function Skills() {
     const skillsImages = gsap.utils.toArray(skillsImagesRef.current);
 
     skillsImages.forEach((item, index) => {
-      console.log(item);
       scrollTriggerAnimWithScrub(
         item,
         {

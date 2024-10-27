@@ -1,50 +1,37 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import contact from "../../assets/contact.jpg";
 import "../../styling/home/reviews.scss";
-import { BiSolidQuoteRight } from "react-icons/bi";
-import Lottie from "lottie-react";
 
+// import medias
+import { BiSolidQuoteRight } from "react-icons/bi";
+import contact from "../../assets/contact.jpg";
+import Lottie from "lottie-react";
 import message from "../../assets/lottieSVG/reviewsSVG.json";
-import { scrollTriggerAnimWithScrub } from "../../animations/gsapAnimation";
 
 // import gsap dependencies
 import { gsap } from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { scrollTriggerAnimWithScrub } from "../../animations/gsapAnimation";
 
 gsap.registerPlugin(ScrollTrigger);
 
+// import hooks
+import useFetchReviews from "../../hooks/useFetchReviews";
+
 function Reviews() {
   const main = useRef(null);
-  const [reviews, setReview] = useState([]);
   const navigate = useNavigate();
 
-  const fetchData = async () => {
-    const response = await fetch(`${import.meta.env.VITE_APP_API_URL}/reviews`);
-
-    const data = await response.json();
-
-    console.log(data);
-
-    setReview([...data.result]);
-    console.log(reviews);
-  };
-
-  useEffect(() => {
-    fetchData();
-  }, []);
+  const { reviews } = useFetchReviews();
 
   useGSAP(
     () => {
-      console.log("useGSAP");
       const cards = gsap.utils.toArray(".reviews-cards");
 
       const oddCards = cards.filter((card, index) => index % 2 !== 0);
 
       const evenCards = cards.filter((card, index) => index % 2 === 0);
-
-      console.log(oddCards, evenCards);
 
       oddCards.forEach((card) => {
         scrollTriggerAnimWithScrub(

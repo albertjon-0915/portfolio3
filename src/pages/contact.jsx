@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
+import React, { useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
 import "../styling/contact.scss";
 import Lottie from "lottie-react";
@@ -9,51 +8,48 @@ import { gsap } from "gsap";
 import { useGSAP } from "@gsap/react";
 
 function Contact() {
-  const { pathname } = useLocation();
-  const [email, setEmail] = useState("");
-  const [mobile, setMobile] = useState("");
-  const [comment, setComment] = useState("");
+  const [information, setInformation] = useState({
+    email: "",
+    mobileNo: "",
+    comments: "",
+  });
+
+  const handleSetInput = (e) => {
+    const { name, value } = e.target;
+
+    setInformation({
+      ...information,
+      [name]: value,
+    });
+  };
 
   const resetInput = () => {
-    setEmail("");
-    setMobile("");
-    setComment("");
+    setInformation({
+      email: "",
+      mobileNo: "",
+      comments: "",
+    });
   };
 
-  const handleOnSubmit = (e) => {
+  const handleOnSubmit = async (e) => {
     e.preventDefault();
 
-    fetch(`${import.meta.env.VITE_APP_API_URL}/reviews`, {
+    const dataToThrow = {
       method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        email: email,
-        mobileNo: mobile,
-        comments: comment,
-      }),
-    })
-      .then((res) => res.json())
-      .then((result) => {
-        console.log(result);
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ ...information }),
+    };
 
-        if (result.message !== "Successfully created a comment") {
-          console.log("error here");
-          toast.error(result.message || result.err || result.error);
+    const response = await fetch(`${import.meta.env.VITE_APP_API_URL}/reviews`, { ...dataToThrow });
 
-          resetInput();
-        } else {
-          toast.success(result.message);
+    const result = await response.json();
 
-          resetInput();
-        }
-      });
+    if (result) {
+      result.message !== "Successfully created a comment"
+        ? toast.error(result.message || result.err || result.error)
+        : toast.success(result.message) && resetInput();
+    }
   };
-
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, [pathname]);
 
   useGSAP(() => {
     gsap.from(["label", ".contact-form > button"], {
@@ -83,25 +79,27 @@ function Contact() {
             <div className="label-enclosure">
               <label for="email">
                 Email
-                <input name="email" id="email" type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
+                <input name="email" id="email" type="email" onChange={handleSetInput} value={information.email} />
               </label>
             </div>
+
             <div className="label-enclosure">
-              <label for="mobile">
+              <label for="mobileNo">
                 Mobile Number
                 <input
-                  name="mobile"
+                  name="mobileNo"
                   id="mobile"
                   type="number"
-                  value={mobile}
-                  onChange={(e) => setMobile(e.target.value)}
+                  onChange={handleSetInput}
+                  value={information.mobileNo}
                 />
               </label>
             </div>
+
             <div className="label-enclosure">
-              <label for="comment">
+              <label for="comments">
                 Leave a message
-                <textarea name="comment" id="comment" value={comment} onChange={(e) => setComment(e.target.value)} />
+                <textarea name="comments" id="comment" onChange={handleSetInput} value={information.comments} />
               </label>
             </div>
 

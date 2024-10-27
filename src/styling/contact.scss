@@ -141,20 +141,24 @@
 .contact-content2 {
   position: relative;
 
+  @media (max-width: 768px) {
+    margin-bottom: 5em;
+  }
+
   .lottie {
     position: absolute;
-    top: 0;
+    top: 50%;
     left: 0;
-    height: 100%;
+    transform: translateY(-50%);
+    height: 40vh;
     min-height: 30vh;
     width: 100%;
   }
 }
 
-
 // toaster styling
-.popupToast{
-     opacity: 0;
-     font: $tr-opensans;
-     font-size: clamp(1em, 1.7vw, 1.7em);
+.popupToast {
+  opacity: 0;
+  font: $tr-opensans;
+  font-size: clamp(1em, 1.7vw, 1.7em);
 }

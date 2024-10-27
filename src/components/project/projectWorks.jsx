@@ -77,6 +77,17 @@ function ProjectWorks({ projectItems }) {
         });
 
         workedProj.forEach((item) => {
+          const childrenImage = item.querySelector(".works-img");
+          const childrenText = item.querySelector(".works-text");
+
+          const properties = {
+            duration: 0.5,
+            ease: "power1.inOut",
+            absolute: true,
+            nested: true,
+            scale: true,
+          };
+
           ScrollTrigger.create({
             trigger: item,
             start: "10% 10%",
@@ -85,8 +96,6 @@ function ProjectWorks({ projectItems }) {
             scrub: true,
             markers: true,
             onEnter: () => {
-              const childrenImage = item.querySelector(".works-img");
-              const childrenText = item.querySelector(".works-text");
               const state1 = Flip.getState(childrenImage);
               const state2 = Flip.getState(childrenText);
 
@@ -94,34 +103,16 @@ function ProjectWorks({ projectItems }) {
               classListAddOrRemove(childrenImage, "remove", "not-expanded-image");
               classListAddOrRemove(childrenText, "add", "expanded-text");
 
-              const properties = {
-                duration: 0.5,
-                ease: "power1.inOut",
-                absolute: true,
-                nested: true,
-                scale: true,
-              };
-
               Flip.from(state1, { ...properties });
               Flip.from(state2, { ...properties });
             },
             onEnterBack: () => {
-              const childrenImage = item.querySelector(".works-img");
-              const childrenText = item.querySelector(".works-text");
               const state1 = Flip.getState(childrenImage);
               const state2 = Flip.getState(childrenText);
 
               classListAddOrRemove(childrenImage, "add", "not-expanded-image");
               classListAddOrRemove(childrenImage, "remove", "expanded-image");
               classListAddOrRemove(childrenText, "remove", "expanded-text");
-
-              const properties = {
-                duration: 0.5,
-                ease: "power1.inOut",
-                absolute: true,
-                nested: true,
-                scale: true,
-              };
 
               Flip.from(state1, { ...properties });
               Flip.from(state2, { ...properties });
