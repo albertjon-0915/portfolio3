@@ -1,4 +1,4 @@
-import React, { lazy, Suspense } from "react";
+import React, { lazy, Suspense, useRef } from "react";
 import "../styling/project/projectMain.scss";
 
 // import spline
@@ -24,6 +24,22 @@ gsap.registerPlugin(Flip, ScrollTrigger);
 
 function Project() {
   const { projectItems } = useFetchProj();
+  const cube = useRef(null);
+
+  const onLoad = (spline) => {
+    // d539aade-de67-46b0-94bb-3384051c3b37 - object id
+    const obj = spline.findObjectById("d539aade-de67-46b0-94bb-3384051c3b37");
+
+    cube.current = obj;
+    cube.current ? console.log(cube.current.position.y) : null;
+  };
+
+  const moveObj = () => {
+    console.log("clicked");
+    if (!cube.current) return;
+
+    console.log(cube.current.position.y);
+  };
 
   // useGSAP hooks for animation
   useGSAP(() => {
@@ -55,7 +71,11 @@ function Project() {
     <div className="project-container">
       <div className="bg-project-wrapper">
         <div className="spline-wrapper">
-          <Spline scene="https://prod.spline.design/fRwUh5klecyI-Ak4/scene.splinecode" />
+          <Suspense fallback={null}>
+            <div className="spline">
+              <Spline scene="https://prod.spline.design/fRwUh5klecyI-Ak4/scene.splinecode" onLoad={onLoad} />
+            </div>
+          </Suspense>
         </div>
         <div className="project-title-content">
           <h3>What I've Brought to Life &mdash;</h3>

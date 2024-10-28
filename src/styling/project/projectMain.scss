@@ -21,14 +21,19 @@
       );
     background-blend-mode: screen;
     background-position: center;
+  }
+}
 
-    .spline-wrapper {
-      border: 1px solid red;
-      position: absolute;
-      height: 100vh;
-      top: 0;
-      left: 0;
-    }
+.spline-wrapper {
+  border: 1px solid red;
+  position: absolute;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  overflow: hidden;
+
+  .spline {
+    height: calc(100% + 10%);
   }
 }
 

@@ -108,19 +108,37 @@ function Skills() {
       <div className="skills-wrapper">
         <div className="skills-content1">
           <div ref={(el) => (skillsImagesRef.current[0] = el)}>
-            {skillsImg.map((item, index) => (index <= 4 ? <span className="item">{item}</span> : null))}
+            {skillsImg.map((item, index) =>
+              index <= 4 ? (
+                <span className="item" key={index}>
+                  {item}
+                </span>
+              ) : null
+            )}
           </div>
           <div ref={(el) => (skillsImagesRef.current[1] = el)}>
-            {skillsImg.map((item, index) => (index > 4 && index <= 9 ? <span className="item">{item}</span> : null))}
+            {skillsImg.map((item, index) =>
+              index > 4 && index <= 9 ? (
+                <span className="item" key={index}>
+                  {item}
+                </span>
+              ) : null
+            )}
           </div>
           <div ref={(el) => (skillsImagesRef.current[2] = el)}>
-            {skillsImg.map((item, index) => (index > 9 && index <= 14 ? <span className="item">{item}</span> : null))}
+            {skillsImg.map((item, index) =>
+              index > 9 && index <= 14 ? (
+                <span className="item" key={index}>
+                  {item}
+                </span>
+              ) : null
+            )}
           </div>
         </div>
         <div className="skills-content2">
           <div className="skillset">
             {skills.map((item, index) => (
-              <span className="spanText" ref={(el) => (spanTextRef.current[index] = el)}>
+              <span className="spanText" key={index} ref={(el) => (spanTextRef.current[index] = el)}>
                 {item}
               </span>
             ))}
