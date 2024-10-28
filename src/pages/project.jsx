@@ -24,7 +24,7 @@ gsap.registerPlugin(Flip, ScrollTrigger);
 
 function Project() {
   const { projectItems } = useFetchProj();
-  const cube = useRef(null);
+  const cube = useRef();
 
   const onLoad = (spline) => {
     // d539aade-de67-46b0-94bb-3384051c3b37 - object id
@@ -39,6 +39,7 @@ function Project() {
     if (!cube.current) return;
 
     console.log(cube.current.position.y);
+    cube.current.position.y += 5000;
   };
 
   // useGSAP hooks for animation
@@ -77,6 +78,7 @@ function Project() {
             </div>
           </Suspense>
         </div>
+
         <div className="project-title-content">
           <h3>What I've Brought to Life &mdash;</h3>
           <div id="subtitle">
