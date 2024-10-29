@@ -1,9 +1,8 @@
-import React, { lazy, Suspense, useRef } from "react";
+import React, { lazy, Suspense, useEffect, useMemo, useRef } from "react";
 import "../styling/project/projectMain.scss";
 
 // import spline
 const Spline = lazy(() => import("@splinetool/react-spline"));
-// import Spline from "@splinetool/react-spline";
 
 // import components
 import Footer from "../components/footer.jsx";
@@ -13,6 +12,7 @@ import ProjectWorks from "../components/project/projectWorks.jsx";
 
 // import hooks
 import useFetchProj from "../hooks/useFetchProj.jsx";
+import useWindowSize from "../hooks/useWindowSize.jsx";
 
 // import GSAP dependencies
 import gsap from "gsap";
@@ -23,7 +23,10 @@ import { Flip } from "gsap/Flip";
 gsap.registerPlugin(Flip, ScrollTrigger);
 
 function Project() {
+  // custom hooks
+  const { windowSize } = useWindowSize();
   const { projectItems } = useFetchProj();
+
   const cube = useRef();
 
   const onLoad = (spline) => {
@@ -31,16 +34,25 @@ function Project() {
     const obj = spline.findObjectById("d539aade-de67-46b0-94bb-3384051c3b37");
 
     cube.current = obj;
-    cube.current ? console.log(cube.current.position.y) : null;
+    cube.current ? console.log(cube.current) : null;
   };
 
-  const moveObj = () => {
-    console.log("clicked");
-    if (!cube.current) return;
-
-    console.log(cube.current.position.y);
-    cube.current.position.y += 5000;
+  const changeSplinePosition = (paramX, paramY) => {
+    cube.current.position.y = paramY;
+    cube.current.position.x = paramX;
   };
+
+  useEffect(() => {
+    if (cube.current) {
+      windowSize <= 576
+        ? changeSplinePosition(0, 500)
+        : windowSize <= 992
+        ? changeSplinePosition(-500, 0)
+        : windowSize <= 1400
+        ? changeSplinePosition(-900, 0)
+        : changeSplinePosition(-1500, 0);
+    }
+  }, [cube.current, windowSize]);
 
   // useGSAP hooks for animation
   useGSAP(() => {
@@ -74,7 +86,7 @@ function Project() {
         <div className="spline-wrapper">
           <Suspense fallback={null}>
             <div className="spline">
-              <Spline scene="https://prod.spline.design/fRwUh5klecyI-Ak4/scene.splinecode" onLoad={onLoad} />
+              <Spline scene="https://prod.spline.design/OaU89xBxiO-86rcZ/scene.splinecode" onLoad={onLoad} />
             </div>
           </Suspense>
         </div>
@@ -88,7 +100,7 @@ function Project() {
         <ProjectContent />
       </div>
 
-      {/* <ProjectSlider projectItems={projectItems} /> */}
+      <ProjectSlider projectItems={projectItems} />
       {/* <ProjectWorks projectItems={projectItems} /> */}
       <Footer />
     </div>

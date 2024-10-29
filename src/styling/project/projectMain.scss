@@ -19,15 +19,16 @@
         transparent,
         rgb(255, 255, 255)
       );
+    background-attachment: fixed;
     background-blend-mode: screen;
     background-position: center;
   }
 }
 
 .spline-wrapper {
-  border: 1px solid red;
   position: absolute;
   height: 100vh;
+  width: 100%;
   top: 0;
   left: 0;
   overflow: hidden;
