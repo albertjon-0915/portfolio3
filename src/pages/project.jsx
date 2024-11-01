@@ -27,6 +27,11 @@ function Project() {
   const { windowSize } = useWindowSize();
   const { projectItems } = useFetchProj();
 
+  const knowThePosition = () => {
+    return { x: window.innerWidth, y: window.innerHeight };
+  };
+
+  // const [origins, setOrigins] = useState(knowThePosition());
   const [origins, setOrigins] = useState({ x: 0, y: 0 });
 
   const cube = useRef();
@@ -44,18 +49,41 @@ function Project() {
     cube.current.position.x = paramX;
   };
 
-  const setOriginState = () => setOrigins({ x: paramX, y: paramY });
+  const setOriginState = async (paramX, paramY) => {
+    console.log("set params origin state function", paramX, paramY);
+    await setOrigins((prev) => ({
+      ...prev,
+      x: paramX,
+      y: paramY,
+    }));
+  };
 
   useEffect(() => {
     if (cube.current) {
-      windowSize <= 576
-        ? changeSplinePosition(0, 500) && setOriginState(0, 500)
-        : windowSize <= 992
-        ? changeSplinePosition(-500, 0) && setOriginState(-500, 0)
-        : windowSize <= 1400
-        ? changeSplinePosition(-900, 0) && setOriginState(-900, 0)
-        : changeSplinePosition(-1500, 0) && setOriginState(-1500, 0);
+      switch (true) {
+        case windowSize <= 576:
+          changeSplinePosition(0, 500);
+          setOriginState(0, 500);
+          break;
+
+        case windowSize <= 992:
+          changeSplinePosition(-500, 0);
+          setOriginState(-500, 0);
+          break;
+
+        case windowSize <= 1400:
+          changeSplinePosition(-900, 0);
+          setOriginState(-900, 0);
+          break;
+
+        default:
+          changeSplinePosition(-1500, 0);
+          setOriginState(-1500, 0);
+          break;
+      }
     }
+
+    console.log(origins);
   }, [cube.current, windowSize]);
 
   // useGSAP hooks for animation
@@ -74,12 +102,12 @@ function Project() {
         pin: ".spline-wrapper",
         pinSpacing: false,
         onUpdate: (self) => {
-          const scrollPosition = self.progress.toFixed(3);
-          const progress = useMemo(() => {
-            origins.x * Number(scrollPosition), 0;
-          }, [scrollPosition]);
+          const scrollPosition = self.progress.toFixed(5);
+          const cubeOriginX = origins.x;
 
-          changeSplinePosition(progress);
+          const newPosition = cubeOriginX * Number(scrollPosition);
+
+          changeSplinePosition(cubeOriginX - newPosition, 0);
         },
         markers: true,
       },
