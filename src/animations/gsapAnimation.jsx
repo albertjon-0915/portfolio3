@@ -35,6 +35,7 @@ export const scrollTriggerAnimWithScrub = (item, properties, trigger, startPrope
 };
 
 export const scrollTriggerAnimWithScrubPin = (itemTrigger, properties, pinnedItem, startProperty, endProperty) => {
+  
   gsap.to(pinnedItem, {
     ...properties,
     scrollTrigger: {

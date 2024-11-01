@@ -1,4 +1,4 @@
-import React, { lazy, Suspense, useEffect, useMemo, useRef } from "react";
+import React, { lazy, Suspense, useEffect, useRef, useMemo, useState } from "react";
 import "../styling/project/projectMain.scss";
 
 // import spline
@@ -27,6 +27,8 @@ function Project() {
   const { windowSize } = useWindowSize();
   const { projectItems } = useFetchProj();
 
+  const [origins, setOrigins] = useState({ x: 0, y: 0 });
+
   const cube = useRef();
 
   const onLoad = (spline) => {
@@ -42,15 +44,17 @@ function Project() {
     cube.current.position.x = paramX;
   };
 
+  const setOriginState = () => setOrigins({ x: paramX, y: paramY });
+
   useEffect(() => {
     if (cube.current) {
       windowSize <= 576
-        ? changeSplinePosition(0, 500)
+        ? changeSplinePosition(0, 500) && setOriginState(0, 500)
         : windowSize <= 992
-        ? changeSplinePosition(-500, 0)
+        ? changeSplinePosition(-500, 0) && setOriginState(-500, 0)
         : windowSize <= 1400
-        ? changeSplinePosition(-900, 0)
-        : changeSplinePosition(-1500, 0);
+        ? changeSplinePosition(-900, 0) && setOriginState(-900, 0)
+        : changeSplinePosition(-1500, 0) && setOriginState(-1500, 0);
     }
   }, [cube.current, windowSize]);
 
@@ -59,25 +63,58 @@ function Project() {
     const tl1 = gsap.timeline();
     const mm = gsap.matchMedia();
 
-    mm.add("(max-width: 768px)", () => {
-      gsap.set(".project-spline-content", { yPercent: -125, scale: 1.3 });
-      tl1.fromTo(".project-spline-content", { yPercent: -125, scale: 1.3 }, { yPercent: 0, scale: 1 });
+    gsap.from(".spline-wrapper", { opacity: 0, delay: 1, duration: 0.5 });
+
+    gsap.to(".spline-wrapper", {
+      scrollTrigger: {
+        trigger: ".bg-project-wrapper",
+        start: "center bottom",
+        end: "center top",
+        scrub: 2,
+        pin: ".spline-wrapper",
+        pinSpacing: false,
+        onUpdate: (self) => {
+          const scrollPosition = self.progress.toFixed(3);
+          const progress = useMemo(() => {
+            origins.x * Number(scrollPosition), 0;
+          }, [scrollPosition]);
+
+          changeSplinePosition(progress);
+        },
+        markers: true,
+      },
     });
 
-    mm.add("(min-width: 768px)", () => {
-      gsap.set(".project-spline-content", { yPercent: -80, scale: 1.3 });
-      tl1.fromTo(".project-spline-content", { yPercent: -80, scale: 1.3 }, { yPercent: 0, scale: 1 });
-    });
+    // scrollTriggerAnimWithScrubPin(
+    //   ".bg-project-wrapper",
+    //   {
+    //     onUpdate: (self) => {
+    //       console.log(self);
+    //     },
+    //   },
+    //   ".spline-wrapper",
+    //   "center bottom",
+    //   "center top"
+    // );
+    // mm.add("(max-width: 768px)", () => {
+    //   gsap.set(".project-spline-content", { yPercent: -125, scale: 1.3 });
+    //   tl1.fromTo(".project-spline-content", { yPercent: -125, scale: 1.3 }, { yPercent: 0, scale: 1 });
+    // });
 
-    ScrollTrigger.create({
-      animation: tl1,
-      trigger: ".project-content1",
-      start: "top center",
-      end: "top center",
-      scrub: 3,
-      pin: false,
-      invalidateOnRefresh: true,
-    });
+    // mm.add("(min-width: 768px)", () => {
+    //   gsap.set(".project-spline-content", { yPercent: -80, scale: 1.3 });
+    //   tl1.fromTo(".project-spline-content", { yPercent: -80, scale: 1.3 }, { yPercent: 0, scale: 1 });
+    // });
+
+    // ScrollTrigger.create({
+    //   animation: tl1,
+    //   trigger: ".project-content1",
+    //   start: "top center",
+    //   end: "top center",
+    //   scrub: 3,
+    //   pin: false,
+    //   invalidateOnRefresh: true,
+    // });
   });
 
   return (
@@ -97,10 +134,11 @@ function Project() {
             <span>My Works</span>
           </div>
         </div>
+
         <ProjectContent />
       </div>
 
-      <ProjectSlider projectItems={projectItems} />
+      {/* <ProjectSlider projectItems={projectItems} /> */}
       {/* <ProjectWorks projectItems={projectItems} /> */}
       <Footer />
     </div>

@@ -1,9 +1,5 @@
-import React, { useRef, Suspense } from "react";
+import React, { useRef } from "react";
 import "../../styling/project/projectContent.scss";
-
-// import spline
-// lazy load for better performance as spline is quite heavy to render
-const Spline = React.lazy(() => import("@splinetool/react-spline"));
 
 // import GSAP dependencies
 import gsap from "gsap";
@@ -12,8 +8,6 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { scrollTriggerAnimWithScrub } from "../../animations/gsapAnimation";
 
 function ProjectContent() {
-  const refSpline = useRef(null);
-
   // useGSAP hook for animation
   useGSAP(
     () => {
@@ -50,7 +44,7 @@ function ProjectContent() {
 
       scrollTriggerAnimWithScrub("#proj-item1", { opacity: 0 }, "#proj-item2", "top center", "center center");
     },
-    { dependencies: [refSpline.current], revertOnUpdate: true }
+    { revertOnUpdate: true }
   );
 
   return (
@@ -67,17 +61,6 @@ function ProjectContent() {
               PR<span>O</span>JECTS
             </span>
           </p>
-        </div>
-
-        <div className="project-spline-content">
-          <Suspense fallback={null}>
-            {/* <Spline scene="https://prod.spline.design/fRwUh5klecyI-Ak4/scene.splinecode" /> */}
-            {/* <Spline
-              className="spline"
-              scene="https://prod.spline.design/fRwUh5klecyI-Ak4/scene.splinecode"
-              ref={refSpline}
-            /> */}
-          </Suspense>
         </div>
       </div>
     </div>

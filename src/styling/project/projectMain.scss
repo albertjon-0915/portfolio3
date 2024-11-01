@@ -32,8 +32,10 @@
   top: 0;
   left: 0;
   overflow: hidden;
+  border: 1px solid red;
 
   .spline {
+  border: 1px solid blue;
     height: calc(100% + 10%);
   }
 }
