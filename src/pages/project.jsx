@@ -1,4 +1,4 @@
-import React, { lazy, Suspense, useEffect, useRef, useMemo, useState } from "react";
+import React, { lazy, Suspense, useEffect, useRef, useMemo, useState, useCallback } from "react";
 import "../styling/project/projectMain.scss";
 
 // import spline
@@ -27,13 +27,7 @@ function Project() {
   const { windowSize } = useWindowSize();
   const { projectItems } = useFetchProj();
 
-  const knowThePosition = () => {
-    return { x: window.innerWidth, y: window.innerHeight };
-  };
-
-  // const [origins, setOrigins] = useState(knowThePosition());
-  const [origins, setOrigins] = useState({ x: 0, y: 0 });
-
+  const [origins, setOrigins] = useState({ x: -1500, y: 0 });
   const cube = useRef();
 
   const onLoad = (spline) => {
@@ -44,110 +38,109 @@ function Project() {
     cube.current ? console.log(cube.current) : null;
   };
 
+  const screenSize = {
+    mobile: windowSize <= 576,
+    tablet: windowSize <= 992,
+    desktop: windowSize <= 1400,
+    default: windowSize > 1400,
+  };
+
   const changeSplinePosition = (paramX, paramY) => {
     cube.current.position.y = paramY;
     cube.current.position.x = paramX;
   };
 
-  const setOriginState = async (paramX, paramY) => {
-    console.log("set params origin state function", paramX, paramY);
-    await setOrigins((prev) => ({
-      ...prev,
-      x: paramX,
-      y: paramY,
-    }));
+  const adjustPosition = () => {
+    if (cube.current) {
+      screenSize.desktop
+        ? changeSplinePosition(-900, 0)
+        : screenSize.tablet
+        ? changeSplinePosition(-500, 0)
+        : screenSize.mobile
+        ? changeSplinePosition(0, 500)
+        : changeSplinePosition(-1500, 0);
+    }
   };
 
+  const params = useMemo(() => {
+    return {
+      x: screenSize.desktop ? -900 : screenSize.tablet ? -500 : screenSize.mobile ? 0 : -1500,
+      y: screenSize.desktop ? 0 : screenSize.tablet ? 0 : screenSize.mobile ? 500 : 0,
+    };
+  }, [windowSize]);
+
+  const handleSetorigins = useCallback(() => {
+    if (cube.current) setOrigins({ ...origins, x: params.x, y: params.y });
+  }, [origins]);
+
   useEffect(() => {
-    if (cube.current) {
-      switch (true) {
-        case windowSize <= 576:
-          changeSplinePosition(0, 500);
-          setOriginState(0, 500);
-          break;
-
-        case windowSize <= 992:
-          changeSplinePosition(-500, 0);
-          setOriginState(-500, 0);
-          break;
-
-        case windowSize <= 1400:
-          changeSplinePosition(-900, 0);
-          setOriginState(-900, 0);
-          break;
-
-        default:
-          changeSplinePosition(-1500, 0);
-          setOriginState(-1500, 0);
-          break;
-      }
-    }
-
-    console.log(origins);
+    adjustPosition();
+    handleSetorigins();
   }, [cube.current, windowSize]);
 
   // useGSAP hooks for animation
-  useGSAP(() => {
-    const tl1 = gsap.timeline();
-    const mm = gsap.matchMedia();
+  useGSAP(
+    () => {
+      const tl1 = gsap.timeline();
+      const mm = gsap.matchMedia();
 
-    gsap.from(".spline-wrapper", { opacity: 0, delay: 1, duration: 0.5 });
+      gsap.from(".spline-wrapper", { opacity: 0, delay: 1, duration: 0.5 });
 
-    gsap.to(".spline-wrapper", {
-      scrollTrigger: {
-        trigger: ".bg-project-wrapper",
-        start: "center bottom",
-        end: "center top",
-        scrub: 2,
-        pin: ".spline-wrapper",
-        pinSpacing: false,
-        onUpdate: (self) => {
-          const scrollPosition = self.progress.toFixed(5);
-          const cubeOriginX = origins.x;
-
-          const newPosition = cubeOriginX * Number(scrollPosition);
-
-          changeSplinePosition(cubeOriginX - newPosition, 0);
+      gsap.to(".spline-wrapper", {
+        scrollTrigger: {
+          trigger: ".bg-project-wrapper",
+          start: "center bottom",
+          end: "center top",
+          scrub: 2,
+          pin: ".spline-wrapper",
+          pinSpacing: false,
+          onUpdate: (self) => {
+            const scrollPosition = self.progress.toFixed(5);
+            const newPosition = origins.x * Number(scrollPosition);
+            changeSplinePosition(origins.x - newPosition, 0);
+          },
+          markers: true,
         },
-        markers: true,
-      },
-    });
+      });
 
-    // scrollTriggerAnimWithScrubPin(
-    //   ".bg-project-wrapper",
-    //   {
-    //     onUpdate: (self) => {
-    //       console.log(self);
-    //     },
-    //   },
-    //   ".spline-wrapper",
-    //   "center bottom",
-    //   "center top"
-    // );
-    // mm.add("(max-width: 768px)", () => {
-    //   gsap.set(".project-spline-content", { yPercent: -125, scale: 1.3 });
-    //   tl1.fromTo(".project-spline-content", { yPercent: -125, scale: 1.3 }, { yPercent: 0, scale: 1 });
-    // });
+      // scrollTriggerAnimWithScrubPin(
+      //   ".bg-project-wrapper",
+      //   {
+      //     onUpdate: (self) => {
+      //       console.log(self);
+      //     },
+      //   },
+      //   ".spline-wrapper",
+      //   "center bottom",
+      //   "center top"
+      // );
+      // mm.add("(max-width: 768px)", () => {
+      //   gsap.set(".project-spline-content", { yPercent: -125, scale: 1.3 });
+      //   tl1.fromTo(".project-spline-content", { yPercent: -125, scale: 1.3 }, { yPercent: 0, scale: 1 });
+      // });
 
-    // mm.add("(min-width: 768px)", () => {
-    //   gsap.set(".project-spline-content", { yPercent: -80, scale: 1.3 });
-    //   tl1.fromTo(".project-spline-content", { yPercent: -80, scale: 1.3 }, { yPercent: 0, scale: 1 });
-    // });
+      // mm.add("(min-width: 768px)", () => {
+      //   gsap.set(".project-spline-content", { yPercent: -80, scale: 1.3 });
+      //   tl1.fromTo(".project-spline-content", { yPercent: -80, scale: 1.3 }, { yPercent: 0, scale: 1 });
+      // });
 
-    // ScrollTrigger.create({
-    //   animation: tl1,
-    //   trigger: ".project-content1",
-    //   start: "top center",
-    //   end: "top center",
-    //   scrub: 3,
-    //   pin: false,
-    //   invalidateOnRefresh: true,
-    // });
-  });
+      // ScrollTrigger.create({
+      //   animation: tl1,
+      //   trigger: ".project-content1",
+      //   start: "top center",
+      //   end: "top center",
+      //   scrub: 3,
+      //   pin: false,
+      //   invalidateOnRefresh: true,
+      // });
+    },
+    { dependencies: [origins], revertOnUpdate: true }
+  );
 
   return (
     <div className="project-container">
       <div className="bg-project-wrapper">
+        {/* Take this(".spline-wrapper") to another components so that it will be cleaner */}
         <div className="spline-wrapper">
           <Suspense fallback={null}>
             <div className="spline">
